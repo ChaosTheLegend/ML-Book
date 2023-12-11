@@ -22,7 +22,7 @@ jobs:
           pip install jupyter-book
 
       - name: Install dependencies
-        run: pip install -r requirements.txt
+        run: pip install -r ml-book/requirements.txt
 
       - name: Build Jupyter-book 📚
         run: jupyter-book build ./ml-book
