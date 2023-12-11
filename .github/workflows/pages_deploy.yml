@@ -28,8 +28,7 @@ jobs:
 
       - name: Copy HTML files to Pages directory
         run: |
-          mkdir Pages
-          cp ./ML-Book.html ./index.html # Replace with your actual Jupyter notebook path
+          cp ./ML-Book.html ./Pages/index.html # Replace with your actual Jupyter notebook path
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
