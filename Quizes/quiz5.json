@@ -1,26 +1,28 @@
 {
-        "question": "What is the primary advantage of using an RNN over a traditional feedforward neural network for sequence data?",
+        "question": " How does a bidirectional RNN process input data?",
         "type": "many_choice",
         "answers": [
             {
-                "answer": "Lower computational complexity",
+                "answer": "It processes data only in the forward direction",
                 "correct": false,
                 "feedback": "Try again"
             },
             {
-                "answer": "Ability to handle variable-length sequences",
+                "answer": "It processes data in both forward and backward directions simultaneously.",
                 "correct": true,
                 "feedback": "Correct"
             },
             {
-                "answer": "Simpler architecture",
+                "answer": "It processes data randomly, switching between forward and backward directions.",
                 "correct": false,
                 "feedback": "Try again."
             },
             {
-                "answer": "Better performance on image data",
+                "answer": "It processes data by skipping alter",
                 "correct": false,
                 "feedback": "Try again"
             
-            }]}
+            }
+        ]
+}
         
