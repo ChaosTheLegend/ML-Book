@@ -33,7 +33,7 @@ model.fit(x_train, y_train, epochs=100, verbose=0)
 
 [0;31m---------------------------------------------------------------------------[0m
 [0;31mValueError[0m                                Traceback (most recent call last)
-Cell [0;32mIn[2], line 10[0m
+Cell [0;32mIn[3], line 10[0m
 [1;32m      8[0m model[38;5;241m.[39madd(Dense([38;5;241m1[39m))
 [1;32m      9[0m model[38;5;241m.[39mcompile(optimizer[38;5;241m=[39m[38;5;124m'[39m[38;5;124madam[39m[38;5;124m'[39m, loss[38;5;241m=[39m[38;5;124m'[39m[38;5;124mmean_squared_error[39m[38;5;124m'[39m)
 [0;32m---> 10[0m [43mmodel[49m[38;5;241;43m.[39;49m[43mfit[49m[43m([49m[43mx_train[49m[43m,[49m[43m [49m[43my_train[49m[43m,[49m[43m [49m[43mepochs[49m[38;5;241;43m=[39;49m[38;5;241;43m100[39;49m[43m,[49m[43m [49m[43mverbose[49m[38;5;241;43m=[39;49m[38;5;241;43m0[39;49m[43m)[49m
