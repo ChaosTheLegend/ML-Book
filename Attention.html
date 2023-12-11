@@ -386,13 +386,13 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><div id="KhTXKDotEIzv" data-shufflequestions="False"
+<div class="output text_html"><div id="ABufdZodxSvM" data-shufflequestions="False"
                data-shuffleanswers="True"
                data-preserveresponses="false"
                data-numquestions="1000000"
                data-maxwidth="600"
                style="border-radius: 10px; text-align: left"> <style>
-#KhTXKDotEIzv {
+#ABufdZodxSvM {
    --jq-multiple-choice-bg: #6f78ffff;
    --jq-mc-button-bg: #fafafa;
    --jq-mc-button-border: #e0e0e0e0;
@@ -562,29 +562,25 @@ document.write(`
         background-color: var(--jq-correct-color);
     }
 }
-</style></div><script type="application/javascript">var questionsKhTXKDotEIzv=[{
-  "question": "Which of the following is true? (A) On average, neural networks have higher computational rates than conventional computers. (B) Neural networks learn by example. (C) Neural networks mimic the way the human brain works",
+</style></div><script type="application/javascript">var questionsABufdZodxSvM=[{
+  "question": "Which of the following is true?",
+
   "type": "many_choice",
   "answers": [
     {
-      "answer": "All of the mentioned are true (correct)",
+      "answer": "On average, neural networks have higher computational rates than conventional computers.",
       "correct": true,
       "feedback": "Correct."
     },
     {
-      "answer": "(B) and (C) are true",
-      "correct": false,
-      "feedback": "Try again."
+      "answer": "Neural networks learn by example.",
+      "correct": true,
+      "feedback": "Correct."
     },
     {
-      "answer": "(A) and (B) are true",
-      "correct": false,
-      "feedback": "Try again."
-    },
-    {
-      "answer": "None of the mentioned",
-      "correct": false,
-      "feedback": "Try again."
+      "answer": "Neural networks mimic the way the human brain works",
+      "correct": true,
+      "feedback": "Correct."
     }
   ]
 }];
@@ -1336,8 +1332,8 @@ if (typeof version == 'undefined') {
            Someone more knowledgeable could make this better ;-) */
 
         function try_show() {
-          if(document.getElementById("KhTXKDotEIzv")) {
-            show_questions(questionsKhTXKDotEIzv,  KhTXKDotEIzv); 
+          if(document.getElementById("ABufdZodxSvM")) {
+            show_questions(questionsABufdZodxSvM,  ABufdZodxSvM); 
           } else {
              setTimeout(try_show, 200);
           }
@@ -1352,10 +1348,10 @@ if (typeof version == 'undefined') {
 
         fetch("https://raw.githubusercontent.com/ChaosTheLegend/ML-Book/main/Quizes/quiz1.json", {signal})
         .then(response => response.json())
-        .then(json => show_questions(json, KhTXKDotEIzv))
+        .then(json => show_questions(json, ABufdZodxSvM))
         .catch(err => {
         console.log("Fetch error or timeout");
-        show_questions(questionsKhTXKDotEIzv, KhTXKDotEIzv);
+        show_questions(questionsABufdZodxSvM, ABufdZodxSvM);
         });
         }
         </script></div>
@@ -1370,16 +1366,16 @@ if (typeof version == 'undefined') {
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2023-12-11 19:51:56.750099: I external/local_tsl/tsl/cuda/cudart_stub.cc:31] Could not find cuda drivers on your machine, GPU will not be used.
-2023-12-11 19:51:56.780926: E external/local_xla/xla/stream_executor/cuda/cuda_dnn.cc:9261] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
-2023-12-11 19:51:56.780948: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:607] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
-2023-12-11 19:51:56.782168: E external/local_xla/xla/stream_executor/cuda/cuda_blas.cc:1515] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
-2023-12-11 19:51:56.787798: I external/local_tsl/tsl/cuda/cudart_stub.cc:31] Could not find cuda drivers on your machine, GPU will not be used.
-2023-12-11 19:51:56.788026: I tensorflow/core/platform/cpu_feature_guard.cc:182] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2023-12-11 19:54:46.469404: I external/local_tsl/tsl/cuda/cudart_stub.cc:31] Could not find cuda drivers on your machine, GPU will not be used.
+2023-12-11 19:54:46.501900: E external/local_xla/xla/stream_executor/cuda/cuda_dnn.cc:9261] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
+2023-12-11 19:54:46.501938: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:607] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
+2023-12-11 19:54:46.503170: E external/local_xla/xla/stream_executor/cuda/cuda_blas.cc:1515] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
+2023-12-11 19:54:46.509254: I external/local_tsl/tsl/cuda/cudart_stub.cc:31] Could not find cuda drivers on your machine, GPU will not be used.
+2023-12-11 19:54:46.509864: I tensorflow/core/platform/cpu_feature_guard.cc:182] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
 To enable the following instructions: AVX2 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2023-12-11 19:51:57.568488: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2023-12-11 19:54:47.405848: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloading data from https://storage.googleapis.com/tensorflow/tf-keras-datasets/imdb.npz
@@ -1389,15 +1385,11 @@ To enable the following instructions: AVX2 FMA, in other operations, rebuild Ten
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
-  548864/17464789 [..............................] - ETA: 1s
+ 3383296/17464789 [====&gt;.........................] - ETA: 0s
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
- 4202496/17464789 [======&gt;.......................] - ETA: 0s
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
-13934592/17464789 [======================&gt;.......] - ETA: 0s
+ 8396800/17464789 [=============&gt;................] - ETA: 0s
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
