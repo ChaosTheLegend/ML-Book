@@ -1,0 +1,26 @@
+{
+        "question": "What is the primary advantage of using an RNN over a traditional feedforward neural network for sequence data?",
+        "type": "many_choice",
+        "answers": [
+            {
+                "answer": "Lower computational complexity",
+                "correct": false,
+                "feedback": "Try again"
+            },
+            {
+                "answer": "Ability to handle variable-length sequences",
+                "correct": true,
+                "feedback": "Correct"
+            },
+            {
+                "answer": "Simpler architecture",
+                "correct": false,
+                "feedback": "Try again."
+            },
+            {
+                "answer": "Better performance on image data",
+                "correct": false,
+                "feedback": "Try again"
+            
+            }]}
+        

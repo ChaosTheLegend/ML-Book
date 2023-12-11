@@ -1,0 +1,26 @@
+{
+        "question": " How does a bidirectional RNN process input data?",
+        "type": "many_choice",
+        "answers": [
+            {
+                "answer": "It processes data only in the forward direction",
+                "correct": false,
+                "feedback": "Try again"
+            },
+            {
+                "answer": "It processes data in both forward and backward directions simultaneously.",
+                "correct": true,
+                "feedback": "Correct"
+            },
+            {
+                "answer": "It processes data randomly, switching between forward and backward directions.",
+                "correct": false,
+                "feedback": "Try again."
+            },
+            {
+                "answer": "It processes data by skipping alter",
+                "correct": false,
+                "feedback": "Try again"
+            
+            }]}
+        

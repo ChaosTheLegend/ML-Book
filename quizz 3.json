@@ -1,0 +1,26 @@
+{
+        "question": "What is the primary purpose of the hidden state in an RNN?",
+        "type": "many_choice",
+        "answers": [
+            {
+                "answer": "To store the input data",
+                "correct": false,
+                "feedback": "Try again"
+            },
+            {
+                "answer": "To provide a connection between input and output layers",
+                "correct": false,
+                "feedback": "Try again"
+            },
+            {
+                "answer": "To capture information about the sequence up to the current time step",
+                "correct": true,
+                "feedback": "Correct."
+            },
+            {
+                "answer": "FTo act as an additional output layer",
+                "correct": false,
+                "feedback": "Try again"
+            
+            }]}
+        

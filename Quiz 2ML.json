@@ -1,0 +1,26 @@
+{
+  "question": "Which of the following is true? (A) On average, neural networks have higher computational rates than conventional computers. (B) Neural networks learn by example. (C) Neural networks mimic the way the human brain works",
+  "type": "many_choice",
+  "answers": [
+    {
+      "answer": "All of the mentioned are true (correct)",
+      "correct": true,
+      "feedback": "Correct."
+    },
+    {
+      "answer": "(B) and (C) are true",
+      "correct": false,
+      "feedback": "Try again."
+    },
+    {
+      "answer": "(A) and (B) are true",
+      "correct": false,
+      "feedback": "Try again."
+    },
+    {
+      "answer": "None of the mentioned",
+      "correct": false,
+      "feedback": "Try again."
+    }
+  ]
+}
