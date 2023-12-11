@@ -38,7 +38,7 @@ Explain how the alignment scores are converted into attention weights using the 
 
 ## 5. Visualization of Attention:
 
-One of the great aspects of attention is that the weights can be visualized, which can provide insight into what the model is 'focusing on' at each step. Discuss this advantage and, if possible, include examples of such visualizations in your article.
+- Добавить поле в котором пользователь может ввести свой текст и посмотреть как модель будет предсказывать его
 
 
 ## Графики
@@ -48,4 +48,3 @@ One of the great aspects of attention is that the weights can be visualized, whi
 + Сравнение LSTM и SimpleRNN - граффик
 + график точность по отношению к количеству эпох (LSMT, SimpleRNN)
 + потенциально добавить heatmap для 
-+ Добавить поле в котором пользователь может ввести свой текст и посмотреть как модель будет предсказывать его
