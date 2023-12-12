@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Attention mechanism &#8212; My sample book</title>
+    <title>RNN recap &#8212; My sample book</title>
   
   
   
@@ -158,7 +158,7 @@ const thebe_selector_output = ".output, .cell_output"
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1 current active">
                 <a class="reference internal" href="#">
-                    Attention mechanism
+                    RNN recap
                 </a>
             </li>
         </ul>
@@ -346,7 +346,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Attention mechanism</h1>
+    <h1>RNN recap</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -356,13 +356,15 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Attention mechanism</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#the-need-for-attention-mechanism">The Need for Attention Mechanism</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Attention Mechanism</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#alignment-scores-in-rnn-attention-mechanism">Alignment Scores in RNN Attention Mechanism</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#from-alignment-scores-to-attention-weights">From Alignment Scores to Attention Weights</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-need-for-attention-mechanism">The Need for Attention Mechanism</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vanishing-gradient-problem">Vanishing Gradient Problem</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#math-behind-vanishing-gradient-problem">Math Behind Vanishing Gradient Problem</a></li>
 </ul>
-
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#attention-mechanism">Attention Mechanism</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#alignment-scores-in-rnn-attention-mechanism">Alignment Scores in RNN Attention Mechanism</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#from-alignment-scores-to-attention-weights">From Alignment Scores to Attention Weights</a></li>
+</ul>
             </nav>
         </div>
     </div>
@@ -373,21 +375,22 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section id="attention-mechanism">
-<h1>Attention mechanism<a class="headerlink" href="#attention-mechanism" title="Permalink to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="rnn-recap">
+<h1>RNN recap<a class="headerlink" href="#rnn-recap" title="Permalink to this heading">#</a></h1>
 <p>In a basic RNN, each recurrent neuron receives inputs from all neurons from the previous time step, as well as the inputs from the current time step, hence the term ‘recurrent’.</p>
-<p>Remove this block later</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">### This cell should be hidden in the final version</span>
 
 <span class="kn">import</span> <span class="nn">tensorflow</span> <span class="k">as</span> <span class="nn">tf</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">ipywidgets</span> <span class="k">as</span> <span class="nn">widgets</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
 <span class="kn">from</span> <span class="nn">keras.src.utils</span> <span class="kn">import</span> <span class="n">pad_sequences</span>
 <span class="kn">from</span> <span class="nn">jupyterquiz</span> <span class="kn">import</span> <span class="n">display_quiz</span>
 <span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">accuracy_score</span>
 <span class="kn">from</span> <span class="nn">keras.datasets</span> <span class="kn">import</span> <span class="n">imdb</span>
+
 
 <span class="n">git_path</span><span class="o">=</span><span class="s2">&quot;https://raw.githubusercontent.com/ChaosTheLegend/ML-Book/main/Quizes/&quot;</span>
 
@@ -406,32 +409,273 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2023-12-12 12:56:13.869819: I external/local_tsl/tsl/cuda/cudart_stub.cc:31] Could not find cuda drivers on your machine, GPU will not be used.
-2023-12-12 12:56:13.900697: E external/local_xla/xla/stream_executor/cuda/cuda_dnn.cc:9261] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
-2023-12-12 12:56:13.900719: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:607] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
-2023-12-12 12:56:13.901903: E external/local_xla/xla/stream_executor/cuda/cuda_blas.cc:1515] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
-2023-12-12 12:56:13.907578: I external/local_tsl/tsl/cuda/cudart_stub.cc:31] Could not find cuda drivers on your machine, GPU will not be used.
-2023-12-12 12:56:13.908346: I tensorflow/core/platform/cpu_feature_guard.cc:182] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2023-12-12 22:20:00.785470: I external/local_tsl/tsl/cuda/cudart_stub.cc:31] Could not find cuda drivers on your machine, GPU will not be used.
+2023-12-12 22:20:00.816249: E external/local_xla/xla/stream_executor/cuda/cuda_dnn.cc:9261] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
+2023-12-12 22:20:00.816273: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:607] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
+2023-12-12 22:20:00.817489: E external/local_xla/xla/stream_executor/cuda/cuda_blas.cc:1515] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
+2023-12-12 22:20:00.823188: I external/local_tsl/tsl/cuda/cudart_stub.cc:31] Could not find cuda drivers on your machine, GPU will not be used.
+2023-12-12 22:20:00.824296: I tensorflow/core/platform/cpu_feature_guard.cc:182] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
 To enable the following instructions: AVX2 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2023-12-12 12:56:14.682353: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2023-12-12 22:20:01.611596: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloading data from https://storage.googleapis.com/tensorflow/tf-keras-datasets/imdb.npz
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">line</span> <span class="mi">5</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="kn">import</span> <span class="nn">tensorflow</span> <span class="k">as</span> <span class="nn">tf</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="ne">----&gt; </span><span class="mi">5</span> <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="g g-Whitespace">      </span><span class="mi">6</span> <span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="g g-Whitespace">      </span><span class="mi">7</span> <span class="kn">from</span> <span class="nn">keras.src.utils</span> <span class="kn">import</span> <span class="n">pad_sequences</span>
+
+<span class="ne">ModuleNotFoundError</span>: No module named &#39;pandas&#39;
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>    8192/17464789 [..............................] - ETA: 0s
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">Sequential</span><span class="p">([</span>
+    <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Embedding</span><span class="p">(</span><span class="n">input_dim</span><span class="o">=</span><span class="n">num_words</span><span class="p">,</span> <span class="n">output_dim</span><span class="o">=</span><span class="n">embedding_dim</span><span class="p">,</span> <span class="n">input_length</span><span class="o">=</span><span class="n">max_len</span><span class="p">),</span>
+    <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">SimpleRNN</span><span class="p">(</span><span class="n">hidden_dim</span><span class="p">),</span>
+    <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Dense</span><span class="p">(</span><span class="n">output_dim</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;sigmoid&#39;</span><span class="p">)</span>
+<span class="p">])</span>
+
+<span class="n">model</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">optimizer</span><span class="o">=</span><span class="s1">&#39;adam&#39;</span><span class="p">,</span> <span class="n">loss</span><span class="o">=</span><span class="s1">&#39;binary_crossentropy&#39;</span><span class="p">,</span> <span class="n">metrics</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;accuracy&#39;</span><span class="p">])</span>
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
-11714560/17464789 [===================&gt;..........] - ETA: 0s
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>    <span class="c1">#traib model for 10 epochs and save accuracy on each one</span>
+
+<span class="n">accuracy_epochs</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100</span><span class="p">):</span>
+        <span class="k">break</span>
+        <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">x_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">epochs</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">512</span><span class="p">,</span> <span class="n">validation_split</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span>
+        <span class="n">y_pred</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">x_test</span><span class="p">)</span>
+        <span class="n">y_pred</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">y_pred</span><span class="p">)</span>
+        <span class="n">accuracy</span> <span class="o">=</span> <span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
+        <span class="n">accuracy_epochs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">accuracy</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
-17464789/17464789 [==============================] - 0s 0us/step
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>40/40 [==============================] - 13s 305ms/step - loss: 0.6795 - accuracy: 0.5638 - val_loss: 0.6885 - val_accuracy: 0.5344
+782/782 [==============================] - 13s 16ms/step
+40/40 [==============================] - 12s 312ms/step - loss: 0.6328 - accuracy: 0.6560 - val_loss: 0.6994 - val_accuracy: 0.5348
+782/782 [==============================] - 12s 16ms/step
+40/40 [==============================] - 12s 309ms/step - loss: 0.6039 - accuracy: 0.6951 - val_loss: 0.6815 - val_accuracy: 0.5380
+782/782 [==============================] - 12s 16ms/step
+40/40 [==============================] - 12s 301ms/step - loss: 0.6546 - accuracy: 0.6177 - val_loss: 0.7008 - val_accuracy: 0.5154
+782/782 [==============================] - 12s 16ms/step
+40/40 [==============================] - 12s 290ms/step - loss: 0.6491 - accuracy: 0.6296 - val_loss: 0.6839 - val_accuracy: 0.5516
+782/782 [==============================] - 12s 15ms/step
+40/40 [==============================] - 11s 282ms/step - loss: 0.6279 - accuracy: 0.6678 - val_loss: 0.6810 - val_accuracy: 0.5460
+782/782 [==============================] - 12s 15ms/step
+40/40 [==============================] - 11s 285ms/step - loss: 0.6183 - accuracy: 0.6622 - val_loss: 0.6841 - val_accuracy: 0.5446
+782/782 [==============================] - 12s 16ms/step
+40/40 [==============================] - 12s 296ms/step - loss: 0.6067 - accuracy: 0.6751 - val_loss: 0.6835 - val_accuracy: 0.5502
+782/782 [==============================] - 12s 15ms/step
+40/40 [==============================] - 12s 296ms/step - loss: 0.5728 - accuracy: 0.6941 - val_loss: 0.7060 - val_accuracy: 0.5584
+782/782 [==============================] - 12s 15ms/step
+40/40 [==============================] - 12s 295ms/step - loss: 0.5437 - accuracy: 0.7114 - val_loss: 0.7274 - val_accuracy: 0.5626
+782/782 [==============================] - 12s 15ms/step
+40/40 [==============================] - 11s 283ms/step - loss: 0.5110 - accuracy: 0.7345 - val_loss: 0.7467 - val_accuracy: 0.5672
+782/782 [==============================] - 12s 15ms/step
+40/40 [==============================] - 12s 290ms/step - loss: 0.4715 - accuracy: 0.7656 - val_loss: 0.7759 - val_accuracy: 0.5718
+782/782 [==============================] - 12s 15ms/step
+40/40 [==============================] - 11s 285ms/step - loss: 0.4265 - accuracy: 0.7976 - val_loss: 0.7988 - val_accuracy: 0.5866
+782/782 [==============================] - 12s 15ms/step
+40/40 [==============================] - 12s 289ms/step - loss: 0.3750 - accuracy: 0.8336 - val_loss: 0.8519 - val_accuracy: 0.5932
+782/782 [==============================] - 13s 16ms/step
+40/40 [==============================] - 12s 296ms/step - loss: 0.3240 - accuracy: 0.8604 - val_loss: 0.8839 - val_accuracy: 0.5912
+782/782 [==============================] - 12s 15ms/step
+40/40 [==============================] - 13s 314ms/step - loss: 0.2665 - accuracy: 0.8925 - val_loss: 0.9749 - val_accuracy: 0.5958
+782/782 [==============================] - 12s 16ms/step
+40/40 [==============================] - 12s 312ms/step - loss: 0.2248 - accuracy: 0.9105 - val_loss: 1.0124 - val_accuracy: 0.6036
+782/782 [==============================] - 13s 16ms/step
+40/40 [==============================] - 12s 296ms/step - loss: 0.1753 - accuracy: 0.9364 - val_loss: 1.0824 - val_accuracy: 0.6098
+782/782 [==============================] - 13s 17ms/step
+40/40 [==============================] - 12s 305ms/step - loss: 0.1427 - accuracy: 0.9513 - val_loss: 1.1622 - val_accuracy: 0.6116
+782/782 [==============================] - 12s 16ms/step
+40/40 [==============================] - 12s 306ms/step - loss: 0.1089 - accuracy: 0.9661 - val_loss: 1.2312 - val_accuracy: 0.6206
+782/782 [==============================] - 12s 16ms/step
+40/40 [==============================] - 12s 290ms/step - loss: 0.0918 - accuracy: 0.9731 - val_loss: 1.3423 - val_accuracy: 0.6114
+782/782 [==============================] - 12s 16ms/step
+40/40 [==============================] - 12s 306ms/step - loss: 0.0697 - accuracy: 0.9796 - val_loss: 1.4272 - val_accuracy: 0.6100
+782/782 [==============================] - 12s 15ms/step
+40/40 [==============================] - 11s 283ms/step - loss: 0.0622 - accuracy: 0.9829 - val_loss: 1.4695 - val_accuracy: 0.6218
+782/782 [==============================] - 12s 15ms/step
+40/40 [==============================] - 11s 284ms/step - loss: 0.0543 - accuracy: 0.9843 - val_loss: 1.4401 - val_accuracy: 0.6216
+782/782 [==============================] - 12s 15ms/step
+40/40 [==============================] - 11s 285ms/step - loss: 0.0409 - accuracy: 0.9902 - val_loss: 1.5246 - val_accuracy: 0.6296
+782/782 [==============================] - 12s 15ms/step
+40/40 [==============================] - 11s 274ms/step - loss: 0.0307 - accuracy: 0.9928 - val_loss: 1.6594 - val_accuracy: 0.6158
+782/782 [==============================] - 12s 16ms/step
+40/40 [==============================] - 12s 297ms/step - loss: 0.0471 - accuracy: 0.9848 - val_loss: 1.5303 - val_accuracy: 0.6128
+782/782 [==============================] - 12s 16ms/step
+40/40 [==============================] - 11s 286ms/step - loss: 0.0430 - accuracy: 0.9874 - val_loss: 1.5973 - val_accuracy: 0.6292
+782/782 [==============================] - 12s 16ms/step
+40/40 [==============================] - 12s 296ms/step - loss: 0.0217 - accuracy: 0.9949 - val_loss: 1.6622 - val_accuracy: 0.6284
+782/782 [==============================] - 12s 16ms/step
+40/40 [==============================] - 12s 299ms/step - loss: 0.0127 - accuracy: 0.9983 - val_loss: 1.6374 - val_accuracy: 0.6460
+782/782 [==============================] - 13s 16ms/step
+40/40 [==============================] - 12s 290ms/step - loss: 0.0087 - accuracy: 0.9991 - val_loss: 1.7279 - val_accuracy: 0.6392
+782/782 [==============================] - 13s 16ms/step
+40/40 [==============================] - 12s 290ms/step - loss: 0.0177 - accuracy: 0.9964 - val_loss: 1.7621 - val_accuracy: 0.6262
+782/782 [==============================] - 13s 16ms/step
+40/40 [==============================] - 11s 286ms/step - loss: 0.0254 - accuracy: 0.9936 - val_loss: 1.6415 - val_accuracy: 0.6464
+782/782 [==============================] - 12s 16ms/step
+40/40 [==============================] - 11s 286ms/step - loss: 0.0211 - accuracy: 0.9938 - val_loss: 2.0355 - val_accuracy: 0.5768
+782/782 [==============================] - 12s 16ms/step
+40/40 [==============================] - 12s 294ms/step - loss: 0.1305 - accuracy: 0.9498 - val_loss: 1.5412 - val_accuracy: 0.6254
+782/782 [==============================] - 13s 16ms/step
+40/40 [==============================] - 12s 289ms/step - loss: 0.0219 - accuracy: 0.9945 - val_loss: 1.4702 - val_accuracy: 0.6566
+782/782 [==============================] - 12s 15ms/step
+40/40 [==============================] - 12s 291ms/step - loss: 0.0810 - accuracy: 0.9717 - val_loss: 1.5955 - val_accuracy: 0.6350
+782/782 [==============================] - 12s 16ms/step
+40/40 [==============================] - 12s 290ms/step - loss: 0.0224 - accuracy: 0.9944 - val_loss: 1.5746 - val_accuracy: 0.6452
+782/782 [==============================] - 12s 16ms/step
+40/40 [==============================] - 12s 296ms/step - loss: 0.0117 - accuracy: 0.9984 - val_loss: 1.6931 - val_accuracy: 0.6402
+782/782 [==============================] - 13s 16ms/step
+40/40 [==============================] - 12s 306ms/step - loss: 0.0064 - accuracy: 0.9992 - val_loss: 1.8256 - val_accuracy: 0.6328
+782/782 [==============================] - 12s 16ms/step
+40/40 [==============================] - 12s 293ms/step - loss: 0.0046 - accuracy: 0.9995 - val_loss: 1.8497 - val_accuracy: 0.6400
+782/782 [==============================] - 12s 16ms/step
+40/40 [==============================] - 11s 287ms/step - loss: 0.0096 - accuracy: 0.9983 - val_loss: 1.8035 - val_accuracy: 0.6444
+782/782 [==============================] - 12s 16ms/step
+40/40 [==============================] - 12s 294ms/step - loss: 0.0291 - accuracy: 0.9919 - val_loss: 1.7138 - val_accuracy: 0.6444
+782/782 [==============================] - 13s 16ms/step
+40/40 [==============================] - 12s 300ms/step - loss: 0.0054 - accuracy: 0.9995 - val_loss: 1.7172 - val_accuracy: 0.6564
+782/782 [==============================] - 13s 16ms/step
+40/40 [==============================] - 12s 293ms/step - loss: 0.0061 - accuracy: 0.9990 - val_loss: 1.8611 - val_accuracy: 0.6470
+782/782 [==============================] - 12s 16ms/step
+40/40 [==============================] - 12s 293ms/step - loss: 0.0034 - accuracy: 0.9998 - val_loss: 2.0309 - val_accuracy: 0.6258
+782/782 [==============================] - 12s 16ms/step
+40/40 [==============================] - 12s 294ms/step - loss: 0.0022 - accuracy: 0.9999 - val_loss: 1.9331 - val_accuracy: 0.6420
+699/782 [=========================&gt;....] - ETA: 1s
 </pre></div>
 </div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># read the accuracy from the csv file</span>
+
+<span class="n">accuracy_epochs</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;simplernn_accuracy.csv&#39;</span><span class="p">)</span>
+
+<span class="n">accuracy_epochs</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Unnamed: 0</th>
+      <th>accuracy</th>
+      <th>epoch</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0</td>
+      <td>0.55628</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1</td>
+      <td>0.55212</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2</td>
+      <td>0.56592</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>3</td>
+      <td>0.55608</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>4</td>
+      <td>0.58336</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>5</td>
+      <td>0.59588</td>
+      <td>6</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>6</td>
+      <td>0.61284</td>
+      <td>7</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>7</td>
+      <td>0.66644</td>
+      <td>8</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>8</td>
+      <td>0.67948</td>
+      <td>9</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>9</td>
+      <td>0.67460</td>
+      <td>10</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># plot the accuracy vs epoch number</span>
+<span class="c1"># set scale from 0.4 to 1</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">accuracy_epochs</span><span class="p">[</span><span class="s1">&#39;epoch&#39;</span><span class="p">],</span> <span class="n">accuracy_epochs</span><span class="p">[</span><span class="s1">&#39;accuracy&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x2ab46f11250&gt;]
+</pre></div>
+</div>
+<img alt="_images/191c19cabea61ab854c8ca32cf7c216cc067aa4749d967192fd9c1ddbe9e2066.png" src="_images/191c19cabea61ab854c8ca32cf7c216cc067aa4749d967192fd9c1ddbe9e2066.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -443,104 +687,21 @@ To enable the following instructions: AVX2 FMA, in other operations, rebuild Ten
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">ValueError</span><span class="g g-Whitespace">                                </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">simpleRNN</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">load_model</span><span class="p">(</span><span class="s1">&#39;simpleRNN.keras&#39;</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">simpleRNN</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
-
-<span class="nn">File /opt/hostedtoolcache/Python/3.11.5/x64/lib/python3.11/site-packages/keras/src/saving/saving_api.py:254,</span> in <span class="ni">load_model</span><span class="nt">(filepath, custom_objects, compile, safe_mode, **kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">249</span>     <span class="k">if</span> <span class="n">kwargs</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">250</span>         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">251</span>             <span class="s2">&quot;The following argument(s) are not supported &quot;</span>
-<span class="g g-Whitespace">    </span><span class="mi">252</span>             <span class="sa">f</span><span class="s2">&quot;with the native Keras format: </span><span class="si">{</span><span class="nb">list</span><span class="p">(</span><span class="n">kwargs</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span><span class="si">}</span><span class="s2">&quot;</span>
-<span class="g g-Whitespace">    </span><span class="mi">253</span>         <span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">254</span>     <span class="k">return</span> <span class="n">saving_lib</span><span class="o">.</span><span class="n">load_model</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">255</span>         <span class="n">filepath</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">256</span>         <span class="n">custom_objects</span><span class="o">=</span><span class="n">custom_objects</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">257</span>         <span class="nb">compile</span><span class="o">=</span><span class="nb">compile</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">258</span>         <span class="n">safe_mode</span><span class="o">=</span><span class="n">safe_mode</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">259</span>     <span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">261</span> <span class="c1"># Legacy case.</span>
-<span class="g g-Whitespace">    </span><span class="mi">262</span> <span class="k">return</span> <span class="n">legacy_sm_saving_lib</span><span class="o">.</span><span class="n">load_model</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">263</span>     <span class="n">filepath</span><span class="p">,</span> <span class="n">custom_objects</span><span class="o">=</span><span class="n">custom_objects</span><span class="p">,</span> <span class="nb">compile</span><span class="o">=</span><span class="nb">compile</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
-<span class="g g-Whitespace">    </span><span class="mi">264</span> <span class="p">)</span>
-
-<span class="nn">File /opt/hostedtoolcache/Python/3.11.5/x64/lib/python3.11/site-packages/keras/src/saving/saving_lib.py:281,</span> in <span class="ni">load_model</span><span class="nt">(filepath, custom_objects, compile, safe_mode)</span>
-<span class="g g-Whitespace">    </span><span class="mi">278</span>             <span class="n">asset_store</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
-<span class="g g-Whitespace">    </span><span class="mi">280</span> <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">281</span>     <span class="k">raise</span> <span class="n">e</span>
-<span class="g g-Whitespace">    </span><span class="mi">282</span> <span class="k">else</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">283</span>     <span class="k">return</span> <span class="n">model</span>
-
-<span class="nn">File /opt/hostedtoolcache/Python/3.11.5/x64/lib/python3.11/site-packages/keras/src/saving/saving_lib.py:269,</span> in <span class="ni">load_model</span><span class="nt">(filepath, custom_objects, compile, safe_mode)</span>
-<span class="g g-Whitespace">    </span><span class="mi">266</span> <span class="k">else</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">267</span>     <span class="n">asset_store</span> <span class="o">=</span> <span class="kc">None</span>
-<span class="ne">--&gt; </span><span class="mi">269</span> <span class="n">_load_state</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">270</span>     <span class="n">model</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">271</span>     <span class="n">weights_store</span><span class="o">=</span><span class="n">weights_store</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">272</span>     <span class="n">assets_store</span><span class="o">=</span><span class="n">asset_store</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">273</span>     <span class="n">inner_path</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">274</span>     <span class="n">visited_trackables</span><span class="o">=</span><span class="nb">set</span><span class="p">(),</span>
-<span class="g g-Whitespace">    </span><span class="mi">275</span> <span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">276</span> <span class="n">weights_store</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
-<span class="g g-Whitespace">    </span><span class="mi">277</span> <span class="k">if</span> <span class="n">asset_store</span><span class="p">:</span>
-
-<span class="nn">File /opt/hostedtoolcache/Python/3.11.5/x64/lib/python3.11/site-packages/keras/src/saving/saving_lib.py:466,</span> in <span class="ni">_load_state</span><span class="nt">(trackable, weights_store, assets_store, inner_path, skip_mismatch, visited_trackables)</span>
-<span class="g g-Whitespace">    </span><span class="mi">457</span>     <span class="n">_load_state</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">458</span>         <span class="n">child_obj</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">459</span>         <span class="n">weights_store</span><span class="p">,</span>
-   <span class="p">(</span><span class="o">...</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">463</span>         <span class="n">visited_trackables</span><span class="o">=</span><span class="n">visited_trackables</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">464</span>     <span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">465</span> <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">child_obj</span><span class="p">,</span> <span class="p">(</span><span class="nb">list</span><span class="p">,</span> <span class="nb">dict</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">,</span> <span class="nb">set</span><span class="p">)):</span>
-<span class="ne">--&gt; </span><span class="mi">466</span>     <span class="n">_load_container_state</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">467</span>         <span class="n">child_obj</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">468</span>         <span class="n">weights_store</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">469</span>         <span class="n">assets_store</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">470</span>         <span class="n">inner_path</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">gfile</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">inner_path</span><span class="p">,</span> <span class="n">child_attr</span><span class="p">),</span>
-<span class="g g-Whitespace">    </span><span class="mi">471</span>         <span class="n">skip_mismatch</span><span class="o">=</span><span class="n">skip_mismatch</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">472</span>         <span class="n">visited_trackables</span><span class="o">=</span><span class="n">visited_trackables</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">473</span>     <span class="p">)</span>
-
-<span class="nn">File /opt/hostedtoolcache/Python/3.11.5/x64/lib/python3.11/site-packages/keras/src/saving/saving_lib.py:534,</span> in <span class="ni">_load_container_state</span><span class="nt">(container, weights_store, assets_store, inner_path, skip_mismatch, visited_trackables)</span>
-<span class="g g-Whitespace">    </span><span class="mi">532</span> <span class="k">else</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">533</span>     <span class="n">used_names</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
-<span class="ne">--&gt; </span><span class="mi">534</span> <span class="n">_load_state</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">535</span>     <span class="n">trackable</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">536</span>     <span class="n">weights_store</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">537</span>     <span class="n">assets_store</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">538</span>     <span class="n">inner_path</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">gfile</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">inner_path</span><span class="p">,</span> <span class="n">name</span><span class="p">),</span>
-<span class="g g-Whitespace">    </span><span class="mi">539</span>     <span class="n">skip_mismatch</span><span class="o">=</span><span class="n">skip_mismatch</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">540</span>     <span class="n">visited_trackables</span><span class="o">=</span><span class="n">visited_trackables</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">541</span> <span class="p">)</span>
-
-<span class="nn">File /opt/hostedtoolcache/Python/3.11.5/x64/lib/python3.11/site-packages/keras/src/saving/saving_lib.py:435,</span> in <span class="ni">_load_state</span><span class="nt">(trackable, weights_store, assets_store, inner_path, skip_mismatch, visited_trackables)</span>
-<span class="g g-Whitespace">    </span><span class="mi">428</span>             <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">429</span>                 <span class="sa">f</span><span class="s2">&quot;Could not load weights in object </span><span class="si">{</span><span class="n">trackable</span><span class="si">}</span><span class="s2">. &quot;</span>
-<span class="g g-Whitespace">    </span><span class="mi">430</span>                 <span class="s2">&quot;Skipping object. &quot;</span>
-<span class="g g-Whitespace">    </span><span class="mi">431</span>                 <span class="sa">f</span><span class="s2">&quot;Exception encountered: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">432</span>                 <span class="n">stacklevel</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">433</span>             <span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">434</span>     <span class="k">else</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">435</span>         <span class="n">trackable</span><span class="o">.</span><span class="n">load_own_variables</span><span class="p">(</span><span class="n">weights_store</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">inner_path</span><span class="p">))</span>
-<span class="g g-Whitespace">    </span><span class="mi">437</span> <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">trackable</span><span class="p">,</span> <span class="s2">&quot;load_assets&quot;</span><span class="p">)</span> <span class="ow">and</span> <span class="n">assets_store</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">438</span>     <span class="k">if</span> <span class="n">skip_mismatch</span><span class="p">:</span>
-
-<span class="nn">File /opt/hostedtoolcache/Python/3.11.5/x64/lib/python3.11/site-packages/keras/src/engine/base_layer.py:3531,</span> in <span class="ni">Layer.load_own_variables</span><span class="nt">(self, store)</span>
-<span class="g g-Whitespace">   </span><span class="mi">3529</span> <span class="n">all_vars</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_trainable_weights</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">_non_trainable_weights</span>
-<span class="g g-Whitespace">   </span><span class="mi">3530</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">store</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="n">all_vars</span><span class="p">):</span>
-<span class="ne">-&gt; </span><span class="mi">3531</span>     <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-<span class="g g-Whitespace">   </span><span class="mi">3532</span>         <span class="sa">f</span><span class="s2">&quot;Layer &#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&#39; expected </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">all_vars</span><span class="p">)</span><span class="si">}</span><span class="s2"> variables, &quot;</span>
-<span class="g g-Whitespace">   </span><span class="mi">3533</span>         <span class="s2">&quot;but received &quot;</span>
-<span class="g g-Whitespace">   </span><span class="mi">3534</span>         <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">store</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span><span class="si">}</span><span class="s2"> variables during loading. &quot;</span>
-<span class="g g-Whitespace">   </span><span class="mi">3535</span>         <span class="sa">f</span><span class="s2">&quot;Expected: </span><span class="si">{</span><span class="p">[</span><span class="n">v</span><span class="o">.</span><span class="n">name</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">all_vars</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span>
-<span class="g g-Whitespace">   </span><span class="mi">3536</span>     <span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">3537</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">all_vars</span><span class="p">):</span>
-<span class="g g-Whitespace">   </span><span class="mi">3538</span>     <span class="c1"># TODO(rchao): check shapes and raise errors.</span>
-<span class="g g-Whitespace">   </span><span class="mi">3539</span>     <span class="n">v</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">store</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">])</span>
-
-<span class="ne">ValueError</span>: Layer &#39;embedding_6&#39; expected 1 variables, but received 0 variables during loading. Expected: [&#39;embedding_6/embeddings:0&#39;]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Model: &quot;sequential_16&quot;
+_________________________________________________________________
+ Layer (type)                Output Shape              Param #   
+=================================================================
+ embedding_6 (Embedding)     (None, 200, 100)          1000000   
+                                                                 
+ simple_rnn_14 (SimpleRNN)   (None, 256)               91392     
+                                                                 
+ dense_15 (Dense)            (None, 1)                 257       
+                                                                 
+=================================================================
+Total params: 1091649 (4.16 MB)
+Trainable params: 1091649 (4.16 MB)
+Non-trainable params: 0 (0.00 Byte)
+_________________________________________________________________
 </pre></div>
 </div>
 </div>
@@ -569,24 +730,32 @@ To enable the following instructions: AVX2 FMA, in other operations, rebuild Ten
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.55552
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.6746
 </pre></div>
 </div>
 </div>
 </div>
-</section>
 <section id="the-need-for-attention-mechanism">
-<h1>The Need for Attention Mechanism<a class="headerlink" href="#the-need-for-attention-mechanism" title="Permalink to this heading">#</a></h1>
+<h2>The Need for Attention Mechanism<a class="headerlink" href="#the-need-for-attention-mechanism" title="Permalink to this heading">#</a></h2>
 <p>The problem with basic RNNs is that they are not very good at handling long sequences.</p>
 <p>Even when using more epochs, the accuracy of the model does not improve much. This is because the model is not able to learn the long-term dependencies in the data.</p>
 <p>This is known as the vanishing gradient problem.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Insert graph showing accuracy vs epochs</span>
-</pre></div>
-</div>
-</div>
-</div>
+<section id="vanishing-gradient-problem">
+<h3>Vanishing Gradient Problem<a class="headerlink" href="#vanishing-gradient-problem" title="Permalink to this heading">#</a></h3>
+<p>The vanishing gradient problem occurs when the gradients of the loss function become increasingly smaller as the model learns to associate inputs and outputs that are further apart in time.</p>
+<p>This leads to the model “forgetting” the information from the earlier inputs, which makes it difficult to learn long-term dependencies.</p>
+<p><img alt="Simple RNN" src="https://raw.githubusercontent.com/ChaosTheLegend/ML-Book/main/Images/SimpleRNN.png" /></p>
+</section>
+<section id="math-behind-vanishing-gradient-problem">
+<h3>Math Behind Vanishing Gradient Problem<a class="headerlink" href="#math-behind-vanishing-gradient-problem" title="Permalink to this heading">#</a></h3>
+<p>The vanishing gradient problem occurs because of the way gradients are computed in RNNs:</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{\partial L}{\partial W} = \frac{\partial L}{\partial y} \frac{\partial y}{\partial h} \frac{\partial h}{\partial W}
+\]</div>
+<p>The gradient is computed by multiplying the gradients of the loss function with respect to the output, the output with respect to the hidden state, and the hidden state with respect to the weights.</p>
+<p>Since gradients are multiplied together, if the gradients at each time step are less than 1 (e.g., due to using activation functions like sigmoid or tanh), this multiplication leads to a compounding effect. As you go further back in time, the gradients become increasingly smaller.</p>
+<p><img alt="Simple RNN" src="https://raw.githubusercontent.com/ChaosTheLegend/ML-Book/main/Images/SimpleRNNProblem.png" /></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">display_quiz</span><span class="p">(</span><span class="n">git_path</span> <span class="o">+</span> <span class="s2">&quot;quiz2.json&quot;</span><span class="p">)</span>
@@ -594,13 +763,13 @@ To enable the following instructions: AVX2 FMA, in other operations, rebuild Ten
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><div id="IGhgFvsCmhfJ" data-shufflequestions="False"
+<div class="output text_html"><div id="PteXkmJrezJx" data-shufflequestions="False"
                data-shuffleanswers="True"
                data-preserveresponses="false"
                data-numquestions="1000000"
                data-maxwidth="600"
                style="border-radius: 10px; text-align: left"> <style>
-#IGhgFvsCmhfJ {
+#PteXkmJrezJx {
    --jq-multiple-choice-bg: #6f78ffff;
    --jq-mc-button-bg: #fafafa;
    --jq-mc-button-border: #e0e0e0e0;
@@ -770,31 +939,34 @@ To enable the following instructions: AVX2 FMA, in other operations, rebuild Ten
         background-color: var(--jq-correct-color);
     }
 }
-</style></div><script type="application/javascript">var questionsIGhgFvsCmhfJ={
-        "question": "What is the primary purpose of the hidden state in an RNN?",
-        "type": "many_choice",
-        "answers": [
-            {
-                "answer": "To store the input data",
-                "correct": false,
-                "feedback": "Try again"
-            },
-            {
-                "answer": "To provide a connection between input and output layers",
-                "correct": false,
-                "feedback": "Try again"
-            },
-            {
-                "answer": "To capture information about the sequence up to the current time step",
-                "correct": true,
-                "feedback": "Correct."
-            },
-            {
-                "answer": "FTo act as an additional output layer",
-                "correct": false,
-                "feedback": "Try again"
-            
-            }]}
+</style></div><script type="application/javascript">var questionsPteXkmJrezJx={
+    "question": "What is the primary purpose of the hidden state in an RNN?",
+    "type": "many_choice",
+
+    "answers": [
+        {
+            "answer": "To store the input data",
+            "correct": false,
+            "feedback": "Try again"
+        },
+        {
+            "answer": "To provide a connection between input and output layers",
+            "correct": false,
+            "feedback": "Try again"
+        },
+        {
+            "answer": "To capture information about the sequence up to the current time step",
+            "correct": true,
+            "feedback": "Correct."
+        },
+        {
+            "answer": "FTo act as an additional output layer",
+            "correct": false,
+            "feedback": "Try again"
+
+        }
+    ]
+}
         ;
     // Make a random ID
 function makeid(length) {
@@ -1544,8 +1716,8 @@ if (typeof version == 'undefined') {
            Someone more knowledgeable could make this better ;-) */
 
         function try_show() {
-          if(document.getElementById("IGhgFvsCmhfJ")) {
-            show_questions(questionsIGhgFvsCmhfJ,  IGhgFvsCmhfJ); 
+          if(document.getElementById("PteXkmJrezJx")) {
+            show_questions(questionsPteXkmJrezJx,  PteXkmJrezJx); 
           } else {
              setTimeout(try_show, 200);
           }
@@ -1560,18 +1732,20 @@ if (typeof version == 'undefined') {
 
         fetch("https://raw.githubusercontent.com/ChaosTheLegend/ML-Book/main/Quizes/quiz2.json", {signal})
         .then(response => response.json())
-        .then(json => show_questions(json, IGhgFvsCmhfJ))
+        .then(json => show_questions(json, PteXkmJrezJx))
         .catch(err => {
         console.log("Fetch error or timeout");
-        show_questions(questionsIGhgFvsCmhfJ, IGhgFvsCmhfJ);
+        show_questions(questionsPteXkmJrezJx, PteXkmJrezJx);
         });
         }
         </script></div>
 </div>
 </section>
-<section id="id1">
-<h1>Attention Mechanism<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h1>
+</section>
+<section id="attention-mechanism">
+<h2>Attention Mechanism<a class="headerlink" href="#attention-mechanism" title="Permalink to this heading">#</a></h2>
 <p>Attention mechanisms are a way to help RNNs learn long-term dependencies by allowing the model to focus on the most relevant parts of the input sequence when producing a given output.</p>
+<p>ng)</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">keras.layers</span> <span class="kn">import</span> <span class="n">Input</span><span class="p">,</span> <span class="n">Embedding</span><span class="p">,</span> <span class="n">LSTM</span><span class="p">,</span> <span class="n">Dense</span><span class="p">,</span> <span class="n">Attention</span><span class="p">,</span> <span class="n">Bidirectional</span><span class="p">,</span> <span class="n">Dropout</span>
@@ -1746,7 +1920,7 @@ ________________________________________________________________________________
 </div>
 </section>
 <section id="alignment-scores-in-rnn-attention-mechanism">
-<h1>Alignment Scores in RNN Attention Mechanism<a class="headerlink" href="#alignment-scores-in-rnn-attention-mechanism" title="Permalink to this heading">#</a></h1>
+<h2>Alignment Scores in RNN Attention Mechanism<a class="headerlink" href="#alignment-scores-in-rnn-attention-mechanism" title="Permalink to this heading">#</a></h2>
 <p>The attention mechanism in a recurrent neural network (RNN) uses alignment scores to determine how much focus to place on each input in a sequence.</p>
 <p>In the context of sequence-to-sequence models, for example, if we have an encoded input sequence, an alignment score is computed for each pair of input and output positions. If “a” is the decoder’s hidden state and “b” is all of the encoder’s hidden states, the alignment score function often takes the following form:</p>
 <div class="math notranslate nohighlight">
@@ -1758,7 +1932,7 @@ ________________________________________________________________________________
 <p>Overall, the attention mechanism improves the accuracy of the RNN model when handling tasks with long input sequences, by enabling it to focus on the most relevant parts of the input to produce a given output.</p>
 </section>
 <section id="from-alignment-scores-to-attention-weights">
-<h1>From Alignment Scores to Attention Weights<a class="headerlink" href="#from-alignment-scores-to-attention-weights" title="Permalink to this heading">#</a></h1>
+<h2>From Alignment Scores to Attention Weights<a class="headerlink" href="#from-alignment-scores-to-attention-weights" title="Permalink to this heading">#</a></h2>
 <p>After computing the alignment scores between the input and output vectors in the attention mechanism, these scores are then converted to attention weights using the softmax function.</p>
 <p>The softmax function is commonly used in neural networks to turn scores into probabilities. It is defined as:</p>
 <div class="math notranslate nohighlight">
@@ -1768,6 +1942,7 @@ ________________________________________________________________________________
 <p>By applying softmax, we ensure that each weight falls in the range [0, 1] and that they all sum to 1, which allows us to interpret the attention weights as probabilities.</p>
 <p>In the context of attention mechanisms, the softmax function is applied to the alignment scores for each input and output pair, resulting in attention weights. Therefore, each input element in a sequence gets an attention weight. Now the model knows how much attention it needs to pay to each element when encoding information.</p>
 <p>For a given output, positions in the input sequence with a higher attention weight have a greater influence on the computation. This means our decoder will “pay more attention” to these positions during the encoding of the sequence.</p>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -1815,13 +1990,15 @@ ________________________________________________________________________________
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Attention mechanism</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#the-need-for-attention-mechanism">The Need for Attention Mechanism</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Attention Mechanism</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#alignment-scores-in-rnn-attention-mechanism">Alignment Scores in RNN Attention Mechanism</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#from-alignment-scores-to-attention-weights">From Alignment Scores to Attention Weights</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-need-for-attention-mechanism">The Need for Attention Mechanism</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vanishing-gradient-problem">Vanishing Gradient Problem</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#math-behind-vanishing-gradient-problem">Math Behind Vanishing Gradient Problem</a></li>
 </ul>
-
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#attention-mechanism">Attention Mechanism</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#alignment-scores-in-rnn-attention-mechanism">Alignment Scores in RNN Attention Mechanism</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#from-alignment-scores-to-attention-weights">From Alignment Scores to Attention Weights</a></li>
+</ul>
   </nav></div>
 
 </div></div>
