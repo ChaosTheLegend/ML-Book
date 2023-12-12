@@ -1,0 +1,26 @@
+{
+        "question": "Which gates are part of the standard LSTM cell architecture?",
+        "type": "many_choice",
+        "answers": [
+            {
+                "answer": "Input gate, output gate, and update gate",
+                "correct": false,
+                "feedback": "Try again"
+            },
+            {
+                "answer": "Update gate and forget gate",
+                "correct": false,
+                "feedback": "Try again"
+            },
+            {
+                "answer": "Input gate, forget gate, and output gate",
+                "correct": true,
+                "feedback": "Correct."
+            },
+            {
+                "answer": "Input gate and output gate",
+                "correct": false,
+                "feedback": "Try again"
+            
+            }]}
+        

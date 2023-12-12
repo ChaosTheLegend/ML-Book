@@ -1,0 +1,26 @@
+{
+        "question": "What is the purpose of the encoder-decoder architecture with attention in machine translation tasks?",
+        "type": "many_choice",
+        "answers": [
+            {
+                "answer": "To increase the number of layers in the neural network",
+                "correct": false,
+                "feedback": "Try again"
+            },
+            {
+                "answer": "To improve the interpretability of the model's predictions",
+                "correct": false,
+                "feedback": "Try again"
+            },
+            {
+                "answer": "To reduce the training time required for the model",
+                "correct": false,
+                "feedback": "Try again."
+            },
+            {
+                "answer": "To handle variable-length input and output sequences in translation tasks",
+                "correct": true,
+                "feedback": "Correct"
+            
+            }]}
+        
