@@ -356,20 +356,14 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Attention Mechanism</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#rnn-recap">RNN recap</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rnn-recap">RNN recap</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-need-for-attention-mechanism">The Need for Attention Mechanism</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vanishing-gradient-problem">Vanishing Gradient Problem</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#math-behind-vanishing-gradient-problem">Math Behind Vanishing Gradient Problem</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Attention Mechanism</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#alignment-scores-in-rnn-attention-mechanism">Alignment Scores in RNN Attention Mechanism</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#from-alignment-scores-to-attention-weights">From Alignment Scores to Attention Weights</a></li>
 </ul>
-</li>
-</ul>
-
             </nav>
         </div>
     </div>
@@ -382,9 +376,8 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="attention-mechanism">
 <h1>Attention Mechanism<a class="headerlink" href="#attention-mechanism" title="Permalink to this heading">#</a></h1>
-</section>
-<section class="tex2jax_ignore mathjax_ignore" id="rnn-recap">
-<h1>RNN recap<a class="headerlink" href="#rnn-recap" title="Permalink to this heading">#</a></h1>
+<section id="rnn-recap">
+<h2>RNN recap<a class="headerlink" href="#rnn-recap" title="Permalink to this heading">#</a></h2>
 <p>In a basic RNN, each recurrent neuron receives inputs from all neurons from the previous time step, as well as the inputs from the current time step, hence the term ‘recurrent’.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -417,16 +410,16 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2023-12-12 23:14:06.001339: I external/local_tsl/tsl/cuda/cudart_stub.cc:31] Could not find cuda drivers on your machine, GPU will not be used.
-2023-12-12 23:14:06.032487: E external/local_xla/xla/stream_executor/cuda/cuda_dnn.cc:9261] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
-2023-12-12 23:14:06.032512: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:607] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
-2023-12-12 23:14:06.033772: E external/local_xla/xla/stream_executor/cuda/cuda_blas.cc:1515] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
-2023-12-12 23:14:06.039481: I external/local_tsl/tsl/cuda/cudart_stub.cc:31] Could not find cuda drivers on your machine, GPU will not be used.
-2023-12-12 23:14:06.040319: I tensorflow/core/platform/cpu_feature_guard.cc:182] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2023-12-12 23:30:15.126320: I external/local_tsl/tsl/cuda/cudart_stub.cc:31] Could not find cuda drivers on your machine, GPU will not be used.
+2023-12-12 23:30:15.157440: E external/local_xla/xla/stream_executor/cuda/cuda_dnn.cc:9261] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
+2023-12-12 23:30:15.157471: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:607] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
+2023-12-12 23:30:15.158671: E external/local_xla/xla/stream_executor/cuda/cuda_blas.cc:1515] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
+2023-12-12 23:30:15.164438: I external/local_tsl/tsl/cuda/cudart_stub.cc:31] Could not find cuda drivers on your machine, GPU will not be used.
+2023-12-12 23:30:15.165356: I tensorflow/core/platform/cpu_feature_guard.cc:182] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
 To enable the following instructions: AVX2 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2023-12-12 23:14:06.833538: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2023-12-12 23:30:15.995498: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT
 </pre></div>
 </div>
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
@@ -528,6 +521,7 @@ _________________________________________________________________
 </div>
 </div>
 </div>
+</section>
 <section id="the-need-for-attention-mechanism">
 <h2>The Need for Attention Mechanism<a class="headerlink" href="#the-need-for-attention-mechanism" title="Permalink to this heading">#</a></h2>
 <p>The problem with basic RNNs is that they are not very good at handling long sequences.</p>
@@ -557,6 +551,7 @@ _________________________________________________________________
 <p>An attention mechanism is a way to help RNNs learn long-term dependencies by allowing the model to focus on the most relevant parts of the input sequence when producing a given output.</p>
 <p>We do this by adding a context vector to the model, which is a weighted sum of the encoder’s hidden states. The weights are computed using an alignment score function, which measures how well the inputs around a given position and the output at that position match.</p>
 <p><img alt="Attention Mechanism" src="https://raw.githubusercontent.com/ChaosTheLegend/ML-Book/main/Images/Attention.png" /></p>
+<p><img alt="Attention Mechanism" src="https://raw.githubusercontent.com/ChaosTheLegend/ML-Book/main/Images/AttentionLive.png" /></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">keras.layers</span> <span class="kn">import</span> <span class="n">Input</span><span class="p">,</span> <span class="n">Embedding</span><span class="p">,</span> <span class="n">LSTM</span><span class="p">,</span> <span class="n">Dense</span><span class="p">,</span> <span class="n">Attention</span><span class="p">,</span> <span class="n">Bidirectional</span><span class="p">,</span> <span class="n">Dropout</span>
@@ -730,30 +725,6 @@ ________________________________________________________________________________
 </div>
 </div>
 </section>
-<section id="alignment-scores-in-rnn-attention-mechanism">
-<h2>Alignment Scores in RNN Attention Mechanism<a class="headerlink" href="#alignment-scores-in-rnn-attention-mechanism" title="Permalink to this heading">#</a></h2>
-<p>The attention mechanism in a recurrent neural network (RNN) uses alignment scores to determine how much focus to place on each input in a sequence.</p>
-<p>In the context of sequence-to-sequence models, for example, if we have an encoded input sequence, an alignment score is computed for each pair of input and output positions. If “a” is the decoder’s hidden state and “b” is all of the encoder’s hidden states, the alignment score function often takes the following form:</p>
-<div class="math notranslate nohighlight">
-\[
-\text{score}(a, b) = a^Tb
-\]</div>
-<p>This score indicates how well the inputs around position “b” and the output at position “a” match. The alignment scores for each input “b” are combined into a single vector and normalized to sum to 1, resulting in the attention weights. These weights determine the amount of ‘attention’ given by the model to each input timestep while producing an output.</p>
-<p>Higher alignment scores mean that the decoder pays more attention to those parts of the encoder’s output.</p>
-<p>Overall, the attention mechanism improves the accuracy of the RNN model when handling tasks with long input sequences, by enabling it to focus on the most relevant parts of the input to produce a given output.</p>
-</section>
-<section id="from-alignment-scores-to-attention-weights">
-<h2>From Alignment Scores to Attention Weights<a class="headerlink" href="#from-alignment-scores-to-attention-weights" title="Permalink to this heading">#</a></h2>
-<p>After computing the alignment scores between the input and output vectors in the attention mechanism, these scores are then converted to attention weights using the softmax function.</p>
-<p>The softmax function is commonly used in neural networks to turn scores into probabilities. It is defined as:</p>
-<div class="math notranslate nohighlight">
-\[
-\text{softmax}(x_i) = \frac{\exp(x_i)}{\sum_j \exp(x_j)}
-\]</div>
-<p>By applying softmax, we ensure that each weight falls in the range [0, 1] and that they all sum to 1, which allows us to interpret the attention weights as probabilities.</p>
-<p>In the context of attention mechanisms, the softmax function is applied to the alignment scores for each input and output pair, resulting in attention weights. Therefore, each input element in a sequence gets an attention weight. Now the model knows how much attention it needs to pay to each element when encoding information.</p>
-<p>For a given output, positions in the input sequence with a higher attention weight have a greater influence on the computation. This means our decoder will “pay more attention” to these positions during the encoding of the sequence.</p>
-</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -801,20 +772,14 @@ ________________________________________________________________________________
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Attention Mechanism</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#rnn-recap">RNN recap</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rnn-recap">RNN recap</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-need-for-attention-mechanism">The Need for Attention Mechanism</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vanishing-gradient-problem">Vanishing Gradient Problem</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#math-behind-vanishing-gradient-problem">Math Behind Vanishing Gradient Problem</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Attention Mechanism</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#alignment-scores-in-rnn-attention-mechanism">Alignment Scores in RNN Attention Mechanism</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#from-alignment-scores-to-attention-weights">From Alignment Scores to Attention Weights</a></li>
 </ul>
-</li>
-</ul>
-
   </nav></div>
 
 </div></div>
