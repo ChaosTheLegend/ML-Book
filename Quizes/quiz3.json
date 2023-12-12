@@ -1,27 +1,27 @@
 {
-        "question": "What is the vanishing gradient problem in RNNs?",
-        "type": "many_choice",
-        "answers": [
-            {
-                "answer": "The rapid convergence of the gradient during training",
-                "correct": false,
-                "feedback": "Try again"
-            },
-            {
-                "answer": "The tendency of the gradient to become very small, hindering learning for long sequences",
-                "correct": true,
-                "feedback": "Correct"
-            },
-            {
-                "answer": "The exploding values of the gradient, causing instability in training",
-                "correct": false,
-                "feedback": "Try again."
-            },
-            {
-                "answer": "The inability of the network to reach convergence during training",
-                "correct": false,
-                "feedback": "Try again"
-            
-            }]
+    "question": "What is the vanishing gradient problem in RNNs?",
+    "type": "many_choice",
+    "answers": [
+        {
+            "answer": "The rapid convergence of the gradient during training",
+            "correct": false,
+            "feedback": "Try again"
+        },
+        {
+            "answer": "The tendency of the gradient to become very small, hindering learning for long sequences",
+            "correct": true,
+            "feedback": "Correct"
+        },
+        {
+            "answer": "The exploding values of the gradient, causing instability in training",
+            "correct": false,
+            "feedback": "Try again."
+        },
+        {
+            "answer": "The inability of the network to reach convergence during training",
+            "correct": false,
+            "feedback": "Try again"
+        }
+    ]
 }
         
