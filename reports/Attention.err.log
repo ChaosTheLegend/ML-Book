@@ -18,50 +18,108 @@ Traceback (most recent call last):
     raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
-### This cell should be hidden in the final version
+simpleRNN = tf.keras.models.load_model('simpleRNN.keras')
 
-import tensorflow as tf
-import numpy as np
-import ipywidgets as widgets
-from keras.src.utils import pad_sequences
-from jupyterquiz import display_quiz
-from sklearn.metrics import accuracy_score
-
-git_path="https://raw.githubusercontent.com/ChaosTheLegend/ML-Book/main/Quizes/"
-
-(x_train, y_train), (x_test, y_test) = tf.keras.datasets.imdb.load_data(num_words=10000)
-
-max_len = 200
-x_train = pad_sequences(x_train, maxlen=max_len, truncating='post')
-x_test = pad_sequences(x_test, maxlen=max_len, truncating='post')
-num_words = 10000
-
-embedding_dim = 100
-hidden_dim = 256
-output_dim = 1
-dropout_rate = 0.5
+simpleRNN.summary()
 ------------------
 
------ stderr -----
-2023-12-12 10:52:14.480263: I external/local_tsl/tsl/cuda/cudart_stub.cc:31] Could not find cuda drivers on your machine, GPU will not be used.
-2023-12-12 10:52:14.511141: E external/local_xla/xla/stream_executor/cuda/cuda_dnn.cc:9261] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
-2023-12-12 10:52:14.511163: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:607] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
-2023-12-12 10:52:14.512341: E external/local_xla/xla/stream_executor/cuda/cuda_blas.cc:1515] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
-2023-12-12 10:52:14.517976: I external/local_tsl/tsl/cuda/cudart_stub.cc:31] Could not find cuda drivers on your machine, GPU will not be used.
-2023-12-12 10:52:14.518762: I tensorflow/core/platform/cpu_feature_guard.cc:182] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
-To enable the following instructions: AVX2 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
------ stderr -----
-2023-12-12 10:52:15.298507: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT
-------------------
 
 [0;31m---------------------------------------------------------------------------[0m
-[0;31mModuleNotFoundError[0m                       Traceback (most recent call last)
-Cell [0;32mIn[1], line 5[0m
-[1;32m      3[0m [38;5;28;01mimport[39;00m [38;5;21;01mtensorflow[39;00m [38;5;28;01mas[39;00m [38;5;21;01mtf[39;00m
-[1;32m      4[0m [38;5;28;01mimport[39;00m [38;5;21;01mnumpy[39;00m [38;5;28;01mas[39;00m [38;5;21;01mnp[39;00m
-[0;32m----> 5[0m [38;5;28;01mimport[39;00m [38;5;21;01mipywidgets[39;00m [38;5;28;01mas[39;00m [38;5;21;01mwidgets[39;00m
-[1;32m      6[0m [38;5;28;01mfrom[39;00m [38;5;21;01mkeras[39;00m[38;5;21;01m.[39;00m[38;5;21;01msrc[39;00m[38;5;21;01m.[39;00m[38;5;21;01mutils[39;00m [38;5;28;01mimport[39;00m pad_sequences
-[1;32m      7[0m [38;5;28;01mfrom[39;00m [38;5;21;01mjupyterquiz[39;00m [38;5;28;01mimport[39;00m display_quiz
+[0;31mValueError[0m                                Traceback (most recent call last)
+Cell [0;32mIn[3], line 1[0m
+[0;32m----> 1[0m simpleRNN [38;5;241m=[39m [43mtf[49m[38;5;241;43m.[39;49m[43mkeras[49m[38;5;241;43m.[39;49m[43mmodels[49m[38;5;241;43m.[39;49m[43mload_model[49m[43m([49m[38;5;124;43m'[39;49m[38;5;124;43msimpleRNN.keras[39;49m[38;5;124;43m'[39;49m[43m)[49m
+[1;32m      3[0m simpleRNN[38;5;241m.[39msummary()
 
-[0;31mModuleNotFoundError[0m: No module named 'ipywidgets'
+File [0;32m/opt/hostedtoolcache/Python/3.11.5/x64/lib/python3.11/site-packages/keras/src/saving/saving_api.py:254[0m, in [0;36mload_model[0;34m(filepath, custom_objects, compile, safe_mode, **kwargs)[0m
+[1;32m    249[0m     [38;5;28;01mif[39;00m kwargs:
+[1;32m    250[0m         [38;5;28;01mraise[39;00m [38;5;167;01mValueError[39;00m(
+[1;32m    251[0m             [38;5;124m"[39m[38;5;124mThe following argument(s) are not supported [39m[38;5;124m"[39m
+[1;32m    252[0m             [38;5;124mf[39m[38;5;124m"[39m[38;5;124mwith the native Keras format: [39m[38;5;132;01m{[39;00m[38;5;28mlist[39m(kwargs[38;5;241m.[39mkeys())[38;5;132;01m}[39;00m[38;5;124m"[39m
+[1;32m    253[0m         )
+[0;32m--> 254[0m     [38;5;28;01mreturn[39;00m [43msaving_lib[49m[38;5;241;43m.[39;49m[43mload_model[49m[43m([49m
+[1;32m    255[0m [43m        [49m[43mfilepath[49m[43m,[49m
+[1;32m    256[0m [43m        [49m[43mcustom_objects[49m[38;5;241;43m=[39;49m[43mcustom_objects[49m[43m,[49m
+[1;32m    257[0m [43m        [49m[38;5;28;43mcompile[39;49m[38;5;241;43m=[39;49m[38;5;28;43mcompile[39;49m[43m,[49m
+[1;32m    258[0m [43m        [49m[43msafe_mode[49m[38;5;241;43m=[39;49m[43msafe_mode[49m[43m,[49m
+[1;32m    259[0m [43m    [49m[43m)[49m
+[1;32m    261[0m [38;5;66;03m# Legacy case.[39;00m
+[1;32m    262[0m [38;5;28;01mreturn[39;00m legacy_sm_saving_lib[38;5;241m.[39mload_model(
+[1;32m    263[0m     filepath, custom_objects[38;5;241m=[39mcustom_objects, [38;5;28mcompile[39m[38;5;241m=[39m[38;5;28mcompile[39m, [38;5;241m*[39m[38;5;241m*[39mkwargs
+[1;32m    264[0m )
+
+File [0;32m/opt/hostedtoolcache/Python/3.11.5/x64/lib/python3.11/site-packages/keras/src/saving/saving_lib.py:281[0m, in [0;36mload_model[0;34m(filepath, custom_objects, compile, safe_mode)[0m
+[1;32m    278[0m             asset_store[38;5;241m.[39mclose()
+[1;32m    280[0m [38;5;28;01mexcept[39;00m [38;5;167;01mException[39;00m [38;5;28;01mas[39;00m e:
+[0;32m--> 281[0m     [38;5;28;01mraise[39;00m e
+[1;32m    282[0m [38;5;28;01melse[39;00m:
+[1;32m    283[0m     [38;5;28;01mreturn[39;00m model
+
+File [0;32m/opt/hostedtoolcache/Python/3.11.5/x64/lib/python3.11/site-packages/keras/src/saving/saving_lib.py:269[0m, in [0;36mload_model[0;34m(filepath, custom_objects, compile, safe_mode)[0m
+[1;32m    266[0m [38;5;28;01melse[39;00m:
+[1;32m    267[0m     asset_store [38;5;241m=[39m [38;5;28;01mNone[39;00m
+[0;32m--> 269[0m [43m_load_state[49m[43m([49m
+[1;32m    270[0m [43m    [49m[43mmodel[49m[43m,[49m
+[1;32m    271[0m [43m    [49m[43mweights_store[49m[38;5;241;43m=[39;49m[43mweights_store[49m[43m,[49m
+[1;32m    272[0m [43m    [49m[43massets_store[49m[38;5;241;43m=[39;49m[43masset_store[49m[43m,[49m
+[1;32m    273[0m [43m    [49m[43minner_path[49m[38;5;241;43m=[39;49m[38;5;124;43m"[39;49m[38;5;124;43m"[39;49m[43m,[49m
+[1;32m    274[0m [43m    [49m[43mvisited_trackables[49m[38;5;241;43m=[39;49m[38;5;28;43mset[39;49m[43m([49m[43m)[49m[43m,[49m
+[1;32m    275[0m [43m[49m[43m)[49m
+[1;32m    276[0m weights_store[38;5;241m.[39mclose()
+[1;32m    277[0m [38;5;28;01mif[39;00m asset_store:
+
+File [0;32m/opt/hostedtoolcache/Python/3.11.5/x64/lib/python3.11/site-packages/keras/src/saving/saving_lib.py:466[0m, in [0;36m_load_state[0;34m(trackable, weights_store, assets_store, inner_path, skip_mismatch, visited_trackables)[0m
+[1;32m    457[0m     _load_state(
+[1;32m    458[0m         child_obj,
+[1;32m    459[0m         weights_store,
+[0;32m   (...)[0m
+[1;32m    463[0m         visited_trackables[38;5;241m=[39mvisited_trackables,
+[1;32m    464[0m     )
+[1;32m    465[0m [38;5;28;01melif[39;00m [38;5;28misinstance[39m(child_obj, ([38;5;28mlist[39m, [38;5;28mdict[39m, [38;5;28mtuple[39m, [38;5;28mset[39m)):
+[0;32m--> 466[0m     [43m_load_container_state[49m[43m([49m
+[1;32m    467[0m [43m        [49m[43mchild_obj[49m[43m,[49m
+[1;32m    468[0m [43m        [49m[43mweights_store[49m[43m,[49m
+[1;32m    469[0m [43m        [49m[43massets_store[49m[43m,[49m
+[1;32m    470[0m [43m        [49m[43minner_path[49m[38;5;241;43m=[39;49m[43mtf[49m[38;5;241;43m.[39;49m[43mio[49m[38;5;241;43m.[39;49m[43mgfile[49m[38;5;241;43m.[39;49m[43mjoin[49m[43m([49m[43minner_path[49m[43m,[49m[43m [49m[43mchild_attr[49m[43m)[49m[43m,[49m
+[1;32m    471[0m [43m        [49m[43mskip_mismatch[49m[38;5;241;43m=[39;49m[43mskip_mismatch[49m[43m,[49m
+[1;32m    472[0m [43m        [49m[43mvisited_trackables[49m[38;5;241;43m=[39;49m[43mvisited_trackables[49m[43m,[49m
+[1;32m    473[0m [43m    [49m[43m)[49m
+
+File [0;32m/opt/hostedtoolcache/Python/3.11.5/x64/lib/python3.11/site-packages/keras/src/saving/saving_lib.py:534[0m, in [0;36m_load_container_state[0;34m(container, weights_store, assets_store, inner_path, skip_mismatch, visited_trackables)[0m
+[1;32m    532[0m [38;5;28;01melse[39;00m:
+[1;32m    533[0m     used_names[name] [38;5;241m=[39m [38;5;241m0[39m
+[0;32m--> 534[0m [43m_load_state[49m[43m([49m
+[1;32m    535[0m [43m    [49m[43mtrackable[49m[43m,[49m
+[1;32m    536[0m [43m    [49m[43mweights_store[49m[43m,[49m
+[1;32m    537[0m [43m    [49m[43massets_store[49m[43m,[49m
+[1;32m    538[0m [43m    [49m[43minner_path[49m[38;5;241;43m=[39;49m[43mtf[49m[38;5;241;43m.[39;49m[43mio[49m[38;5;241;43m.[39;49m[43mgfile[49m[38;5;241;43m.[39;49m[43mjoin[49m[43m([49m[43minner_path[49m[43m,[49m[43m [49m[43mname[49m[43m)[49m[43m,[49m
+[1;32m    539[0m [43m    [49m[43mskip_mismatch[49m[38;5;241;43m=[39;49m[43mskip_mismatch[49m[43m,[49m
+[1;32m    540[0m [43m    [49m[43mvisited_trackables[49m[38;5;241;43m=[39;49m[43mvisited_trackables[49m[43m,[49m
+[1;32m    541[0m [43m[49m[43m)[49m
+
+File [0;32m/opt/hostedtoolcache/Python/3.11.5/x64/lib/python3.11/site-packages/keras/src/saving/saving_lib.py:435[0m, in [0;36m_load_state[0;34m(trackable, weights_store, assets_store, inner_path, skip_mismatch, visited_trackables)[0m
+[1;32m    428[0m             warnings[38;5;241m.[39mwarn(
+[1;32m    429[0m                 [38;5;124mf[39m[38;5;124m"[39m[38;5;124mCould not load weights in object [39m[38;5;132;01m{[39;00mtrackable[38;5;132;01m}[39;00m[38;5;124m. [39m[38;5;124m"[39m
+[1;32m    430[0m                 [38;5;124m"[39m[38;5;124mSkipping object. [39m[38;5;124m"[39m
+[1;32m    431[0m                 [38;5;124mf[39m[38;5;124m"[39m[38;5;124mException encountered: [39m[38;5;132;01m{[39;00me[38;5;132;01m}[39;00m[38;5;124m"[39m,
+[1;32m    432[0m                 stacklevel[38;5;241m=[39m[38;5;241m2[39m,
+[1;32m    433[0m             )
+[1;32m    434[0m     [38;5;28;01melse[39;00m:
+[0;32m--> 435[0m         [43mtrackable[49m[38;5;241;43m.[39;49m[43mload_own_variables[49m[43m([49m[43mweights_store[49m[38;5;241;43m.[39;49m[43mget[49m[43m([49m[43minner_path[49m[43m)[49m[43m)[49m
+[1;32m    437[0m [38;5;28;01mif[39;00m [38;5;28mhasattr[39m(trackable, [38;5;124m"[39m[38;5;124mload_assets[39m[38;5;124m"[39m) [38;5;129;01mand[39;00m assets_store:
+[1;32m    438[0m     [38;5;28;01mif[39;00m skip_mismatch:
+
+File [0;32m/opt/hostedtoolcache/Python/3.11.5/x64/lib/python3.11/site-packages/keras/src/engine/base_layer.py:3531[0m, in [0;36mLayer.load_own_variables[0;34m(self, store)[0m
+[1;32m   3529[0m all_vars [38;5;241m=[39m [38;5;28mself[39m[38;5;241m.[39m_trainable_weights [38;5;241m+[39m [38;5;28mself[39m[38;5;241m.[39m_non_trainable_weights
+[1;32m   3530[0m [38;5;28;01mif[39;00m [38;5;28mlen[39m(store[38;5;241m.[39mkeys()) [38;5;241m!=[39m [38;5;28mlen[39m(all_vars):
+[0;32m-> 3531[0m     [38;5;28;01mraise[39;00m [38;5;167;01mValueError[39;00m(
+[1;32m   3532[0m         [38;5;124mf[39m[38;5;124m"[39m[38;5;124mLayer [39m[38;5;124m'[39m[38;5;132;01m{[39;00m[38;5;28mself[39m[38;5;241m.[39mname[38;5;132;01m}[39;00m[38;5;124m'[39m[38;5;124m expected [39m[38;5;132;01m{[39;00m[38;5;28mlen[39m(all_vars)[38;5;132;01m}[39;00m[38;5;124m variables, [39m[38;5;124m"[39m
+[1;32m   3533[0m         [38;5;124m"[39m[38;5;124mbut received [39m[38;5;124m"[39m
+[1;32m   3534[0m         [38;5;124mf[39m[38;5;124m"[39m[38;5;132;01m{[39;00m[38;5;28mlen[39m(store[38;5;241m.[39mkeys())[38;5;132;01m}[39;00m[38;5;124m variables during loading. [39m[38;5;124m"[39m
+[1;32m   3535[0m         [38;5;124mf[39m[38;5;124m"[39m[38;5;124mExpected: [39m[38;5;132;01m{[39;00m[v[38;5;241m.[39mname[38;5;250m [39m[38;5;28;01mfor[39;00m[38;5;250m [39mv[38;5;250m [39m[38;5;129;01min[39;00m[38;5;250m [39mall_vars][38;5;132;01m}[39;00m[38;5;124m"[39m
+[1;32m   3536[0m     )
+[1;32m   3537[0m [38;5;28;01mfor[39;00m i, v [38;5;129;01min[39;00m [38;5;28menumerate[39m(all_vars):
+[1;32m   3538[0m     [38;5;66;03m# TODO(rchao): check shapes and raise errors.[39;00m
+[1;32m   3539[0m     v[38;5;241m.[39massign(store[[38;5;124mf[39m[38;5;124m"[39m[38;5;132;01m{[39;00mi[38;5;132;01m}[39;00m[38;5;124m"[39m])
+
+[0;31mValueError[0m: Layer 'embedding_6' expected 1 variables, but received 0 variables during loading. Expected: ['embedding_6/embeddings:0']
 
