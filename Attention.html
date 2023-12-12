@@ -357,12 +357,10 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Attention mechanism</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#the-need-for-attention-mechanism">The Need for Attention Mechanism</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Attention Mechanism</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#alignment-scores-in-rnn-attention-mechanism">Alignment Scores in RNN Attention Mechanism</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#from-alignment-scores-to-attention-weights">From Alignment Scores to Attention Weights</a></li>
-</ul>
-</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#the-need-for-attention-mechanism">The Need for Attention Mechanism</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Attention Mechanism</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#alignment-scores-in-rnn-attention-mechanism">Alignment Scores in RNN Attention Mechanism</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#from-alignment-scores-to-attention-weights">From Alignment Scores to Attention Weights</a></li>
 </ul>
 
             </nav>
@@ -388,6 +386,7 @@ document.write(`
 <span class="kn">from</span> <span class="nn">keras.src.utils</span> <span class="kn">import</span> <span class="n">pad_sequences</span>
 <span class="kn">from</span> <span class="nn">jupyterquiz</span> <span class="kn">import</span> <span class="n">display_quiz</span>
 <span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">accuracy_score</span>
+<span class="kn">from</span> <span class="nn">keras.datasets</span> <span class="kn">import</span> <span class="n">imdb</span>
 
 <span class="n">git_path</span><span class="o">=</span><span class="s2">&quot;https://raw.githubusercontent.com/ChaosTheLegend/ML-Book/main/Quizes/&quot;</span>
 
@@ -406,16 +405,16 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2023-12-12 11:29:27.739161: I external/local_tsl/tsl/cuda/cudart_stub.cc:31] Could not find cuda drivers on your machine, GPU will not be used.
-2023-12-12 11:29:27.770292: E external/local_xla/xla/stream_executor/cuda/cuda_dnn.cc:9261] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
-2023-12-12 11:29:27.770319: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:607] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
-2023-12-12 11:29:27.771502: E external/local_xla/xla/stream_executor/cuda/cuda_blas.cc:1515] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
-2023-12-12 11:29:27.777256: I external/local_tsl/tsl/cuda/cudart_stub.cc:31] Could not find cuda drivers on your machine, GPU will not be used.
-2023-12-12 11:29:27.778033: I tensorflow/core/platform/cpu_feature_guard.cc:182] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2023-12-12 11:32:07.040886: I external/local_tsl/tsl/cuda/cudart_stub.cc:31] Could not find cuda drivers on your machine, GPU will not be used.
+2023-12-12 11:32:07.071881: E external/local_xla/xla/stream_executor/cuda/cuda_dnn.cc:9261] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
+2023-12-12 11:32:07.071907: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:607] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
+2023-12-12 11:32:07.073091: E external/local_xla/xla/stream_executor/cuda/cuda_blas.cc:1515] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
+2023-12-12 11:32:07.078825: I external/local_tsl/tsl/cuda/cudart_stub.cc:31] Could not find cuda drivers on your machine, GPU will not be used.
+2023-12-12 11:32:07.079657: I tensorflow/core/platform/cpu_feature_guard.cc:182] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
 To enable the following instructions: AVX2 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2023-12-12 11:29:28.575874: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2023-12-12 11:32:07.852380: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloading data from https://storage.googleapis.com/tensorflow/tf-keras-datasets/imdb.npz
@@ -425,65 +424,11 @@ To enable the following instructions: AVX2 FMA, in other operations, rebuild Ten
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
- 3809280/17464789 [=====&gt;........................] - ETA: 0s
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
  4202496/17464789 [======&gt;.......................] - ETA: 0s
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
- 8396800/17464789 [=============&gt;................] - ETA: 0s
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
-14794752/17464789 [========================&gt;.....] - ETA: 0s
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
 17464789/17464789 [==============================] - 0s 0us/step
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">### This cell should be hidden in the final version</span>
-
-<span class="kn">from</span> <span class="nn">keras.datasets</span> <span class="kn">import</span> <span class="n">imdb</span>
-<span class="kn">import</span> <span class="nn">ipywidgets</span> <span class="k">as</span> <span class="nn">widgets</span>
-
-<span class="n">word_index</span> <span class="o">=</span> <span class="n">imdb</span><span class="o">.</span><span class="n">get_word_index</span><span class="p">()</span>
-
-<span class="k">def</span> <span class="nf">make_prediction</span><span class="p">(</span><span class="n">review</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">bar</span><span class="p">):</span>
-
-    <span class="n">review</span> <span class="o">=</span> <span class="n">review</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
-
-    <span class="n">review</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">char</span> <span class="k">for</span> <span class="n">char</span> <span class="ow">in</span> <span class="n">review</span> <span class="k">if</span> <span class="n">char</span><span class="o">.</span><span class="n">isalnum</span><span class="p">()</span> <span class="ow">or</span> <span class="n">char</span> <span class="o">==</span> <span class="s1">&#39; &#39;</span><span class="p">])</span>
-
-    <span class="n">review</span> <span class="o">=</span> <span class="n">review</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
-
-    <span class="n">review</span> <span class="o">=</span> <span class="p">[[</span><span class="n">word_index</span><span class="p">[</span><span class="n">word</span><span class="p">]</span> <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">review</span><span class="p">]]</span>
-
-    <span class="n">review</span> <span class="o">=</span> <span class="n">pad_sequences</span><span class="p">(</span><span class="n">review</span><span class="p">,</span> <span class="n">maxlen</span><span class="o">=</span><span class="n">max_len</span><span class="p">,</span> <span class="n">truncating</span><span class="o">=</span><span class="s1">&#39;post&#39;</span><span class="p">)</span>
-
-    <span class="c1"># print negative or positive based on the prediction</span>
-
-    <span class="n">prediction</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">review</span><span class="p">)</span>
-
-    <span class="n">bar</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="n">prediction</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloading data from https://storage.googleapis.com/tensorflow/tf-keras-datasets/imdb_word_index.json
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   8192/1641221 [..............................] - ETA: 0s
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
-1641221/1641221 [==============================] - 0s 0us/step
 </pre></div>
 </div>
 </div>
@@ -499,7 +444,7 @@ To enable the following instructions: AVX2 FMA, in other operations, rebuild Ten
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">ValueError</span><span class="g g-Whitespace">                                </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
 <span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">simpleRNN</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">load_model</span><span class="p">(</span><span class="s1">&#39;simpleRNN.keras&#39;</span><span class="p">)</span>
 <span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">simpleRNN</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
 
@@ -629,7 +574,7 @@ To enable the following instructions: AVX2 FMA, in other operations, rebuild Ten
 </div>
 </div>
 </section>
-<section class="tex2jax_ignore mathjax_ignore" id="the-need-for-attention-mechanism">
+<section id="the-need-for-attention-mechanism">
 <h1>The Need for Attention Mechanism<a class="headerlink" href="#the-need-for-attention-mechanism" title="Permalink to this heading">#</a></h1>
 <p>The problem with basic RNNs is that they are not very good at handling long sequences.</p>
 <p>Even when using more epochs, the accuracy of the model does not improve much. This is because the model is not able to learn the long-term dependencies in the data.</p>
@@ -643,18 +588,18 @@ To enable the following instructions: AVX2 FMA, in other operations, rebuild Ten
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">display_quiz</span><span class="p">(</span><span class="n">git_path</span> <span class="o">+</span> <span class="s2">&quot;quiz3.json&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">display_quiz</span><span class="p">(</span><span class="n">git_path</span> <span class="o">+</span> <span class="s2">&quot;quiz2.json&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><div id="BgZPjBtLbRQc" data-shufflequestions="False"
+<div class="output text_html"><div id="IGhgFvsCmhfJ" data-shufflequestions="False"
                data-shuffleanswers="True"
                data-preserveresponses="false"
                data-numquestions="1000000"
                data-maxwidth="600"
                style="border-radius: 10px; text-align: left"> <style>
-#BgZPjBtLbRQc {
+#IGhgFvsCmhfJ {
    --jq-multiple-choice-bg: #6f78ffff;
    --jq-mc-button-bg: #fafafa;
    --jq-mc-button-border: #e0e0e0e0;
@@ -824,27 +769,27 @@ To enable the following instructions: AVX2 FMA, in other operations, rebuild Ten
         background-color: var(--jq-correct-color);
     }
 }
-</style></div><script type="application/javascript">var questionsBgZPjBtLbRQc={
-        "question": "What is the vanishing gradient problem in RNNs?",
+</style></div><script type="application/javascript">var questionsIGhgFvsCmhfJ={
+        "question": "What is the primary purpose of the hidden state in an RNN?",
         "type": "many_choice",
         "answers": [
             {
-                "answer": "The rapid convergence of the gradient during training",
+                "answer": "To store the input data",
                 "correct": false,
                 "feedback": "Try again"
             },
             {
-                "answer": "The tendency of the gradient to become very small, hindering learning for long sequences",
-                "correct": true,
-                "feedback": "Correct"
-            },
-            {
-                "answer": "The exploding values of the gradient, causing instability in training",
+                "answer": "To provide a connection between input and output layers",
                 "correct": false,
-                "feedback": "Try again."
+                "feedback": "Try again"
             },
             {
-                "answer": "The inability of the network to reach convergence during training",
+                "answer": "To capture information about the sequence up to the current time step",
+                "correct": true,
+                "feedback": "Correct."
+            },
+            {
+                "answer": "FTo act as an additional output layer",
                 "correct": false,
                 "feedback": "Try again"
             
@@ -1598,8 +1543,8 @@ if (typeof version == 'undefined') {
            Someone more knowledgeable could make this better ;-) */
 
         function try_show() {
-          if(document.getElementById("BgZPjBtLbRQc")) {
-            show_questions(questionsBgZPjBtLbRQc,  BgZPjBtLbRQc); 
+          if(document.getElementById("IGhgFvsCmhfJ")) {
+            show_questions(questionsIGhgFvsCmhfJ,  IGhgFvsCmhfJ); 
           } else {
              setTimeout(try_show, 200);
           }
@@ -1612,52 +1557,20 @@ if (typeof version == 'undefined') {
 
         setTimeout(() => jmscontroller.abort(), 5000);
 
-        fetch("https://raw.githubusercontent.com/ChaosTheLegend/ML-Book/main/Quizes/quiz3.json", {signal})
+        fetch("https://raw.githubusercontent.com/ChaosTheLegend/ML-Book/main/Quizes/quiz2.json", {signal})
         .then(response => response.json())
-        .then(json => show_questions(json, BgZPjBtLbRQc))
+        .then(json => show_questions(json, IGhgFvsCmhfJ))
         .catch(err => {
         console.log("Fetch error or timeout");
-        show_questions(questionsBgZPjBtLbRQc, BgZPjBtLbRQc);
+        show_questions(questionsIGhgFvsCmhfJ, IGhgFvsCmhfJ);
         });
         }
         </script></div>
 </div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># make a text field for a review</span>
-
-<span class="n">text_field</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">Text</span><span class="p">()</span>
-
-<span class="n">text_field</span><span class="o">.</span><span class="n">continuous_update</span> <span class="o">=</span> <span class="kc">True</span>
-
-<span class="c1"># add a bar from 0 to 1 to show the prediction, make bar go from red to green</span>
-
-<span class="n">bar</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">FloatProgress</span><span class="p">(</span>
-    <span class="n">value</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
-    <span class="nb">min</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
-    <span class="nb">max</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span>
-    <span class="n">step</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span>
-    <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Prediction:&#39;</span><span class="p">,</span>
-    <span class="n">bar_style</span><span class="o">=</span><span class="s1">&#39;info&#39;</span><span class="p">,</span>
-    <span class="n">orientation</span><span class="o">=</span><span class="s1">&#39;horizontal&#39;</span>
-<span class="p">)</span>
-
-<span class="n">text_field</span><span class="o">.</span><span class="n">observe</span><span class="p">(</span><span class="k">lambda</span> <span class="n">text_field</span><span class="p">:</span> <span class="n">make_prediction</span><span class="p">(</span><span class="n">text_field</span><span class="p">[</span><span class="s1">&#39;new&#39;</span><span class="p">],</span> <span class="n">simpleRNN</span><span class="p">,</span> <span class="n">bar</span><span class="p">),</span> <span class="s1">&#39;value&#39;</span><span class="p">)</span>
-
-
-<span class="k">def</span> <span class="nf">update_bar</span><span class="p">(</span><span class="n">change</span><span class="p">):</span>
-    <span class="n">bar</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="n">change</span><span class="p">[</span><span class="s1">&#39;new&#39;</span><span class="p">]</span>
-
-<span class="n">display</span><span class="p">(</span><span class="n">text_field</span><span class="p">)</span>
-<span class="n">display</span><span class="p">(</span><span class="n">bar</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "4ee27428e83e43ef85672fcde6b75db0"}</script><script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "69b6b86e5be4453aaef58837d6d7e0df"}</script></div>
-</div>
+</section>
 <section id="id1">
-<h2>Attention Mechanism<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h2>
+<h1>Attention Mechanism<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h1>
+<p>Attention mechanisms are a way to help RNNs learn long-term dependencies by allowing the model to focus on the most relevant parts of the input sequence when producing a given output.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">keras.layers</span> <span class="kn">import</span> <span class="n">Input</span><span class="p">,</span> <span class="n">Embedding</span><span class="p">,</span> <span class="n">LSTM</span><span class="p">,</span> <span class="n">Dense</span><span class="p">,</span> <span class="n">Attention</span><span class="p">,</span> <span class="n">Bidirectional</span><span class="p">,</span> <span class="n">Dropout</span>
@@ -1830,32 +1743,9 @@ ________________________________________________________________________________
 </div>
 </div>
 </div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># make a text field for a review</span>
-
-<span class="c1"># draw a label for prediction</span>
-
-<span class="n">label</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">Label</span><span class="p">()</span>
-
-<span class="n">review2</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">Text</span><span class="p">()</span>
-
-<span class="n">review2</span><span class="o">.</span><span class="n">continuous_update</span> <span class="o">=</span> <span class="kc">False</span>
-
-<span class="n">review2</span><span class="o">.</span><span class="n">observe</span><span class="p">(</span><span class="k">lambda</span> <span class="n">review2</span><span class="p">:</span> <span class="n">make_prediction</span><span class="p">(</span><span class="n">review2</span><span class="p">[</span><span class="s1">&#39;new&#39;</span><span class="p">],</span> <span class="n">LSTM</span><span class="p">,</span> <span class="n">label</span><span class="p">),</span> <span class="s1">&#39;value&#39;</span><span class="p">)</span>
-
-<span class="n">display</span><span class="p">(</span><span class="n">review2</span><span class="p">)</span>
-
-<span class="n">display</span><span class="p">(</span><span class="n">label</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "59aec07d8d8a446e84e9539478c9ab21"}</script><script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "add21193edfb4e5ebc5e5d7971162d67"}</script></div>
-</div>
 </section>
 <section id="alignment-scores-in-rnn-attention-mechanism">
-<h2>Alignment Scores in RNN Attention Mechanism<a class="headerlink" href="#alignment-scores-in-rnn-attention-mechanism" title="Permalink to this heading">#</a></h2>
+<h1>Alignment Scores in RNN Attention Mechanism<a class="headerlink" href="#alignment-scores-in-rnn-attention-mechanism" title="Permalink to this heading">#</a></h1>
 <p>The attention mechanism in a recurrent neural network (RNN) uses alignment scores to determine how much focus to place on each input in a sequence.</p>
 <p>In the context of sequence-to-sequence models, for example, if we have an encoded input sequence, an alignment score is computed for each pair of input and output positions. If “a” is the decoder’s hidden state and “b” is all of the encoder’s hidden states, the alignment score function often takes the following form:</p>
 <div class="math notranslate nohighlight">
@@ -1867,7 +1757,7 @@ ________________________________________________________________________________
 <p>Overall, the attention mechanism improves the accuracy of the RNN model when handling tasks with long input sequences, by enabling it to focus on the most relevant parts of the input to produce a given output.</p>
 </section>
 <section id="from-alignment-scores-to-attention-weights">
-<h2>From Alignment Scores to Attention Weights<a class="headerlink" href="#from-alignment-scores-to-attention-weights" title="Permalink to this heading">#</a></h2>
+<h1>From Alignment Scores to Attention Weights<a class="headerlink" href="#from-alignment-scores-to-attention-weights" title="Permalink to this heading">#</a></h1>
 <p>After computing the alignment scores between the input and output vectors in the attention mechanism, these scores are then converted to attention weights using the softmax function.</p>
 <p>The softmax function is commonly used in neural networks to turn scores into probabilities. It is defined as:</p>
 <div class="math notranslate nohighlight">
@@ -1877,7 +1767,6 @@ ________________________________________________________________________________
 <p>By applying softmax, we ensure that each weight falls in the range [0, 1] and that they all sum to 1, which allows us to interpret the attention weights as probabilities.</p>
 <p>In the context of attention mechanisms, the softmax function is applied to the alignment scores for each input and output pair, resulting in attention weights. Therefore, each input element in a sequence gets an attention weight. Now the model knows how much attention it needs to pay to each element when encoding information.</p>
 <p>For a given output, positions in the input sequence with a higher attention weight have a greater influence on the computation. This means our decoder will “pay more attention” to these positions during the encoding of the sequence.</p>
-</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -1926,12 +1815,10 @@ ________________________________________________________________________________
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Attention mechanism</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#the-need-for-attention-mechanism">The Need for Attention Mechanism</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Attention Mechanism</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#alignment-scores-in-rnn-attention-mechanism">Alignment Scores in RNN Attention Mechanism</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#from-alignment-scores-to-attention-weights">From Alignment Scores to Attention Weights</a></li>
-</ul>
-</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#the-need-for-attention-mechanism">The Need for Attention Mechanism</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Attention Mechanism</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#alignment-scores-in-rnn-attention-mechanism">Alignment Scores in RNN Attention Mechanism</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#from-alignment-scores-to-attention-weights">From Alignment Scores to Attention Weights</a></li>
 </ul>
 
   </nav></div>
