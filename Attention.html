@@ -410,16 +410,16 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2023-12-13 00:38:25.592331: I external/local_tsl/tsl/cuda/cudart_stub.cc:31] Could not find cuda drivers on your machine, GPU will not be used.
-2023-12-13 00:38:25.625268: E external/local_xla/xla/stream_executor/cuda/cuda_dnn.cc:9261] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
-2023-12-13 00:38:25.625306: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:607] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
-2023-12-13 00:38:25.626576: E external/local_xla/xla/stream_executor/cuda/cuda_blas.cc:1515] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
-2023-12-13 00:38:25.632675: I external/local_tsl/tsl/cuda/cudart_stub.cc:31] Could not find cuda drivers on your machine, GPU will not be used.
-2023-12-13 00:38:25.633606: I tensorflow/core/platform/cpu_feature_guard.cc:182] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2023-12-13 01:12:22.910697: I external/local_tsl/tsl/cuda/cudart_stub.cc:31] Could not find cuda drivers on your machine, GPU will not be used.
+2023-12-13 01:12:22.942226: E external/local_xla/xla/stream_executor/cuda/cuda_dnn.cc:9261] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
+2023-12-13 01:12:22.942258: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:607] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
+2023-12-13 01:12:22.943464: E external/local_xla/xla/stream_executor/cuda/cuda_blas.cc:1515] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
+2023-12-13 01:12:22.949362: I external/local_tsl/tsl/cuda/cudart_stub.cc:31] Could not find cuda drivers on your machine, GPU will not be used.
+2023-12-13 01:12:22.950033: I tensorflow/core/platform/cpu_feature_guard.cc:182] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
 To enable the following instructions: AVX2 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2023-12-13 00:38:26.512821: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2023-12-13 01:12:23.777342: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT
 </pre></div>
 </div>
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
@@ -702,34 +702,6 @@ _________________________________________________________________
 <p>By adding an attention mechanism, we can improve the accuracy of our model.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">simpleRNN</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">load_model</span><span class="p">(</span><span class="s1">&#39;simpleRNN.keras&#39;</span><span class="p">)</span>
-
-<span class="n">simpleRNN</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Model: &quot;sequential_16&quot;
-_________________________________________________________________
- Layer (type)                Output Shape              Param #   
-=================================================================
- embedding_6 (Embedding)     (None, 200, 100)          1000000   
-                                                                 
- simple_rnn_14 (SimpleRNN)   (None, 256)               91392     
-                                                                 
- dense_15 (Dense)            (None, 1)                 257       
-                                                                 
-=================================================================
-Total params: 1091649 (4.16 MB)
-Trainable params: 1091649 (4.16 MB)
-Non-trainable params: 0 (0.00 Byte)
-_________________________________________________________________
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">keras.layers</span> <span class="kn">import</span> <span class="n">Input</span><span class="p">,</span> <span class="n">Embedding</span><span class="p">,</span> <span class="n">LSTM</span><span class="p">,</span> <span class="n">Dense</span><span class="p">,</span> <span class="n">Attention</span><span class="p">,</span> <span class="n">Bidirectional</span><span class="p">,</span> <span class="n">Dropout</span><span class="p">,</span> <span class="n">SimpleRNN</span>
 <span class="kn">import</span> <span class="nn">os</span>
 
@@ -786,33 +758,9 @@ ________________________________________________________________________________
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># train the model</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># load the model</span>
 
-<span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">x_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">epochs</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">128</span><span class="p">,</span> <span class="n">validation_split</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch 1/5
-157/157 [==============================] - 52s 329ms/step - loss: 0.5564 - accuracy: 0.7442 - val_loss: 0.3591 - val_accuracy: 0.8412
-Epoch 2/5
-157/157 [==============================] - 47s 303ms/step - loss: 0.2093 - accuracy: 0.9200 - val_loss: 0.3424 - val_accuracy: 0.8656
-Epoch 3/5
-157/157 [==============================] - 49s 311ms/step - loss: 0.0721 - accuracy: 0.9765 - val_loss: 0.5228 - val_accuracy: 0.8278
-Epoch 4/5
-157/157 [==============================] - 50s 318ms/step - loss: 0.0323 - accuracy: 0.9905 - val_loss: 0.6208 - val_accuracy: 0.8592
-Epoch 5/5
-157/157 [==============================] - 50s 316ms/step - loss: 0.0463 - accuracy: 0.9854 - val_loss: 0.4779 - val_accuracy: 0.8546
-</pre></div>
-</div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;keras.src.callbacks.History at 0x2ab0e0a9550&gt;
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s1">&#39;simpleRNN_attention.keras&#39;</span><span class="p">)</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">load_model</span><span class="p">(</span><span class="s1">&#39;simpleRNN_attention.keras&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -864,34 +812,6 @@ Epoch 5/5
 </pre></div>
 </div>
 <img alt="_images/ce2f8e622a884b96318bc6fe678475df5f661af990783844e33c6931837f8cad.png" src="_images/ce2f8e622a884b96318bc6fe678475df5f661af990783844e33c6931837f8cad.png" />
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># make an interactive example to show how the attention mechanism works</span>
-
-<span class="c1"># 1) create a list test cases from the test set</span>
-
-<span class="n">test_cases</span> <span class="o">=</span> <span class="n">x_test</span><span class="p">[:</span><span class="mi">10</span><span class="p">]</span>
-
-<span class="c1"># 2) create a list of the corresponding labels</span>
-
-<span class="n">labels</span> <span class="o">=</span> <span class="n">y_test</span><span class="p">[:</span><span class="mi">10</span><span class="p">]</span>
-
-
-<span class="c1"># make a prediction for a test case and visualize the attention weights</span>
-
-<span class="n">pred</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">test_cases</span><span class="p">)</span>
-
-<span class="n">weights</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">layers</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">get_weights</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
- 
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1/1 [==============================] - 0s 133ms/step
-</pre></div>
-</div>
 </div>
 </div>
 </section>
