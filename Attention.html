@@ -410,16 +410,16 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2023-12-13 01:12:22.910697: I external/local_tsl/tsl/cuda/cudart_stub.cc:31] Could not find cuda drivers on your machine, GPU will not be used.
-2023-12-13 01:12:22.942226: E external/local_xla/xla/stream_executor/cuda/cuda_dnn.cc:9261] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
-2023-12-13 01:12:22.942258: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:607] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
-2023-12-13 01:12:22.943464: E external/local_xla/xla/stream_executor/cuda/cuda_blas.cc:1515] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
-2023-12-13 01:12:22.949362: I external/local_tsl/tsl/cuda/cudart_stub.cc:31] Could not find cuda drivers on your machine, GPU will not be used.
-2023-12-13 01:12:22.950033: I tensorflow/core/platform/cpu_feature_guard.cc:182] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2023-12-13 01:13:20.258851: I external/local_tsl/tsl/cuda/cudart_stub.cc:31] Could not find cuda drivers on your machine, GPU will not be used.
+2023-12-13 01:13:20.289747: E external/local_xla/xla/stream_executor/cuda/cuda_dnn.cc:9261] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
+2023-12-13 01:13:20.289777: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:607] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
+2023-12-13 01:13:20.290964: E external/local_xla/xla/stream_executor/cuda/cuda_blas.cc:1515] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
+2023-12-13 01:13:20.296753: I external/local_tsl/tsl/cuda/cudart_stub.cc:31] Could not find cuda drivers on your machine, GPU will not be used.
+2023-12-13 01:13:20.297211: I tensorflow/core/platform/cpu_feature_guard.cc:182] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
 To enable the following instructions: AVX2 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2023-12-13 01:12:23.777342: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2023-12-13 01:13:21.125774: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT
 </pre></div>
 </div>
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
@@ -471,127 +471,6 @@ Total params: 1091649 (4.16 MB)
 Trainable params: 1091649 (4.16 MB)
 Non-trainable params: 0 (0.00 Byte)
 _________________________________________________________________
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">x_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">epochs</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">128</span><span class="p">,</span> <span class="n">validation_split</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch 1/50
-157/157 [==============================] - 20s 120ms/step - loss: 0.6898 - accuracy: 0.5290 - val_loss: 0.6664 - val_accuracy: 0.5832
-Epoch 2/50
-157/157 [==============================] - 18s 116ms/step - loss: 0.5455 - accuracy: 0.7261 - val_loss: 0.4837 - val_accuracy: 0.7968
-Epoch 3/50
-157/157 [==============================] - 18s 118ms/step - loss: 0.5530 - accuracy: 0.7133 - val_loss: 0.6988 - val_accuracy: 0.5578
-Epoch 4/50
-157/157 [==============================] - 19s 119ms/step - loss: 0.5469 - accuracy: 0.7164 - val_loss: 0.6789 - val_accuracy: 0.5876
-Epoch 5/50
-157/157 [==============================] - 18s 117ms/step - loss: 0.4261 - accuracy: 0.8020 - val_loss: 0.7969 - val_accuracy: 0.5920
-Epoch 6/50
-157/157 [==============================] - 18s 117ms/step - loss: 0.4063 - accuracy: 0.8070 - val_loss: 0.7381 - val_accuracy: 0.5858
-Epoch 7/50
-157/157 [==============================] - 19s 121ms/step - loss: 0.3244 - accuracy: 0.8585 - val_loss: 0.8343 - val_accuracy: 0.6588
-Epoch 8/50
-157/157 [==============================] - 19s 120ms/step - loss: 0.2931 - accuracy: 0.8748 - val_loss: 0.8073 - val_accuracy: 0.6440
-Epoch 9/50
-157/157 [==============================] - 19s 118ms/step - loss: 0.2106 - accuracy: 0.9172 - val_loss: 0.7509 - val_accuracy: 0.5768
-Epoch 10/50
-157/157 [==============================] - 19s 121ms/step - loss: 0.5139 - accuracy: 0.7345 - val_loss: 0.7587 - val_accuracy: 0.5854
-Epoch 11/50
-157/157 [==============================] - 19s 124ms/step - loss: 0.2914 - accuracy: 0.8714 - val_loss: 0.8733 - val_accuracy: 0.6426
-Epoch 12/50
-157/157 [==============================] - 19s 123ms/step - loss: 0.1737 - accuracy: 0.9341 - val_loss: 1.0436 - val_accuracy: 0.6510
-Epoch 13/50
-157/157 [==============================] - 19s 119ms/step - loss: 0.1176 - accuracy: 0.9574 - val_loss: 1.1556 - val_accuracy: 0.6416
-Epoch 14/50
-157/157 [==============================] - 19s 118ms/step - loss: 0.0772 - accuracy: 0.9732 - val_loss: 1.2434 - val_accuracy: 0.6560
-Epoch 15/50
-157/157 [==============================] - 19s 118ms/step - loss: 0.0539 - accuracy: 0.9826 - val_loss: 1.3444 - val_accuracy: 0.6674
-Epoch 16/50
-157/157 [==============================] - 18s 117ms/step - loss: 0.0425 - accuracy: 0.9865 - val_loss: 1.3876 - val_accuracy: 0.6738
-Epoch 17/50
-157/157 [==============================] - 19s 118ms/step - loss: 0.0327 - accuracy: 0.9898 - val_loss: 1.5145 - val_accuracy: 0.6712
-Epoch 18/50
-157/157 [==============================] - 19s 118ms/step - loss: 0.0236 - accuracy: 0.9933 - val_loss: 1.5610 - val_accuracy: 0.6724
-Epoch 19/50
-157/157 [==============================] - 18s 118ms/step - loss: 0.0169 - accuracy: 0.9955 - val_loss: 1.6331 - val_accuracy: 0.6842
-Epoch 20/50
-157/157 [==============================] - 18s 117ms/step - loss: 0.0104 - accuracy: 0.9976 - val_loss: 1.7854 - val_accuracy: 0.6722
-Epoch 21/50
-157/157 [==============================] - 18s 117ms/step - loss: 0.0160 - accuracy: 0.9949 - val_loss: 1.7621 - val_accuracy: 0.6882
-Epoch 22/50
-157/157 [==============================] - 18s 116ms/step - loss: 0.0329 - accuracy: 0.9888 - val_loss: 1.6481 - val_accuracy: 0.6944
-Epoch 23/50
-157/157 [==============================] - 18s 116ms/step - loss: 0.0216 - accuracy: 0.9934 - val_loss: 1.7525 - val_accuracy: 0.6988
-Epoch 24/50
-157/157 [==============================] - 19s 120ms/step - loss: 0.0177 - accuracy: 0.9944 - val_loss: 1.8572 - val_accuracy: 0.6662
-Epoch 25/50
-157/157 [==============================] - 19s 123ms/step - loss: 0.0118 - accuracy: 0.9962 - val_loss: 1.7680 - val_accuracy: 0.6740
-Epoch 26/50
-157/157 [==============================] - 19s 119ms/step - loss: 0.0131 - accuracy: 0.9966 - val_loss: 1.8523 - val_accuracy: 0.6686
-Epoch 27/50
-157/157 [==============================] - 18s 117ms/step - loss: 0.0131 - accuracy: 0.9962 - val_loss: 1.8967 - val_accuracy: 0.6954
-Epoch 28/50
-157/157 [==============================] - 18s 117ms/step - loss: 0.0325 - accuracy: 0.9883 - val_loss: 1.2714 - val_accuracy: 0.6666
-Epoch 29/50
-157/157 [==============================] - 18s 117ms/step - loss: 0.2235 - accuracy: 0.9098 - val_loss: 1.0168 - val_accuracy: 0.6870
-Epoch 30/50
-157/157 [==============================] - 18s 118ms/step - loss: 0.0825 - accuracy: 0.9703 - val_loss: 1.2400 - val_accuracy: 0.7004
-Epoch 31/50
-157/157 [==============================] - 19s 122ms/step - loss: 0.0359 - accuracy: 0.9872 - val_loss: 1.3344 - val_accuracy: 0.7060
-Epoch 32/50
-157/157 [==============================] - 19s 119ms/step - loss: 0.0258 - accuracy: 0.9917 - val_loss: 1.3688 - val_accuracy: 0.7204
-Epoch 33/50
-157/157 [==============================] - 19s 118ms/step - loss: 0.0318 - accuracy: 0.9891 - val_loss: 1.5601 - val_accuracy: 0.6952
-Epoch 34/50
-157/157 [==============================] - 19s 119ms/step - loss: 0.0223 - accuracy: 0.9932 - val_loss: 1.4739 - val_accuracy: 0.7138
-Epoch 35/50
-157/157 [==============================] - 18s 118ms/step - loss: 0.0173 - accuracy: 0.9942 - val_loss: 1.7123 - val_accuracy: 0.6726
-Epoch 36/50
-157/157 [==============================] - 18s 118ms/step - loss: 0.0125 - accuracy: 0.9967 - val_loss: 1.7682 - val_accuracy: 0.6958
-Epoch 37/50
-157/157 [==============================] - 18s 116ms/step - loss: 0.0065 - accuracy: 0.9983 - val_loss: 1.6683 - val_accuracy: 0.7166
-Epoch 38/50
-157/157 [==============================] - 18s 116ms/step - loss: 0.0125 - accuracy: 0.9964 - val_loss: 1.6760 - val_accuracy: 0.7110
-Epoch 39/50
-157/157 [==============================] - 19s 120ms/step - loss: 0.0246 - accuracy: 0.9919 - val_loss: 1.7012 - val_accuracy: 0.7186
-Epoch 40/50
-157/157 [==============================] - 19s 122ms/step - loss: 0.0235 - accuracy: 0.9923 - val_loss: 1.7307 - val_accuracy: 0.7058
-Epoch 41/50
-157/157 [==============================] - 20s 126ms/step - loss: 0.0096 - accuracy: 0.9972 - val_loss: 1.7639 - val_accuracy: 0.7110
-Epoch 42/50
-157/157 [==============================] - 19s 123ms/step - loss: 0.0295 - accuracy: 0.9901 - val_loss: 1.7396 - val_accuracy: 0.6966
-Epoch 43/50
-157/157 [==============================] - 21s 131ms/step - loss: 0.0211 - accuracy: 0.9923 - val_loss: 1.7624 - val_accuracy: 0.6846
-Epoch 44/50
-157/157 [==============================] - 20s 130ms/step - loss: 0.0114 - accuracy: 0.9966 - val_loss: 1.7547 - val_accuracy: 0.7090
-Epoch 45/50
-157/157 [==============================] - 20s 129ms/step - loss: 0.0138 - accuracy: 0.9960 - val_loss: 1.7260 - val_accuracy: 0.7174
-Epoch 46/50
-157/157 [==============================] - 19s 123ms/step - loss: 0.0140 - accuracy: 0.9956 - val_loss: 1.8473 - val_accuracy: 0.6902
-Epoch 47/50
-157/157 [==============================] - 19s 121ms/step - loss: 0.0144 - accuracy: 0.9948 - val_loss: 1.8642 - val_accuracy: 0.7034
-Epoch 48/50
-157/157 [==============================] - 20s 127ms/step - loss: 0.0296 - accuracy: 0.9901 - val_loss: 1.6130 - val_accuracy: 0.6892
-Epoch 49/50
-157/157 [==============================] - 19s 122ms/step - loss: 0.0236 - accuracy: 0.9929 - val_loss: 1.6629 - val_accuracy: 0.6966
-Epoch 50/50
-157/157 [==============================] - 20s 126ms/step - loss: 0.0091 - accuracy: 0.9973 - val_loss: 1.8967 - val_accuracy: 0.7062
-</pre></div>
-</div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;keras.src.callbacks.History at 0x2ab0fb52410&gt;
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s1">&#39;simpleRNN.keras&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
