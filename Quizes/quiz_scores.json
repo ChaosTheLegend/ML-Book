@@ -1,4 +1,4 @@
-{
+[{
         "question": "Given the attention weights and input embeddings, what would be the sum of the context vector?",
         "type": "many_choice",
         "answers": [
@@ -22,5 +22,5 @@
                 "feedback": "You are way off. Hint: you can use the sum of the attention weights"
             }
         ]
-}
+}]
         

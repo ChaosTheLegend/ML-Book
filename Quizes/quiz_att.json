@@ -1,4 +1,4 @@
-{
+[{
         "question": "What is the advantage of using an attention mechanism in RNN-based models?",
         "type": "numeric",
         "answers": [
@@ -8,5 +8,5 @@
                 "feedback": "Try again"
             }
         ]
-}
+}]
         

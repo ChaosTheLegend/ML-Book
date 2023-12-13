@@ -1,4 +1,4 @@
-{
+[{
     "question": "What is the vanishing gradient problem in RNNs?",
     "type": "many_choice",
     "answers": [
@@ -23,5 +23,5 @@
             "feedback": "Try again"
         }
     ]
-}
+}]
         
