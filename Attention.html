@@ -386,13 +386,13 @@ document.write(`
 <p>In a basic RNN, each recurrent neuron receives inputs from all neurons from the previous time step, as well as the inputs from the current time step, hence the term ‘recurrent’.</p>
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
-<div class="output text_html"><div id="tmPIXTLnshhB" data-shufflequestions="False"
+<div class="output text_html"><div id="YQguWOiKnJma" data-shufflequestions="False"
                data-shuffleanswers="True"
                data-preserveresponses="false"
                data-numquestions="1000000"
                data-maxwidth="600"
                style="border-radius: 10px; text-align: left"> <style>
-#tmPIXTLnshhB {
+#YQguWOiKnJma {
    --jq-multiple-choice-bg: #6f78ffff;
    --jq-mc-button-bg: #fafafa;
    --jq-mc-button-border: #e0e0e0e0;
@@ -562,7 +562,7 @@ document.write(`
         background-color: var(--jq-correct-color);
     }
 }
-</style></div><script type="application/javascript">var questionstmPIXTLnshhB={
+</style></div><script type="application/javascript">var questionsYQguWOiKnJma=[{
         "question": "What is the primary advantage of using an RNN over a traditional feedforward neural network for sequence data?",
         "type": "many_choice",
         "answers": [
@@ -588,7 +588,7 @@ document.write(`
             
             }
         ]
-}
+}]
         ;
     // Make a random ID
 function makeid(length) {
@@ -1338,8 +1338,8 @@ if (typeof version == 'undefined') {
            Someone more knowledgeable could make this better ;-) */
 
         function try_show() {
-          if(document.getElementById("tmPIXTLnshhB")) {
-            show_questions(questionstmPIXTLnshhB,  tmPIXTLnshhB); 
+          if(document.getElementById("YQguWOiKnJma")) {
+            show_questions(questionsYQguWOiKnJma,  YQguWOiKnJma); 
           } else {
              setTimeout(try_show, 200);
           }
@@ -1354,10 +1354,10 @@ if (typeof version == 'undefined') {
 
         fetch("https://raw.githubusercontent.com/ChaosTheLegend/ML-Book/main/Quizes/quiz_rnn.json", {signal})
         .then(response => response.json())
-        .then(json => show_questions(json, tmPIXTLnshhB))
+        .then(json => show_questions(json, YQguWOiKnJma))
         .catch(err => {
         console.log("Fetch error or timeout");
-        show_questions(questionstmPIXTLnshhB, tmPIXTLnshhB);
+        show_questions(questionsYQguWOiKnJma, YQguWOiKnJma);
         });
         }
         </script></div>
@@ -1365,11 +1365,7 @@ if (typeof version == 'undefined') {
 <p>When applying RNNs to IMDB reviews, we get the following accuracy graph over 50 epochs:</p>
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(17, 0.52, &#39;Final Accuracy: 0.69&#39;)
-</pre></div>
-</div>
-<img alt="_images/b96a6a6c172d1bc041c01b8d83f45fcd6b2325d81db5f604660e1de767b4361c.png" src="_images/b96a6a6c172d1bc041c01b8d83f45fcd6b2325d81db5f604660e1de767b4361c.png" />
-</div>
+<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "d6fe97886aad4d4a8f846299fcb1ce55"}</script><script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "a77e80e22f6a4229999b020e2ad0c38e"}</script></div>
 </div>
 <p>However, we can see that the accuracy of the model does not improve much after the first few epochs. This forces us to use a large number of epochs to get a good accuracy, which is not ideal, and even then, the accuracy may not improve by much</p>
 </section>
@@ -1405,13 +1401,13 @@ if (typeof version == 'undefined') {
 <p><img alt="Simple RNN" src="https://raw.githubusercontent.com/ChaosTheLegend/ML-Book/main/Images/SimpleRNNProblem.png" /></p>
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
-<div class="output text_html"><div id="VnQnmxDktriS" data-shufflequestions="False"
+<div class="output text_html"><div id="TcCZBqvOJohe" data-shufflequestions="False"
                data-shuffleanswers="True"
                data-preserveresponses="false"
                data-numquestions="1000000"
                data-maxwidth="600"
                style="border-radius: 10px; text-align: left"> <style>
-#VnQnmxDktriS {
+#TcCZBqvOJohe {
    --jq-multiple-choice-bg: #6f78ffff;
    --jq-mc-button-bg: #fafafa;
    --jq-mc-button-border: #e0e0e0e0;
@@ -1581,7 +1577,7 @@ if (typeof version == 'undefined') {
         background-color: var(--jq-correct-color);
     }
 }
-</style></div><script type="application/javascript">var questionsVnQnmxDktriS=[{
+</style></div><script type="application/javascript">var questionsTcCZBqvOJohe=[{
     "question": "What is the vanishing gradient problem in RNNs?",
     "type": "many_choice",
     "answers": [
@@ -2356,8 +2352,8 @@ if (typeof version == 'undefined') {
            Someone more knowledgeable could make this better ;-) */
 
         function try_show() {
-          if(document.getElementById("VnQnmxDktriS")) {
-            show_questions(questionsVnQnmxDktriS,  VnQnmxDktriS); 
+          if(document.getElementById("TcCZBqvOJohe")) {
+            show_questions(questionsTcCZBqvOJohe,  TcCZBqvOJohe); 
           } else {
              setTimeout(try_show, 200);
           }
@@ -2372,10 +2368,10 @@ if (typeof version == 'undefined') {
 
         fetch("https://raw.githubusercontent.com/ChaosTheLegend/ML-Book/main/Quizes/quiz_vanish.json", {signal})
         .then(response => response.json())
-        .then(json => show_questions(json, VnQnmxDktriS))
+        .then(json => show_questions(json, TcCZBqvOJohe))
         .catch(err => {
         console.log("Fetch error or timeout");
-        show_questions(questionsVnQnmxDktriS, VnQnmxDktriS);
+        show_questions(questionsTcCZBqvOJohe, TcCZBqvOJohe);
         });
         }
         </script></div>
@@ -2481,13 +2477,13 @@ c_i = \sum_{j=1}^{T_x} \alpha_{ij} h_j
 </table>
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
-<div class="output text_html"><div id="ifgQRnxDXAoY" data-shufflequestions="False"
+<div class="output text_html"><div id="QlDTzWSOpyNS" data-shufflequestions="False"
                data-shuffleanswers="True"
                data-preserveresponses="false"
                data-numquestions="1000000"
                data-maxwidth="600"
                style="border-radius: 10px; text-align: left"> <style>
-#ifgQRnxDXAoY {
+#QlDTzWSOpyNS {
    --jq-multiple-choice-bg: #6f78ffff;
    --jq-mc-button-bg: #fafafa;
    --jq-mc-button-border: #e0e0e0e0;
@@ -2657,7 +2653,7 @@ c_i = \sum_{j=1}^{T_x} \alpha_{ij} h_j
         background-color: var(--jq-correct-color);
     }
 }
-</style></div><script type="application/javascript">var questionsifgQRnxDXAoY=[{
+</style></div><script type="application/javascript">var questionsQlDTzWSOpyNS=[{
         "question": "Given the attention weights and input embeddings, what would be the sum of the context vector?",
         "type": "numeric",
         "answers": [
@@ -3431,8 +3427,8 @@ if (typeof version == 'undefined') {
            Someone more knowledgeable could make this better ;-) */
 
         function try_show() {
-          if(document.getElementById("ifgQRnxDXAoY")) {
-            show_questions(questionsifgQRnxDXAoY,  ifgQRnxDXAoY); 
+          if(document.getElementById("QlDTzWSOpyNS")) {
+            show_questions(questionsQlDTzWSOpyNS,  QlDTzWSOpyNS); 
           } else {
              setTimeout(try_show, 200);
           }
@@ -3447,10 +3443,10 @@ if (typeof version == 'undefined') {
 
         fetch("https://raw.githubusercontent.com/ChaosTheLegend/ML-Book/main/Quizes/quiz_scores.json", {signal})
         .then(response => response.json())
-        .then(json => show_questions(json, ifgQRnxDXAoY))
+        .then(json => show_questions(json, QlDTzWSOpyNS))
         .catch(err => {
         console.log("Fetch error or timeout");
-        show_questions(questionsifgQRnxDXAoY, ifgQRnxDXAoY);
+        show_questions(questionsQlDTzWSOpyNS, QlDTzWSOpyNS);
         });
         }
         </script></div>
@@ -3509,44 +3505,105 @@ new\_alignment\_scores = old\_alignment\_scores + \frac{\partial L}{\partial \al
 <span class="expanded">Hide code cell source</span>
 </summary>
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">attention_layer</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">layers</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">altair</span> <span class="k">as</span> <span class="nn">alt</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
+
+<span class="n">attention_layer</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">layers</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
 <span class="n">weights</span> <span class="o">=</span> <span class="n">attention_layer</span><span class="o">.</span><span class="n">get_weights</span><span class="p">()[</span><span class="mi">1</span><span class="p">]</span>
 
-<span class="c1"># sum all the columns in the weights matrix</span>
+<span class="n">weights</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">weights</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)[:</span><span class="mi">20</span><span class="p">]</span>
 
-<span class="n">weights</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">weights</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="s1">&#39;Embedded word index&#39;</span><span class="p">:</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">weights</span><span class="p">)),</span>
+    <span class="s1">&#39;Word Weight&#39;</span><span class="p">:</span> <span class="n">weights</span><span class="p">,</span>
+    <span class="s1">&#39;Color&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;red&#39;</span> <span class="k">if</span> <span class="n">w</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="s1">&#39;green&#39;</span> <span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">weights</span><span class="p">]</span>
+<span class="p">})</span>
 
-<span class="n">weights</span> <span class="o">=</span> <span class="n">weights</span><span class="p">[:</span><span class="mi">20</span><span class="p">]</span>
 
-<span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">weights</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="n">weights</span><span class="p">)</span>
+<span class="n">chart</span> <span class="o">=</span> <span class="n">alt</span><span class="o">.</span><span class="n">Chart</span><span class="p">(</span><span class="n">data</span><span class="p">)</span><span class="o">.</span><span class="n">mark_bar</span><span class="p">()</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span>
+    <span class="n">x</span><span class="o">=</span><span class="n">alt</span><span class="o">.</span><span class="n">X</span><span class="p">(</span><span class="s1">&#39;Embedded word index:O&#39;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="n">alt</span><span class="o">.</span><span class="n">Axis</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;Embedded word index&#39;</span><span class="p">)),</span>
+    <span class="n">y</span><span class="o">=</span><span class="n">alt</span><span class="o">.</span><span class="n">Y</span><span class="p">(</span><span class="s1">&#39;Word Weight:Q&#39;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="n">alt</span><span class="o">.</span><span class="n">Axis</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;Word Weight&#39;</span><span class="p">)),</span>
+    <span class="n">color</span><span class="o">=</span><span class="n">alt</span><span class="o">.</span><span class="n">Color</span><span class="p">(</span><span class="s1">&#39;Color:N&#39;</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>  
+<span class="p">)</span><span class="o">.</span><span class="n">properties</span><span class="p">(</span>
+    <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Attention Weights&#39;</span><span class="p">,</span>
+    <span class="n">width</span><span class="o">=</span><span class="mi">600</span><span class="p">,</span>
+    <span class="n">height</span><span class="o">=</span><span class="mi">400</span>
+<span class="p">)</span><span class="o">.</span><span class="n">interactive</span><span class="p">()</span>
 
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Attention Weights&#39;</span><span class="p">)</span>
-
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Embedded word index&#39;</span><span class="p">)</span>
-
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Word Weight&#39;</span><span class="p">)</span>
-
-<span class="c1"># make x axis use whole numbers</span>
-
-<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">weights</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="nb">range</span><span class="p">(</span><span class="n">weights</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
-
-<span class="c1"># color all negative weight bars red and positive weights blue</span>
-
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">weights</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
-    <span class="k">if</span> <span class="n">weights</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
-        <span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span><span class="o">.</span><span class="n">get_children</span><span class="p">()[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_color</span><span class="p">(</span><span class="s1">&#39;red&#39;</span><span class="p">)</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span><span class="o">.</span><span class="n">get_children</span><span class="p">()[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_color</span><span class="p">(</span><span class="s1">&#39;green&#39;</span><span class="p">)</span>
-
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="n">chart</span><span class="o">.</span><span class="n">display</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/089a3237c55769bae1afecdaeaf4cdd61721794a8080d1fc7fdace16320b8f10.png" src="_images/089a3237c55769bae1afecdaeaf4cdd61721794a8080d1fc7fdace16320b8f10.png" />
-</div>
+<div class="output text_html">
+<style>
+  #altair-viz-f56a40d9a5f24969b5f9d03229a0b930.vega-embed {
+    width: 100%;
+    display: flex;
+  }
+
+  #altair-viz-f56a40d9a5f24969b5f9d03229a0b930.vega-embed details,
+  #altair-viz-f56a40d9a5f24969b5f9d03229a0b930.vega-embed details summary {
+    position: relative;
+  }
+</style>
+<div id="altair-viz-f56a40d9a5f24969b5f9d03229a0b930"></div>
+<script type="text/javascript">
+  var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
+  (function(spec, embedOpt){
+    let outputDiv = document.currentScript.previousElementSibling;
+    if (outputDiv.id !== "altair-viz-f56a40d9a5f24969b5f9d03229a0b930") {
+      outputDiv = document.getElementById("altair-viz-f56a40d9a5f24969b5f9d03229a0b930");
+    }
+    const paths = {
+      "vega": "https://cdn.jsdelivr.net/npm/vega@5?noext",
+      "vega-lib": "https://cdn.jsdelivr.net/npm/vega-lib?noext",
+      "vega-lite": "https://cdn.jsdelivr.net/npm/vega-lite@5.16.3?noext",
+      "vega-embed": "https://cdn.jsdelivr.net/npm/vega-embed@6?noext",
+    };
+
+    function maybeLoadScript(lib, version) {
+      var key = `${lib.replace("-", "")}_version`;
+      return (VEGA_DEBUG[key] == version) ?
+        Promise.resolve(paths[lib]) :
+        new Promise(function(resolve, reject) {
+          var s = document.createElement('script');
+          document.getElementsByTagName("head")[0].appendChild(s);
+          s.async = true;
+          s.onload = () => {
+            VEGA_DEBUG[key] = version;
+            return resolve(paths[lib]);
+          };
+          s.onerror = () => reject(`Error loading script: ${paths[lib]}`);
+          s.src = paths[lib];
+        });
+    }
+
+    function showError(err) {
+      outputDiv.innerHTML = `<div class="error" style="color:red;">${err}</div>`;
+      throw err;
+    }
+
+    function displayChart(vegaEmbed) {
+      vegaEmbed(outputDiv, spec, embedOpt)
+        .catch(err => showError(`Javascript Error: ${err.message}<br>This usually means there's a typo in your chart specification. See the javascript console for the full traceback.`));
+    }
+
+    if(typeof define === "function" && define.amd) {
+      requirejs.config({paths});
+      require(["vega-embed"], displayChart, err => showError(`Error loading script: ${err.message}`));
+    } else {
+      maybeLoadScript("vega", "5")
+        .then(() => maybeLoadScript("vega-lite", "5.16.3"))
+        .then(() => maybeLoadScript("vega-embed", "6"))
+        .catch(showError)
+        .then(() => displayChart(vegaEmbed));
+    }
+  })({"config": {"view": {"continuousWidth": 300, "continuousHeight": 300}}, "data": {"name": "data-dea7dc1a0459ee2b770963d3d5f7708c"}, "mark": {"type": "bar"}, "encoding": {"color": {"field": "Color", "scale": null, "type": "nominal"}, "x": {"axis": {"title": "Embedded word index"}, "field": "Embedded word index", "type": "ordinal"}, "y": {"axis": {"title": "Word Weight"}, "field": "Word Weight", "type": "quantitative"}}, "height": 400, "params": [{"name": "param_55", "select": {"type": "interval", "encodings": ["x", "y"]}, "bind": "scales"}], "title": "Attention Weights", "width": 600, "$schema": "https://vega.github.io/schema/vega-lite/v5.16.3.json", "datasets": {"data-dea7dc1a0459ee2b770963d3d5f7708c": [{"Embedded word index": 0, "Word Weight": 0.6166881918907166, "Color": "green"}, {"Embedded word index": 1, "Word Weight": 0.8188062906265259, "Color": "green"}, {"Embedded word index": 2, "Word Weight": 0.16637003421783447, "Color": "green"}, {"Embedded word index": 3, "Word Weight": -1.1378178596496582, "Color": "red"}, {"Embedded word index": 4, "Word Weight": 0.8970707058906555, "Color": "green"}, {"Embedded word index": 5, "Word Weight": 2.0389842987060547, "Color": "green"}, {"Embedded word index": 6, "Word Weight": 1.5534679889678955, "Color": "green"}, {"Embedded word index": 7, "Word Weight": -0.7039216756820679, "Color": "red"}, {"Embedded word index": 8, "Word Weight": 0.2723015546798706, "Color": "green"}, {"Embedded word index": 9, "Word Weight": -1.3175736665725708, "Color": "red"}, {"Embedded word index": 10, "Word Weight": -0.9751279950141907, "Color": "red"}, {"Embedded word index": 11, "Word Weight": -1.0617239475250244, "Color": "red"}, {"Embedded word index": 12, "Word Weight": -0.9043248295783997, "Color": "red"}, {"Embedded word index": 13, "Word Weight": 0.017048239707946777, "Color": "green"}, {"Embedded word index": 14, "Word Weight": -0.14581289887428284, "Color": "red"}, {"Embedded word index": 15, "Word Weight": -0.9189661741256714, "Color": "red"}, {"Embedded word index": 16, "Word Weight": -0.23116379976272583, "Color": "red"}, {"Embedded word index": 17, "Word Weight": -1.6735188961029053, "Color": "red"}, {"Embedded word index": 18, "Word Weight": -1.3601689338684082, "Color": "red"}, {"Embedded word index": 19, "Word Weight": -0.7427802085876465, "Color": "red"}]}}, {"mode": "vega-lite"});
+</script></div></div>
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -3570,13 +3627,13 @@ output = \sigma(sum)
 (See Transformers)</p>
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
-<div class="output text_html"><div id="mBRvwhgINbLU" data-shufflequestions="False"
+<div class="output text_html"><div id="WpeUxlntglcZ" data-shufflequestions="False"
                data-shuffleanswers="True"
                data-preserveresponses="false"
                data-numquestions="1000000"
                data-maxwidth="600"
                style="border-radius: 10px; text-align: left"> <style>
-#mBRvwhgINbLU {
+#WpeUxlntglcZ {
    --jq-multiple-choice-bg: #6f78ffff;
    --jq-mc-button-bg: #fafafa;
    --jq-mc-button-border: #e0e0e0e0;
@@ -3746,7 +3803,7 @@ output = \sigma(sum)
         background-color: var(--jq-correct-color);
     }
 }
-</style></div><script type="application/javascript">var questionsmBRvwhgINbLU=[{
+</style></div><script type="application/javascript">var questionsWpeUxlntglcZ=[{
   "question": "What is the advantage of using an attention mechanism in RNN-based models?",
   "type": "many_choice",
   "answers": [
@@ -4522,8 +4579,8 @@ if (typeof version == 'undefined') {
            Someone more knowledgeable could make this better ;-) */
 
         function try_show() {
-          if(document.getElementById("mBRvwhgINbLU")) {
-            show_questions(questionsmBRvwhgINbLU,  mBRvwhgINbLU); 
+          if(document.getElementById("WpeUxlntglcZ")) {
+            show_questions(questionsWpeUxlntglcZ,  WpeUxlntglcZ); 
           } else {
              setTimeout(try_show, 200);
           }
@@ -4538,10 +4595,10 @@ if (typeof version == 'undefined') {
 
         fetch("https://raw.githubusercontent.com/ChaosTheLegend/ML-Book/main/Quizes/quiz_att.json", {signal})
         .then(response => response.json())
-        .then(json => show_questions(json, mBRvwhgINbLU))
+        .then(json => show_questions(json, WpeUxlntglcZ))
         .catch(err => {
         console.log("Fetch error or timeout");
-        show_questions(questionsmBRvwhgINbLU, mBRvwhgINbLU);
+        show_questions(questionsWpeUxlntglcZ, WpeUxlntglcZ);
         });
         }
         </script></div>
@@ -4557,39 +4614,110 @@ if (typeof version == 'undefined') {
 <span class="expanded">Hide code cell source</span>
 </summary>
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># draw a bar chart to compare the accuracy of the two models</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">altair</span> <span class="k">as</span> <span class="nn">alt</span>
 
 <span class="n">y_pred</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">x_test</span><span class="p">)</span>
-
 <span class="n">y_pred</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">y_pred</span><span class="p">)</span>
-
 <span class="n">attention_accuracy</span> <span class="o">=</span> <span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
 
 <span class="n">accuracy</span> <span class="o">=</span> <span class="p">[</span><span class="n">attention_accuracy</span><span class="p">,</span> <span class="n">simple_accuracy</span><span class="p">]</span>
+<span class="n">models</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Attention (5 epochs)&#39;</span><span class="p">,</span> <span class="s1">&#39;Simple RNN (50 epochs)&#39;</span><span class="p">]</span>
 
+<span class="n">accuracy_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="s1">&#39;Model&#39;</span><span class="p">:</span> <span class="n">models</span><span class="p">,</span>
+    <span class="s1">&#39;Accuracy&#39;</span><span class="p">:</span> <span class="n">accuracy</span>
+<span class="p">})</span>
 
-<span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">([</span><span class="s1">&#39;Attention (5 epochs)&#39;</span><span class="p">,</span> <span class="s1">&#39;Simple RNN (50 epochs)&#39;</span><span class="p">],</span> <span class="n">accuracy</span><span class="p">)</span>
+<span class="c1"># Create the Altair bar chart</span>
+<span class="n">chart</span> <span class="o">=</span> <span class="n">alt</span><span class="o">.</span><span class="n">Chart</span><span class="p">(</span><span class="n">accuracy_df</span><span class="p">)</span><span class="o">.</span><span class="n">mark_bar</span><span class="p">()</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span>
+    <span class="n">x</span><span class="o">=</span><span class="s1">&#39;Model:O&#39;</span><span class="p">,</span>  <span class="c1"># The &quot;:O&quot; specifies that the x-axis is ordinal</span>
+    <span class="n">y</span><span class="o">=</span><span class="s1">&#39;Accuracy:Q&#39;</span><span class="p">,</span>  <span class="c1"># The &quot;:Q&quot; specifies that the y-axis is quantitative</span>
+    <span class="n">color</span><span class="o">=</span><span class="s1">&#39;Model:N&#39;</span><span class="p">,</span>  <span class="c1"># The &quot;:N&quot; specifies that color is based on a nominal field</span>
+    <span class="n">tooltip</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Model:N&#39;</span><span class="p">,</span> <span class="s1">&#39;Accuracy:Q&#39;</span><span class="p">]</span>  
+<span class="p">)</span><span class="o">.</span><span class="n">properties</span><span class="p">(</span>
+    <span class="n">width</span><span class="o">=</span><span class="mi">600</span><span class="p">,</span>
+    <span class="n">height</span><span class="o">=</span><span class="mi">400</span><span class="p">,</span>
+    <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Accuracy of Simple RNN vs Attention Mechanism&#39;</span>
+<span class="p">)</span><span class="o">.</span><span class="n">configure_mark</span><span class="p">(</span>
+    <span class="n">opacity</span><span class="o">=</span><span class="mi">1</span>  
+<span class="p">)</span><span class="o">.</span><span class="n">interactive</span><span class="p">()</span>  <span class="c1"># Enable interactive features like zooming and panning</span>
 
-<span class="c1"># add a title to the plot</span>
-
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Accuracy of Simple RNN vs Attention Mechanism&#39;</span><span class="p">)</span>
-
-<span class="c1"># add a label to the y-axis</span>
-
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Accuracy&#39;</span><span class="p">)</span>
+<span class="c1"># Show the chart</span>
+<span class="n">chart</span><span class="o">.</span><span class="n">display</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 </details>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>782/782 [==============================] - 49s 63ms/step
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>782/782 [==============================] - 41s 52ms/step
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;Accuracy&#39;)
-</pre></div>
-</div>
-<img alt="_images/ce2f8e622a884b96318bc6fe678475df5f661af990783844e33c6931837f8cad.png" src="_images/ce2f8e622a884b96318bc6fe678475df5f661af990783844e33c6931837f8cad.png" />
-</div>
+<div class="output text_html">
+<style>
+  #altair-viz-2ee121f092564df0ac0b94878dd1cec8.vega-embed {
+    width: 100%;
+    display: flex;
+  }
+
+  #altair-viz-2ee121f092564df0ac0b94878dd1cec8.vega-embed details,
+  #altair-viz-2ee121f092564df0ac0b94878dd1cec8.vega-embed details summary {
+    position: relative;
+  }
+</style>
+<div id="altair-viz-2ee121f092564df0ac0b94878dd1cec8"></div>
+<script type="text/javascript">
+  var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
+  (function(spec, embedOpt){
+    let outputDiv = document.currentScript.previousElementSibling;
+    if (outputDiv.id !== "altair-viz-2ee121f092564df0ac0b94878dd1cec8") {
+      outputDiv = document.getElementById("altair-viz-2ee121f092564df0ac0b94878dd1cec8");
+    }
+    const paths = {
+      "vega": "https://cdn.jsdelivr.net/npm/vega@5?noext",
+      "vega-lib": "https://cdn.jsdelivr.net/npm/vega-lib?noext",
+      "vega-lite": "https://cdn.jsdelivr.net/npm/vega-lite@5.16.3?noext",
+      "vega-embed": "https://cdn.jsdelivr.net/npm/vega-embed@6?noext",
+    };
+
+    function maybeLoadScript(lib, version) {
+      var key = `${lib.replace("-", "")}_version`;
+      return (VEGA_DEBUG[key] == version) ?
+        Promise.resolve(paths[lib]) :
+        new Promise(function(resolve, reject) {
+          var s = document.createElement('script');
+          document.getElementsByTagName("head")[0].appendChild(s);
+          s.async = true;
+          s.onload = () => {
+            VEGA_DEBUG[key] = version;
+            return resolve(paths[lib]);
+          };
+          s.onerror = () => reject(`Error loading script: ${paths[lib]}`);
+          s.src = paths[lib];
+        });
+    }
+
+    function showError(err) {
+      outputDiv.innerHTML = `<div class="error" style="color:red;">${err}</div>`;
+      throw err;
+    }
+
+    function displayChart(vegaEmbed) {
+      vegaEmbed(outputDiv, spec, embedOpt)
+        .catch(err => showError(`Javascript Error: ${err.message}<br>This usually means there's a typo in your chart specification. See the javascript console for the full traceback.`));
+    }
+
+    if(typeof define === "function" && define.amd) {
+      requirejs.config({paths});
+      require(["vega-embed"], displayChart, err => showError(`Error loading script: ${err.message}`));
+    } else {
+      maybeLoadScript("vega", "5")
+        .then(() => maybeLoadScript("vega-lite", "5.16.3"))
+        .then(() => maybeLoadScript("vega-embed", "6"))
+        .catch(showError)
+        .then(() => displayChart(vegaEmbed));
+    }
+  })({"config": {"view": {"continuousWidth": 300, "continuousHeight": 300}, "mark": {"opacity": 1}}, "data": {"name": "data-1a02a5c4b8b926e22330d4362ac6a18c"}, "mark": {"type": "bar"}, "encoding": {"color": {"field": "Model", "type": "nominal"}, "tooltip": [{"field": "Model", "type": "nominal"}, {"field": "Accuracy", "type": "quantitative"}], "x": {"field": "Model", "type": "ordinal"}, "y": {"field": "Accuracy", "type": "quantitative"}}, "height": 400, "params": [{"name": "param_56", "select": {"type": "interval", "encodings": ["x", "y"]}, "bind": "scales"}], "title": "Accuracy of Simple RNN vs Attention Mechanism", "width": 600, "$schema": "https://vega.github.io/schema/vega-lite/v5.16.3.json", "datasets": {"data-1a02a5c4b8b926e22330d4362ac6a18c": [{"Model": "Attention (5 epochs)", "Accuracy": 0.82792}, {"Model": "Simple RNN (50 epochs)", "Accuracy": 0.68688}]}}, {"mode": "vega-lite"});
+</script></div></div>
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -4624,25 +4752,116 @@ if (typeof version == 'undefined') {
 <span class="n">lstm_accuracy</span> <span class="o">=</span> <span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
 
 <span class="n">accuracy</span> <span class="o">=</span> <span class="p">[</span><span class="n">attention_accuracy</span><span class="p">,</span> <span class="n">lstm_accuracy</span><span class="p">,</span> <span class="n">simple_accuracy</span><span class="p">]</span>
-
-<span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">([</span><span class="s1">&#39;Attention (5 epochs)&#39;</span><span class="p">,</span> <span class="s1">&#39;LSTM (5 epochs)&#39;</span><span class="p">,</span> <span class="s1">&#39;Simple RNN (50 epochs)&#39;</span><span class="p">],</span> <span class="n">accuracy</span><span class="p">)</span>
-
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Accuracy of Different RNNs&#39;</span><span class="p">)</span>
-
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Accuracy&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </details>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>782/782 [==============================] - 105s 134ms/step
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>782/782 [==============================] - 192s 244ms/step
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;Accuracy&#39;)
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">altair</span> <span class="k">as</span> <span class="nn">alt</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+
+<span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="s1">&#39;Model&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;Attention (5 epochs)&#39;</span><span class="p">,</span> <span class="s1">&#39;LSTM (5 epochs)&#39;</span><span class="p">,</span> <span class="s1">&#39;Simple RNN (50 epochs)&#39;</span><span class="p">],</span>
+    <span class="s1">&#39;Accuracy&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">attention_accuracy</span><span class="p">,</span> <span class="n">lstm_accuracy</span><span class="p">,</span> <span class="n">simple_accuracy</span><span class="p">]</span>
+<span class="p">})</span>
+
+
+<span class="n">chart</span> <span class="o">=</span> <span class="n">alt</span><span class="o">.</span><span class="n">Chart</span><span class="p">(</span><span class="n">data</span><span class="p">)</span><span class="o">.</span><span class="n">mark_bar</span><span class="p">()</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span>
+    <span class="n">x</span><span class="o">=</span><span class="n">alt</span><span class="o">.</span><span class="n">X</span><span class="p">(</span><span class="s1">&#39;Model&#39;</span><span class="p">,</span> <span class="n">sort</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="n">alt</span><span class="o">.</span><span class="n">Axis</span><span class="p">(</span><span class="n">labelAngle</span><span class="o">=-</span><span class="mi">45</span><span class="p">)),</span>  
+    <span class="n">y</span><span class="o">=</span><span class="n">alt</span><span class="o">.</span><span class="n">Y</span><span class="p">(</span><span class="s1">&#39;Accuracy&#39;</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="n">alt</span><span class="o">.</span><span class="n">Scale</span><span class="p">(</span><span class="n">domain</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])),</span>  
+    <span class="n">color</span><span class="o">=</span><span class="s1">&#39;Model&#39;</span><span class="p">,</span> 
+    <span class="n">tooltip</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Model&#39;</span><span class="p">,</span> <span class="s1">&#39;Accuracy&#39;</span><span class="p">]</span> 
+<span class="p">)</span><span class="o">.</span><span class="n">properties</span><span class="p">(</span>
+    <span class="n">width</span><span class="o">=</span><span class="mi">600</span><span class="p">,</span>  
+    <span class="n">height</span><span class="o">=</span><span class="mi">400</span><span class="p">,</span>  
+    <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Accuracy of Different RNN Models&#39;</span>  
+<span class="p">)</span><span class="o">.</span><span class="n">configure_axis</span><span class="p">(</span>
+    <span class="n">labelFontSize</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span>
+    <span class="n">titleFontSize</span><span class="o">=</span><span class="mi">14</span>
+<span class="p">)</span><span class="o">.</span><span class="n">configure_title</span><span class="p">(</span>
+    <span class="n">fontSize</span><span class="o">=</span><span class="mi">16</span>
+<span class="p">)</span><span class="o">.</span><span class="n">interactive</span><span class="p">()</span>
+
+
+<span class="n">chart</span><span class="o">.</span><span class="n">display</span><span class="p">()</span>
 </pre></div>
 </div>
-<img alt="_images/adeb381c0ee9da919f8f59932801f3856bc7d9fa9966369e02a0e4259593efb9.png" src="_images/adeb381c0ee9da919f8f59932801f3856bc7d9fa9966369e02a0e4259593efb9.png" />
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+<style>
+  #altair-viz-0fe841a495274ea4b8cdecbf1fd18b9f.vega-embed {
+    width: 100%;
+    display: flex;
+  }
+
+  #altair-viz-0fe841a495274ea4b8cdecbf1fd18b9f.vega-embed details,
+  #altair-viz-0fe841a495274ea4b8cdecbf1fd18b9f.vega-embed details summary {
+    position: relative;
+  }
+</style>
+<div id="altair-viz-0fe841a495274ea4b8cdecbf1fd18b9f"></div>
+<script type="text/javascript">
+  var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
+  (function(spec, embedOpt){
+    let outputDiv = document.currentScript.previousElementSibling;
+    if (outputDiv.id !== "altair-viz-0fe841a495274ea4b8cdecbf1fd18b9f") {
+      outputDiv = document.getElementById("altair-viz-0fe841a495274ea4b8cdecbf1fd18b9f");
+    }
+    const paths = {
+      "vega": "https://cdn.jsdelivr.net/npm/vega@5?noext",
+      "vega-lib": "https://cdn.jsdelivr.net/npm/vega-lib?noext",
+      "vega-lite": "https://cdn.jsdelivr.net/npm/vega-lite@5.16.3?noext",
+      "vega-embed": "https://cdn.jsdelivr.net/npm/vega-embed@6?noext",
+    };
+
+    function maybeLoadScript(lib, version) {
+      var key = `${lib.replace("-", "")}_version`;
+      return (VEGA_DEBUG[key] == version) ?
+        Promise.resolve(paths[lib]) :
+        new Promise(function(resolve, reject) {
+          var s = document.createElement('script');
+          document.getElementsByTagName("head")[0].appendChild(s);
+          s.async = true;
+          s.onload = () => {
+            VEGA_DEBUG[key] = version;
+            return resolve(paths[lib]);
+          };
+          s.onerror = () => reject(`Error loading script: ${paths[lib]}`);
+          s.src = paths[lib];
+        });
+    }
+
+    function showError(err) {
+      outputDiv.innerHTML = `<div class="error" style="color:red;">${err}</div>`;
+      throw err;
+    }
+
+    function displayChart(vegaEmbed) {
+      vegaEmbed(outputDiv, spec, embedOpt)
+        .catch(err => showError(`Javascript Error: ${err.message}<br>This usually means there's a typo in your chart specification. See the javascript console for the full traceback.`));
+    }
+
+    if(typeof define === "function" && define.amd) {
+      requirejs.config({paths});
+      require(["vega-embed"], displayChart, err => showError(`Error loading script: ${err.message}`));
+    } else {
+      maybeLoadScript("vega", "5")
+        .then(() => maybeLoadScript("vega-lite", "5.16.3"))
+        .then(() => maybeLoadScript("vega-embed", "6"))
+        .catch(showError)
+        .then(() => displayChart(vegaEmbed));
+    }
+  })({"config": {"view": {"continuousWidth": 300, "continuousHeight": 300}, "axis": {"labelFontSize": 12, "titleFontSize": 14}, "title": {"fontSize": 16}}, "data": {"name": "data-279525bf42d2bdbf0d78c1c866d8884a"}, "mark": {"type": "bar"}, "encoding": {"color": {"field": "Model", "type": "nominal"}, "tooltip": [{"field": "Model", "type": "nominal"}, {"field": "Accuracy", "type": "quantitative"}], "x": {"axis": {"labelAngle": -45}, "field": "Model", "sort": null, "type": "nominal"}, "y": {"field": "Accuracy", "scale": {"domain": [0, 1]}, "type": "quantitative"}}, "height": 400, "params": [{"name": "param_57", "select": {"type": "interval", "encodings": ["x", "y"]}, "bind": "scales"}], "title": "Accuracy of Different RNN Models", "width": 600, "$schema": "https://vega.github.io/schema/vega-lite/v5.16.3.json", "datasets": {"data-279525bf42d2bdbf0d78c1c866d8884a": [{"Model": "Attention (5 epochs)", "Accuracy": 0.82792}, {"Model": "LSTM (5 epochs)", "Accuracy": 0.82268}, {"Model": "Simple RNN (50 epochs)", "Accuracy": 0.68688}]}}, {"mode": "vega-lite"});
+</script></div></div>
 </div>
 </section>
 <section id="summary">
