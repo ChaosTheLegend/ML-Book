@@ -1,0 +1,12 @@
+{
+        "question": "What is the advantage of using an attention mechanism in RNN-based models?",
+        "type": "numeric",
+        "answers": [
+            {
+                "answer": "It reduces the number of training samples required",
+                "correct": false,
+                "feedback": "Try again"
+            }
+        ]
+}
+        
