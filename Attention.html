@@ -385,13 +385,13 @@ document.write(`
 <p>In a basic RNN, each recurrent neuron receives inputs from all neurons from the previous time step, as well as the inputs from the current time step, hence the term ‘recurrent’.</p>
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
-<div class="output text_html"><div id="HAVLEQfvPlun" data-shufflequestions="False"
+<div class="output text_html"><div id="tmPIXTLnshhB" data-shufflequestions="False"
                data-shuffleanswers="True"
                data-preserveresponses="false"
                data-numquestions="1000000"
                data-maxwidth="600"
                style="border-radius: 10px; text-align: left"> <style>
-#HAVLEQfvPlun {
+#tmPIXTLnshhB {
    --jq-multiple-choice-bg: #6f78ffff;
    --jq-mc-button-bg: #fafafa;
    --jq-mc-button-border: #e0e0e0e0;
@@ -561,7 +561,7 @@ document.write(`
         background-color: var(--jq-correct-color);
     }
 }
-</style></div><script type="application/javascript">var questionsHAVLEQfvPlun={
+</style></div><script type="application/javascript">var questionstmPIXTLnshhB={
         "question": "What is the primary advantage of using an RNN over a traditional feedforward neural network for sequence data?",
         "type": "many_choice",
         "answers": [
@@ -1337,8 +1337,8 @@ if (typeof version == 'undefined') {
            Someone more knowledgeable could make this better ;-) */
 
         function try_show() {
-          if(document.getElementById("HAVLEQfvPlun")) {
-            show_questions(questionsHAVLEQfvPlun,  HAVLEQfvPlun); 
+          if(document.getElementById("tmPIXTLnshhB")) {
+            show_questions(questionstmPIXTLnshhB,  tmPIXTLnshhB); 
           } else {
              setTimeout(try_show, 200);
           }
@@ -1353,10 +1353,10 @@ if (typeof version == 'undefined') {
 
         fetch("https://raw.githubusercontent.com/ChaosTheLegend/ML-Book/main/Quizes/quiz_rnn.json", {signal})
         .then(response => response.json())
-        .then(json => show_questions(json, HAVLEQfvPlun))
+        .then(json => show_questions(json, tmPIXTLnshhB))
         .catch(err => {
         console.log("Fetch error or timeout");
-        show_questions(questionsHAVLEQfvPlun, HAVLEQfvPlun);
+        show_questions(questionstmPIXTLnshhB, tmPIXTLnshhB);
         });
         }
         </script></div>
@@ -1393,20 +1393,15 @@ if (typeof version == 'undefined') {
 <p>The gradient is computed by multiplying the gradients of the loss function with respect to the output, the output with respect to the hidden state, and the hidden state with respect to the weights.</p>
 <p>Since gradients are multiplied together, if the gradients at each time step are less than 1 (e.g., due to using activation functions like sigmoid or tanh), this multiplication leads to a compounding effect. As you go further back in time, the gradients become increasingly smaller.</p>
 <p><img alt="Simple RNN" src="https://raw.githubusercontent.com/ChaosTheLegend/ML-Book/main/Images/SimpleRNNProblem.png" /></p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">display_quiz</span><span class="p">(</span><span class="n">git_path</span> <span class="o">+</span> <span class="s1">&#39;quiz_vanish.json&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
+<div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
-<div class="output text_html"><div id="lGPfjRQjXhpc" data-shufflequestions="False"
+<div class="output text_html"><div id="uwemKZljbwyv" data-shufflequestions="False"
                data-shuffleanswers="True"
                data-preserveresponses="false"
                data-numquestions="1000000"
                data-maxwidth="600"
                style="border-radius: 10px; text-align: left"> <style>
-#lGPfjRQjXhpc {
+#uwemKZljbwyv {
    --jq-multiple-choice-bg: #6f78ffff;
    --jq-mc-button-bg: #fafafa;
    --jq-mc-button-border: #e0e0e0e0;
@@ -1576,7 +1571,7 @@ if (typeof version == 'undefined') {
         background-color: var(--jq-correct-color);
     }
 }
-</style></div><script type="application/javascript">var questionslGPfjRQjXhpc={
+</style></div><script type="application/javascript">var questionsuwemKZljbwyv={
     "question": "What is the vanishing gradient problem in RNNs?",
     "type": "many_choice",
     "answers": [
@@ -2351,8 +2346,8 @@ if (typeof version == 'undefined') {
            Someone more knowledgeable could make this better ;-) */
 
         function try_show() {
-          if(document.getElementById("lGPfjRQjXhpc")) {
-            show_questions(questionslGPfjRQjXhpc,  lGPfjRQjXhpc); 
+          if(document.getElementById("uwemKZljbwyv")) {
+            show_questions(questionsuwemKZljbwyv,  uwemKZljbwyv); 
           } else {
              setTimeout(try_show, 200);
           }
@@ -2367,10 +2362,10 @@ if (typeof version == 'undefined') {
 
         fetch("https://raw.githubusercontent.com/ChaosTheLegend/ML-Book/main/Quizes/quiz_vanish.json", {signal})
         .then(response => response.json())
-        .then(json => show_questions(json, lGPfjRQjXhpc))
+        .then(json => show_questions(json, uwemKZljbwyv))
         .catch(err => {
         console.log("Fetch error or timeout");
-        show_questions(questionslGPfjRQjXhpc, lGPfjRQjXhpc);
+        show_questions(questionsuwemKZljbwyv, uwemKZljbwyv);
         });
         }
         </script></div>
