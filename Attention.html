@@ -1389,10 +1389,13 @@ if (typeof version == 'undefined') {
 <section id="math-behind-vanishing-gradient-problem">
 <h3>Math Behind Vanishing Gradient Problem<a class="headerlink" href="#math-behind-vanishing-gradient-problem" title="Permalink to this heading">#</a></h3>
 <p>The vanishing gradient problem occurs because of the way gradients are computed in RNNs:</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
 <div class="math notranslate nohighlight">
 \[
 \frac{\partial L}{\partial W} = \frac{\partial L}{\partial y} \frac{\partial y}{\partial h} \frac{\partial h}{\partial W}
 \]</div>
+</div>
 <p>The gradient is computed by multiplying the gradients of the loss function with respect to the output, the output with respect to the hidden state, and the hidden state with respect to the weights.</p>
 <div class="admonition important">
 <p class="admonition-title">Important</p>
@@ -3490,10 +3493,13 @@ score(h_i, h_j) = h_i^T h_j
 \end{split}\]</div>
 </div>
 <p>In the beginning, the alignment scores are random, but as the model learns using backpropagation, the alignment scores are updated to reflect how well the inputs around a given position and the output at that position match.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
 <div class="math notranslate nohighlight">
 \[
 new\_alignment\_scores = old\_alignment\_scores + \frac{\partial L}{\partial \alpha_{ij}}
 \]</div>
+</div>
 <p>The following graph shows the sum of alignment scores after training the model for 5 epochs:</p>
 <div class="cell tag_hide-input docutils container">
 <details class="hide above-input">
@@ -4584,9 +4590,12 @@ if (typeof version == 'undefined') {
 <img alt="_images/ce2f8e622a884b96318bc6fe678475df5f661af990783844e33c6931837f8cad.png" src="_images/ce2f8e622a884b96318bc6fe678475df5f661af990783844e33c6931837f8cad.png" />
 </div>
 </div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
 <p>Attention Mechanism can also be used with other RNN implementations such as LSTM and GRU.</p>
 <p>It can also be used with Bidirectional RNNs, and even with CNNs.</p>
 <p>Here’s an example of using Attention Mechanism with Bidirectional LSTM:</p>
+</div>
 <div class="cell tag_hide-input docutils container">
 <details class="hide above-input">
 <summary aria-label="Toggle hidden content">
