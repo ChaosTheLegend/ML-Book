@@ -30,8 +30,9 @@ from sklearn.metrics import accuracy_score
 from keras.datasets import imdb
 import plotly.io as pio
 import plotly.offline as pyo
-pyo.init_notebook_mode(connected=True)
 pio.renderers.default = 'notebook'
+pyo.init_notebook_mode(connected=True)
+
 
 
 git_path="https://raw.githubusercontent.com/ChaosTheLegend/ML-Book/main/Quizes/"
@@ -71,23 +72,19 @@ simple_accuracy = accuracy_score(y_test, y_pred)
 ------------------
 
 ----- stderr -----
-2023-12-13 05:38:17.401935: I external/local_tsl/tsl/cuda/cudart_stub.cc:31] Could not find cuda drivers on your machine, GPU will not be used.
-2023-12-13 05:38:17.432930: E external/local_xla/xla/stream_executor/cuda/cuda_dnn.cc:9261] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
-2023-12-13 05:38:17.432951: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:607] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
-2023-12-13 05:38:17.434129: E external/local_xla/xla/stream_executor/cuda/cuda_blas.cc:1515] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
-2023-12-13 05:38:17.439731: I external/local_tsl/tsl/cuda/cudart_stub.cc:31] Could not find cuda drivers on your machine, GPU will not be used.
-2023-12-13 05:38:17.440590: I tensorflow/core/platform/cpu_feature_guard.cc:182] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+2023-12-13 05:47:31.105416: I external/local_tsl/tsl/cuda/cudart_stub.cc:31] Could not find cuda drivers on your machine, GPU will not be used.
+2023-12-13 05:47:31.135827: E external/local_xla/xla/stream_executor/cuda/cuda_dnn.cc:9261] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
+2023-12-13 05:47:31.135850: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:607] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
+2023-12-13 05:47:31.137036: E external/local_xla/xla/stream_executor/cuda/cuda_blas.cc:1515] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
+2023-12-13 05:47:31.142657: I external/local_tsl/tsl/cuda/cudart_stub.cc:31] Could not find cuda drivers on your machine, GPU will not be used.
+2023-12-13 05:47:31.143492: I tensorflow/core/platform/cpu_feature_guard.cc:182] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
 To enable the following instructions: AVX2 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
 ----- stderr -----
-2023-12-13 05:38:18.215106: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT
+2023-12-13 05:47:31.936460: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT
 ----- stdout -----
 Downloading data from https://storage.googleapis.com/tensorflow/tf-keras-datasets/imdb.npz
 ----- stdout -----
     8192/17464789 [..............................] - ETA: 0s
------ stdout -----
- 4186112/17464789 [======>.......................] - ETA: 0s
------ stdout -----
- 4202496/17464789 [======>.......................] - ETA: 0s
 ----- stdout -----
  8396800/17464789 [=============>................] - ETA: 0s
 ----- stdout -----
@@ -96,17 +93,17 @@ Downloading data from https://storage.googleapis.com/tensorflow/tf-keras-dataset
 
 [0;31m---------------------------------------------------------------------------[0m
 [0;31mValueError[0m                                Traceback (most recent call last)
-Cell [0;32mIn[1], line 42[0m
-[1;32m     29[0m dropout_rate [38;5;241m=[39m [38;5;241m0.5[39m
-[1;32m     32[0m [38;5;66;03m# model = tf.keras.Sequential([[39;00m
-[1;32m     33[0m [38;5;66;03m#    tf.keras.layers.Embedding(input_dim=num_words, output_dim=embedding_dim, input_length=max_len),[39;00m
-[1;32m     34[0m [38;5;66;03m#    tf.keras.layers.SimpleRNN(hidden_dim),[39;00m
+Cell [0;32mIn[1], line 43[0m
+[1;32m     30[0m dropout_rate [38;5;241m=[39m [38;5;241m0.5[39m
+[1;32m     33[0m [38;5;66;03m# model = tf.keras.Sequential([[39;00m
+[1;32m     34[0m [38;5;66;03m#    tf.keras.layers.Embedding(input_dim=num_words, output_dim=embedding_dim, input_length=max_len),[39;00m
+[1;32m     35[0m [38;5;66;03m#    tf.keras.layers.SimpleRNN(hidden_dim),[39;00m
 [0;32m   (...)[0m
-[1;32m     39[0m 
-[1;32m     40[0m [38;5;66;03m# Model is loaded from the file to save time[39;00m
-[0;32m---> 42[0m simpleRNN [38;5;241m=[39m [43mtf[49m[38;5;241;43m.[39;49m[43mkeras[49m[38;5;241;43m.[39;49m[43mmodels[49m[38;5;241;43m.[39;49m[43mload_model[49m[43m([49m[38;5;124;43m'[39;49m[38;5;124;43msimpleRNN.keras[39;49m[38;5;124;43m'[39;49m[43m)[49m
-[1;32m     44[0m [38;5;66;03m# make predictions and calculate accuracy[39;00m
-[1;32m     46[0m y_pred [38;5;241m=[39m simpleRNN[38;5;241m.[39mpredict(x_test)
+[1;32m     40[0m 
+[1;32m     41[0m [38;5;66;03m# Model is loaded from the file to save time[39;00m
+[0;32m---> 43[0m simpleRNN [38;5;241m=[39m [43mtf[49m[38;5;241;43m.[39;49m[43mkeras[49m[38;5;241;43m.[39;49m[43mmodels[49m[38;5;241;43m.[39;49m[43mload_model[49m[43m([49m[38;5;124;43m'[39;49m[38;5;124;43msimpleRNN.keras[39;49m[38;5;124;43m'[39;49m[43m)[49m
+[1;32m     45[0m [38;5;66;03m# make predictions and calculate accuracy[39;00m
+[1;32m     47[0m y_pred [38;5;241m=[39m simpleRNN[38;5;241m.[39mpredict(x_test)
 
 File [0;32m/opt/hostedtoolcache/Python/3.11.5/x64/lib/python3.11/site-packages/keras/src/saving/saving_api.py:254[0m, in [0;36mload_model[0;34m(filepath, custom_objects, compile, safe_mode, **kwargs)[0m
 [1;32m    249[0m     [38;5;28;01mif[39;00m kwargs:
