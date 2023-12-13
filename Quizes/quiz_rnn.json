@@ -1,26 +1,28 @@
-{
-        "question": "Which type of RNN architecture is designed to address the vanishing gradient problem and can capture long-range dependencies?",
+[{
+        "question": "What is the primary advantage of using an RNN over a traditional feedforward neural network for sequence data?",
         "type": "many_choice",
         "answers": [
             {
-                "answer": "Vanilla RNN",
+                "answer": "Lower computational complexity",
                 "correct": false,
                 "feedback": "Try again"
             },
             {
-                "answer": "Long Short-Term Memory (LSTM)",
+                "answer": "Ability to handle variable-length sequences",
                 "correct": true,
                 "feedback": "Correct"
             },
             {
-                "answer": "Gated Recurrent Unit (GRU)",
+                "answer": "Simpler architecture",
                 "correct": false,
                 "feedback": "Try again."
             },
             {
-                "answer": "Simple Recurrent Unit (SRU)",
+                "answer": "Better performance on image data",
                 "correct": false,
                 "feedback": "Try again"
             
-            }]}
+            }
+        ]
+}]
         

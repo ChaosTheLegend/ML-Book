@@ -1,4 +1,4 @@
-{
+[{
         "question": " How does a bidirectional RNN process input data?",
         "type": "many_choice",
         "answers": [
@@ -25,4 +25,5 @@
             }
         ]
 }
+]
         

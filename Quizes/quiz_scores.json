@@ -1,0 +1,26 @@
+[{
+        "question": "Given the attention weights and input embeddings, what would be the sum of the context vector?",
+        "type": "numeric",
+        "answers": [
+            {
+                "type": "value",
+                "value": 2.5,
+                "correct": true,
+                "feedback": "Correct."
+            },
+            {
+                "type": "range",
+                "range": [
+                    2,
+                    3
+                ],
+                "correct": false,
+                "feedback": "No, this doesn't seem right. Try again."
+            },
+            {
+                "type": "default",
+                "feedback": "You are way off. Hint: you can use the sum of the attention weights"
+            }
+        ]
+}]
+        
