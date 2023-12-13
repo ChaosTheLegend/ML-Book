@@ -19,6 +19,11 @@ latex:
 bibtex_bibfiles:
   - references.bib
 
+sphinx:
+  config:
+    html_js_files:
+      - https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js
+
 # Information about where the book exists on the web
 repository:
   url: https://github.com/ChaosTheLegend/ML-Book  # Online location of your book
@@ -30,8 +35,3 @@ repository:
 html:
   use_issues_button: true
   use_repository_button: true
-
-sphinx:
-  config:
-    html_js_files:
-      - https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js
