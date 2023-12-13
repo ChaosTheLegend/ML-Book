@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Attention Mechanism &#8212; My sample book</title>
+    <title>Attention &#8212; My sample book</title>
   
   
   
@@ -158,7 +158,7 @@ const thebe_selector_output = ".output, .cell_output"
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1 current active">
                 <a class="reference internal" href="#">
-                    Attention Mechanism
+                    Attention
                 </a>
             </li>
         </ul>
@@ -346,7 +346,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Attention Mechanism</h1>
+    <h1>Attention</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -362,8 +362,10 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#math-behind-vanishing-gradient-problem">Math Behind Vanishing Gradient Problem</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Attention Mechanism</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#attention-mechanism">Attention Mechanism</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#math-behind-attention-mechanism">Math Behind Attention Mechanism</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#using-attention-mechanism">Using Attention Mechanism</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">Summary</a></li>
 </ul>
             </nav>
         </div>
@@ -375,8 +377,8 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="attention-mechanism">
-<h1>Attention Mechanism<a class="headerlink" href="#attention-mechanism" title="Permalink to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="attention">
+<h1>Attention<a class="headerlink" href="#attention" title="Permalink to this heading">#</a></h1>
 <section id="rnn-recap">
 <h2>RNN recap<a class="headerlink" href="#rnn-recap" title="Permalink to this heading">#</a></h2>
 <p>In a basic RNN, each recurrent neuron receives inputs from all neurons from the previous time step, as well as the inputs from the current time step, hence the term ‘recurrent’.</p>
@@ -429,16 +431,16 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2023-12-13 02:00:45.117931: I external/local_tsl/tsl/cuda/cudart_stub.cc:31] Could not find cuda drivers on your machine, GPU will not be used.
-2023-12-13 02:00:45.148676: E external/local_xla/xla/stream_executor/cuda/cuda_dnn.cc:9261] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
-2023-12-13 02:00:45.148700: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:607] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
-2023-12-13 02:00:45.149874: E external/local_xla/xla/stream_executor/cuda/cuda_blas.cc:1515] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
-2023-12-13 02:00:45.155549: I external/local_tsl/tsl/cuda/cudart_stub.cc:31] Could not find cuda drivers on your machine, GPU will not be used.
-2023-12-13 02:00:45.156167: I tensorflow/core/platform/cpu_feature_guard.cc:182] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2023-12-13 02:36:34.628407: I external/local_tsl/tsl/cuda/cudart_stub.cc:31] Could not find cuda drivers on your machine, GPU will not be used.
+2023-12-13 02:36:34.663128: E external/local_xla/xla/stream_executor/cuda/cuda_dnn.cc:9261] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
+2023-12-13 02:36:34.663164: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:607] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
+2023-12-13 02:36:34.664383: E external/local_xla/xla/stream_executor/cuda/cuda_blas.cc:1515] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
+2023-12-13 02:36:34.670254: I external/local_tsl/tsl/cuda/cudart_stub.cc:31] Could not find cuda drivers on your machine, GPU will not be used.
+2023-12-13 02:36:34.670921: I tensorflow/core/platform/cpu_feature_guard.cc:182] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
 To enable the following instructions: AVX2 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2023-12-13 02:00:45.962135: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2023-12-13 02:36:35.477274: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT
 </pre></div>
 </div>
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
@@ -528,8 +530,8 @@ To enable the following instructions: AVX2 FMA, in other operations, rebuild Ten
 <p><img alt="Simple RNN" src="https://raw.githubusercontent.com/ChaosTheLegend/ML-Book/main/Images/SimpleRNNProblem.png" /></p>
 </section>
 </section>
-<section id="id1">
-<h2>Attention Mechanism<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h2>
+<section id="attention-mechanism">
+<h2>Attention Mechanism<a class="headerlink" href="#attention-mechanism" title="Permalink to this heading">#</a></h2>
 <p>To combat the vanishing gradient problem, we can use an attention mechanism.</p>
 <p>An attention mechanism is a way to help RNNs learn long-term dependencies by allowing the model to focus on the most relevant parts of the input sequence when producing a given output.</p>
 <p>We do this by adding a context vector to the model, which is a weighted sum of the encoder’s hidden states. The weights are computed using an alignment score function, which measures how well the inputs around a given position and the output at that position match.</p>
@@ -580,10 +582,7 @@ c_i = \sum_{j=1}^{T_x} \alpha_{ij} h_j
 <p><img alt="Attention Mechanism" src="https://raw.githubusercontent.com/ChaosTheLegend/ML-Book/main/Images/AttentionLive.png" /></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
-
-<span class="n">attention_layer</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">layers</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
-
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">attention_layer</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">layers</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
 
 <span class="n">weights</span> <span class="o">=</span> <span class="n">attention_layer</span><span class="o">.</span><span class="n">get_weights</span><span class="p">()[</span><span class="mi">1</span><span class="p">]</span>
 
@@ -652,33 +651,20 @@ ________________________________________________________________________________
 <p>The Lower the absolute value of the weight, the less relevant the word is to the output</p>
 <p>Green bars show positive weights, indicating that the word is positive</p>
 <p>Red bars show negative weights, indicating that the word is negative</p>
-<div class="cell tag_hide-input docutils container">
-<details class="hide above-input">
-<summary aria-label="Toggle hidden content">
-<span class="collapsed">Show code cell source</span>
-<span class="expanded">Hide code cell source</span>
-</summary>
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">y_pred</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">x_test</span><span class="p">)</span>
-
-<span class="n">y_pred</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">y_pred</span><span class="p">)</span>
-
-<span class="n">attention_accuracy</span> <span class="o">=</span> <span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
-
-<span class="n">attention_accuracy</span>
-</pre></div>
-</div>
-</div>
-</details>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>782/782 [==============================] - 22s 28ms/step
-</pre></div>
-</div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.82792
-</pre></div>
-</div>
-</div>
-</div>
+<p>The computed vector is then multiplied by the hidden state at position <span class="math notranslate nohighlight">\(i\)</span> to produce the output at position <span class="math notranslate nohighlight">\(i\)</span>, this is being done in the context layer. In the case of Binary Classification, we use dense layer with sigmoid activation function to produce the output.</p>
+<div class="math notranslate nohighlight">
+\[
+sum =  \sum_{i=1}^{T_x} \alpha_{ij} h_j
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+output = \sigma(sum)
+\]</div>
+<p>But attention can also be used for other tasks such as Machine Translation, where another RNN is used to decode the output sequence.
+(See Transformers)</p>
+</section>
+<section id="using-attention-mechanism">
+<h2>Using Attention Mechanism<a class="headerlink" href="#using-attention-mechanism" title="Permalink to this heading">#</a></h2>
 <p>By adding an attention mechanism, our model performs way better even when using the low number of epochs.</p>
 <div class="cell tag_hide-input docutils container">
 <details class="hide above-input">
@@ -688,6 +674,12 @@ ________________________________________________________________________________
 </summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># draw a bar chart to compare the accuracy of the two models</span>
+
+<span class="n">y_pred</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">x_test</span><span class="p">)</span>
+
+<span class="n">y_pred</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">y_pred</span><span class="p">)</span>
+
+<span class="n">attention_accuracy</span> <span class="o">=</span> <span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
 
 <span class="n">accuracy</span> <span class="o">=</span> <span class="p">[</span><span class="n">attention_accuracy</span><span class="p">,</span> <span class="n">simple_accuracy</span><span class="p">];</span>
 
@@ -706,12 +698,87 @@ ________________________________________________________________________________
 </div>
 </details>
 <div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>782/782 [==============================] - 117s 149ms/step
+</pre></div>
+</div>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;Accuracy&#39;)
 </pre></div>
 </div>
-<img alt="_images/ce2f8e622a884b96318bc6fe678475df5f661af990783844e33c6931837f8cad.png" src="_images/ce2f8e622a884b96318bc6fe678475df5f661af990783844e33c6931837f8cad.png" />
+<img alt="_images/18e7c5ad023bd267efcae51df43d0c8c839018505c0bffd53e0560328e3f5185.png" src="_images/18e7c5ad023bd267efcae51df43d0c8c839018505c0bffd53e0560328e3f5185.png" />
 </div>
 </div>
+<p>Attention Mechanism can also be used with other RNN implementations such as LSTM and GRU.</p>
+<p>It can also be used with Bidirectional RNNs, and even with CNNs.</p>
+<p>Here’s an example of using Attention Mechanism with Bidirectional LSTM:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">inputs</span> <span class="o">=</span> <span class="n">Input</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="n">max_len</span><span class="p">,))</span>
+<span class="n">embedding</span> <span class="o">=</span> <span class="n">Embedding</span><span class="p">(</span><span class="n">input_dim</span><span class="o">=</span><span class="mi">10000</span><span class="p">,</span> <span class="n">output_dim</span><span class="o">=</span><span class="n">embedding_dim</span><span class="p">,</span> <span class="n">input_length</span><span class="o">=</span><span class="n">max_len</span><span class="p">)(</span><span class="n">inputs</span><span class="p">)</span>
+<span class="n">lstm</span> <span class="o">=</span> <span class="n">Bidirectional</span><span class="p">(</span><span class="n">LSTM</span><span class="p">(</span><span class="n">hidden_dim</span><span class="p">,</span> <span class="n">return_sequences</span><span class="o">=</span><span class="kc">True</span><span class="p">))(</span><span class="n">embedding</span><span class="p">)</span>
+<span class="n">attention</span> <span class="o">=</span> <span class="n">Attention</span><span class="p">()([</span><span class="n">lstm</span><span class="p">,</span> <span class="n">lstm</span><span class="p">])</span>
+<span class="n">context</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">reduce_sum</span><span class="p">(</span><span class="n">attention</span> <span class="o">*</span> <span class="n">lstm</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">dropout</span> <span class="o">=</span> <span class="n">Dropout</span><span class="p">(</span><span class="n">dropout_rate</span><span class="p">)(</span><span class="n">context</span><span class="p">)</span>
+<span class="n">output</span> <span class="o">=</span> <span class="n">Dense</span><span class="p">(</span><span class="n">output_dim</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;sigmoid&#39;</span><span class="p">)(</span><span class="n">dropout</span><span class="p">)</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">Model</span><span class="p">(</span><span class="n">inputs</span><span class="o">=</span><span class="n">inputs</span><span class="p">,</span> <span class="n">outputs</span><span class="o">=</span><span class="n">output</span><span class="p">)</span>
+
+<span class="n">model</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">optimizer</span><span class="o">=</span><span class="s1">&#39;adam&#39;</span><span class="p">,</span> <span class="n">loss</span><span class="o">=</span><span class="s1">&#39;binary_crossentropy&#39;</span><span class="p">,</span> <span class="n">metrics</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;accuracy&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">LSTM</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">load_model</span><span class="p">(</span><span class="s1">&#39;LSTM.keras&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">y_pred</span> <span class="o">=</span> <span class="n">LSTM</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">x_test</span><span class="p">)</span>
+
+<span class="n">y_pred</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">y_pred</span><span class="p">)</span>
+
+<span class="n">lstm_accuracy</span> <span class="o">=</span> <span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>782/782 [==============================] - 115s 146ms/step
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">accuracy</span> <span class="o">=</span> <span class="p">[</span><span class="n">attention_accuracy</span><span class="p">,</span> <span class="n">lstm_accuracy</span><span class="p">,</span> <span class="n">simple_accuracy</span><span class="p">];</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">([</span><span class="s1">&#39;Attention (5 epochs)&#39;</span><span class="p">,</span> <span class="s1">&#39;LSTM (5 epochs)&#39;</span><span class="p">,</span> <span class="s1">&#39;Simple RNN (50 epochs)&#39;</span><span class="p">],</span> <span class="n">accuracy</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Accuracy of Different RNNs&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Accuracy&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">116</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">accuracy</span> <span class="o">=</span> <span class="p">[</span><span class="n">attention_accuracy</span><span class="p">,</span> <span class="n">lstm_accuracy</span><span class="p">,</span> <span class="n">simple_accuracy</span><span class="p">];</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">([</span><span class="s1">&#39;Attention (5 epochs)&#39;</span><span class="p">,</span> <span class="s1">&#39;LSTM (5 epochs)&#39;</span><span class="p">,</span> <span class="s1">&#39;Simple RNN (50 epochs)&#39;</span><span class="p">],</span> <span class="n">accuracy</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Accuracy of Different RNNs&#39;</span><span class="p">)</span>
+
+<span class="ne">NameError</span>: name &#39;attention_accuracy&#39; is not defined
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="summary">
+<h2>Summary<a class="headerlink" href="#summary" title="Permalink to this heading">#</a></h2>
+<p>In general, Attention Mechanism is a way to help RNNs learn long-term dependencies by allowing the model to focus on the most relevant parts of the input sequence when producing a given output.</p>
+<p>It does this by adding a context vector to the model, which is a weighted sum of the encoder’s hidden states. The weights are computed using an alignment score function, which measures how well the inputs around a given position and the output at that position match.</p>
 </section>
 </section>
 
@@ -766,8 +833,10 @@ ________________________________________________________________________________
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#math-behind-vanishing-gradient-problem">Math Behind Vanishing Gradient Problem</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Attention Mechanism</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#attention-mechanism">Attention Mechanism</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#math-behind-attention-mechanism">Math Behind Attention Mechanism</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#using-attention-mechanism">Using Attention Mechanism</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">Summary</a></li>
 </ul>
   </nav></div>
 
