@@ -3469,7 +3469,13 @@ score(h_i, h_j) = h_i^T h_j
 \[
 new\_alignment\_scores = old\_alignment\_scores + \frac{\partial L}{\partial \alpha_{ij}}
 \]</div>
-<div class="cell docutils container">
+<p>The following graph shows the sum of alignment scores after training the model for 5 epochs:</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">attention_layer</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">layers</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
 
@@ -3505,6 +3511,7 @@ new\_alignment\_scores = old\_alignment\_scores + \frac{\partial L}{\partial \al
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
 <img alt="_images/089a3237c55769bae1afecdaeaf4cdd61721794a8080d1fc7fdace16320b8f10.png" src="_images/089a3237c55769bae1afecdaeaf4cdd61721794a8080d1fc7fdace16320b8f10.png" />
 </div>
