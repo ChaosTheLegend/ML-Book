@@ -386,13 +386,13 @@ document.write(`
 <p>In a basic RNN, each recurrent neuron receives inputs from all neurons from the previous time step, as well as the inputs from the current time step, hence the term ‘recurrent’.</p>
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
-<div class="output text_html"><div id="lWhYxnnSBked" data-shufflequestions="False"
+<div class="output text_html"><div id="tmPIXTLnshhB" data-shufflequestions="False"
                data-shuffleanswers="True"
                data-preserveresponses="false"
                data-numquestions="1000000"
                data-maxwidth="600"
                style="border-radius: 10px; text-align: left"> <style>
-#lWhYxnnSBked {
+#tmPIXTLnshhB {
    --jq-multiple-choice-bg: #6f78ffff;
    --jq-mc-button-bg: #fafafa;
    --jq-mc-button-border: #e0e0e0e0;
@@ -562,7 +562,7 @@ document.write(`
         background-color: var(--jq-correct-color);
     }
 }
-</style></div><script type="application/javascript">var questionslWhYxnnSBked=[{
+</style></div><script type="application/javascript">var questionstmPIXTLnshhB={
         "question": "What is the primary advantage of using an RNN over a traditional feedforward neural network for sequence data?",
         "type": "many_choice",
         "answers": [
@@ -588,7 +588,7 @@ document.write(`
             
             }
         ]
-}]
+}
         ;
     // Make a random ID
 function makeid(length) {
@@ -1338,8 +1338,8 @@ if (typeof version == 'undefined') {
            Someone more knowledgeable could make this better ;-) */
 
         function try_show() {
-          if(document.getElementById("lWhYxnnSBked")) {
-            show_questions(questionslWhYxnnSBked,  lWhYxnnSBked); 
+          if(document.getElementById("tmPIXTLnshhB")) {
+            show_questions(questionstmPIXTLnshhB,  tmPIXTLnshhB); 
           } else {
              setTimeout(try_show, 200);
           }
@@ -1354,10 +1354,10 @@ if (typeof version == 'undefined') {
 
         fetch("https://raw.githubusercontent.com/ChaosTheLegend/ML-Book/main/Quizes/quiz_rnn.json", {signal})
         .then(response => response.json())
-        .then(json => show_questions(json, lWhYxnnSBked))
+        .then(json => show_questions(json, tmPIXTLnshhB))
         .catch(err => {
         console.log("Fetch error or timeout");
-        show_questions(questionslWhYxnnSBked, lWhYxnnSBked);
+        show_questions(questionstmPIXTLnshhB, tmPIXTLnshhB);
         });
         }
         </script></div>
@@ -1365,7 +1365,11 @@ if (typeof version == 'undefined') {
 <p>When applying RNNs to IMDB reviews, we get the following accuracy graph over 50 epochs:</p>
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
-<script type="application/vnd.jupyter.widget-view+json">{"model_id": "5becebc755f64e4e816f6b20917ed44f", "version_major": 2, "version_minor": 0}</script></div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(17, 0.52, &#39;Final Accuracy: 0.69&#39;)
+</pre></div>
+</div>
+<img alt="_images/b96a6a6c172d1bc041c01b8d83f45fcd6b2325d81db5f604660e1de767b4361c.png" src="_images/b96a6a6c172d1bc041c01b8d83f45fcd6b2325d81db5f604660e1de767b4361c.png" />
+</div>
 </div>
 <p>However, we can see that the accuracy of the model does not improve much after the first few epochs. This forces us to use a large number of epochs to get a good accuracy, which is not ideal, and even then, the accuracy may not improve by much</p>
 </section>
@@ -1401,13 +1405,13 @@ if (typeof version == 'undefined') {
 <p><img alt="Simple RNN" src="https://raw.githubusercontent.com/ChaosTheLegend/ML-Book/main/Images/SimpleRNNProblem.png" /></p>
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
-<div class="output text_html"><div id="EiRLrqXJhbrS" data-shufflequestions="False"
+<div class="output text_html"><div id="VnQnmxDktriS" data-shufflequestions="False"
                data-shuffleanswers="True"
                data-preserveresponses="false"
                data-numquestions="1000000"
                data-maxwidth="600"
                style="border-radius: 10px; text-align: left"> <style>
-#EiRLrqXJhbrS {
+#VnQnmxDktriS {
    --jq-multiple-choice-bg: #6f78ffff;
    --jq-mc-button-bg: #fafafa;
    --jq-mc-button-border: #e0e0e0e0;
@@ -1577,7 +1581,7 @@ if (typeof version == 'undefined') {
         background-color: var(--jq-correct-color);
     }
 }
-</style></div><script type="application/javascript">var questionsEiRLrqXJhbrS=[{
+</style></div><script type="application/javascript">var questionsVnQnmxDktriS=[{
     "question": "What is the vanishing gradient problem in RNNs?",
     "type": "many_choice",
     "answers": [
@@ -2352,8 +2356,8 @@ if (typeof version == 'undefined') {
            Someone more knowledgeable could make this better ;-) */
 
         function try_show() {
-          if(document.getElementById("EiRLrqXJhbrS")) {
-            show_questions(questionsEiRLrqXJhbrS,  EiRLrqXJhbrS); 
+          if(document.getElementById("VnQnmxDktriS")) {
+            show_questions(questionsVnQnmxDktriS,  VnQnmxDktriS); 
           } else {
              setTimeout(try_show, 200);
           }
@@ -2368,10 +2372,10 @@ if (typeof version == 'undefined') {
 
         fetch("https://raw.githubusercontent.com/ChaosTheLegend/ML-Book/main/Quizes/quiz_vanish.json", {signal})
         .then(response => response.json())
-        .then(json => show_questions(json, EiRLrqXJhbrS))
+        .then(json => show_questions(json, VnQnmxDktriS))
         .catch(err => {
         console.log("Fetch error or timeout");
-        show_questions(questionsEiRLrqXJhbrS, EiRLrqXJhbrS);
+        show_questions(questionsVnQnmxDktriS, VnQnmxDktriS);
         });
         }
         </script></div>
@@ -2409,10 +2413,6 @@ if (typeof version == 'undefined') {
 </pre></div>
 </div>
 </div>
-</div>
-<div class="cell tag_remove-input docutils container">
-<div class="cell_output docutils container">
-<script type="application/vnd.jupyter.widget-view+json">{"model_id": "b035cbfea2284810ae6027a77a4f1a02", "version_major": 2, "version_minor": 0}</script><script type="application/vnd.jupyter.widget-view+json">{"model_id": "1e0d4708008a48f3ac2e3f82eef4a792", "version_major": 2, "version_minor": 0}</script></div>
 </div>
 </section>
 <section id="math-behind-attention-mechanism">
@@ -2481,13 +2481,13 @@ c_i = \sum_{j=1}^{T_x} \alpha_{ij} h_j
 </table>
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
-<div class="output text_html"><div id="LefxRtJowoCx" data-shufflequestions="False"
+<div class="output text_html"><div id="ifgQRnxDXAoY" data-shufflequestions="False"
                data-shuffleanswers="True"
                data-preserveresponses="false"
                data-numquestions="1000000"
                data-maxwidth="600"
                style="border-radius: 10px; text-align: left"> <style>
-#LefxRtJowoCx {
+#ifgQRnxDXAoY {
    --jq-multiple-choice-bg: #6f78ffff;
    --jq-mc-button-bg: #fafafa;
    --jq-mc-button-border: #e0e0e0e0;
@@ -2657,7 +2657,7 @@ c_i = \sum_{j=1}^{T_x} \alpha_{ij} h_j
         background-color: var(--jq-correct-color);
     }
 }
-</style></div><script type="application/javascript">var questionsLefxRtJowoCx=[{
+</style></div><script type="application/javascript">var questionsifgQRnxDXAoY=[{
         "question": "Given the attention weights and input embeddings, what would be the sum of the context vector?",
         "type": "numeric",
         "answers": [
@@ -3431,8 +3431,8 @@ if (typeof version == 'undefined') {
            Someone more knowledgeable could make this better ;-) */
 
         function try_show() {
-          if(document.getElementById("LefxRtJowoCx")) {
-            show_questions(questionsLefxRtJowoCx,  LefxRtJowoCx); 
+          if(document.getElementById("ifgQRnxDXAoY")) {
+            show_questions(questionsifgQRnxDXAoY,  ifgQRnxDXAoY); 
           } else {
              setTimeout(try_show, 200);
           }
@@ -3447,10 +3447,10 @@ if (typeof version == 'undefined') {
 
         fetch("https://raw.githubusercontent.com/ChaosTheLegend/ML-Book/main/Quizes/quiz_scores.json", {signal})
         .then(response => response.json())
-        .then(json => show_questions(json, LefxRtJowoCx))
+        .then(json => show_questions(json, ifgQRnxDXAoY))
         .catch(err => {
         console.log("Fetch error or timeout");
-        show_questions(questionsLefxRtJowoCx, LefxRtJowoCx);
+        show_questions(questionsifgQRnxDXAoY, ifgQRnxDXAoY);
         });
         }
         </script></div>
@@ -3570,13 +3570,13 @@ output = \sigma(sum)
 (See Transformers)</p>
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
-<div class="output text_html"><div id="tGcwyGrJpFdA" data-shufflequestions="False"
+<div class="output text_html"><div id="mBRvwhgINbLU" data-shufflequestions="False"
                data-shuffleanswers="True"
                data-preserveresponses="false"
                data-numquestions="1000000"
                data-maxwidth="600"
                style="border-radius: 10px; text-align: left"> <style>
-#tGcwyGrJpFdA {
+#mBRvwhgINbLU {
    --jq-multiple-choice-bg: #6f78ffff;
    --jq-mc-button-bg: #fafafa;
    --jq-mc-button-border: #e0e0e0e0;
@@ -3746,7 +3746,7 @@ output = \sigma(sum)
         background-color: var(--jq-correct-color);
     }
 }
-</style></div><script type="application/javascript">var questionstGcwyGrJpFdA=[{
+</style></div><script type="application/javascript">var questionsmBRvwhgINbLU=[{
   "question": "What is the advantage of using an attention mechanism in RNN-based models?",
   "type": "many_choice",
   "answers": [
@@ -4522,8 +4522,8 @@ if (typeof version == 'undefined') {
            Someone more knowledgeable could make this better ;-) */
 
         function try_show() {
-          if(document.getElementById("tGcwyGrJpFdA")) {
-            show_questions(questionstGcwyGrJpFdA,  tGcwyGrJpFdA); 
+          if(document.getElementById("mBRvwhgINbLU")) {
+            show_questions(questionsmBRvwhgINbLU,  mBRvwhgINbLU); 
           } else {
              setTimeout(try_show, 200);
           }
@@ -4538,10 +4538,10 @@ if (typeof version == 'undefined') {
 
         fetch("https://raw.githubusercontent.com/ChaosTheLegend/ML-Book/main/Quizes/quiz_att.json", {signal})
         .then(response => response.json())
-        .then(json => show_questions(json, tGcwyGrJpFdA))
+        .then(json => show_questions(json, mBRvwhgINbLU))
         .catch(err => {
         console.log("Fetch error or timeout");
-        show_questions(questionstGcwyGrJpFdA, tGcwyGrJpFdA);
+        show_questions(questionsmBRvwhgINbLU, mBRvwhgINbLU);
         });
         }
         </script></div>
@@ -4550,36 +4550,46 @@ if (typeof version == 'undefined') {
 <section id="using-attention-mechanism">
 <h2>Using Attention Mechanism<a class="headerlink" href="#using-attention-mechanism" title="Permalink to this heading">#</a></h2>
 <p>By adding an attention mechanism, our model performs way better even when using the low number of epochs.</p>
-<div class="cell tag_remove-input docutils container">
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>782/782 [==============================] - 24s 30ms/step
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># draw a bar chart to compare the accuracy of the two models</span>
+
+<span class="n">y_pred</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">x_test</span><span class="p">)</span>
+
+<span class="n">y_pred</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">y_pred</span><span class="p">)</span>
+
+<span class="n">attention_accuracy</span> <span class="o">=</span> <span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
+
+<span class="n">accuracy</span> <span class="o">=</span> <span class="p">[</span><span class="n">attention_accuracy</span><span class="p">,</span> <span class="n">simple_accuracy</span><span class="p">]</span>
+
+
+<span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">([</span><span class="s1">&#39;Attention (5 epochs)&#39;</span><span class="p">,</span> <span class="s1">&#39;Simple RNN (50 epochs)&#39;</span><span class="p">],</span> <span class="n">accuracy</span><span class="p">)</span>
+
+<span class="c1"># add a title to the plot</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Accuracy of Simple RNN vs Attention Mechanism&#39;</span><span class="p">)</span>
+
+<span class="c1"># add a label to the y-axis</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Accuracy&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="output text_html"><div>                            <div id="9840958b-7bfb-4d86-ba95-ddd32379beea" class="plotly-graph-div" style="height:525px; width:100%;"></div>            <script type="text/javascript">                require(["plotly"], function(Plotly) {                    window.PLOTLYENV=window.PLOTLYENV || {};                                    if (document.getElementById("9840958b-7bfb-4d86-ba95-ddd32379beea")) {                    Plotly.newPlot(                        "9840958b-7bfb-4d86-ba95-ddd32379beea",                        [{"name":"Attention Model","x":["Accuracy"],"y":[0.82792],"type":"bar"},{"name":"Simple RNN","x":["Accuracy"],"y":[0.68688],"type":"bar"}],                        {"template":{"data":{"histogram2dcontour":[{"type":"histogram2dcontour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"choropleth":[{"type":"choropleth","colorbar":{"outlinewidth":0,"ticks":""}}],"histogram2d":[{"type":"histogram2d","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmap":[{"type":"heatmap","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmapgl":[{"type":"heatmapgl","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"contourcarpet":[{"type":"contourcarpet","colorbar":{"outlinewidth":0,"ticks":""}}],"contour":[{"type":"contour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"surface":[{"type":"surface","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"mesh3d":[{"type":"mesh3d","colorbar":{"outlinewidth":0,"ticks":""}}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"parcoords":[{"type":"parcoords","line":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolargl":[{"type":"scatterpolargl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"scattergeo":[{"type":"scattergeo","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolar":[{"type":"scatterpolar","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"scattergl":[{"type":"scattergl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatter3d":[{"type":"scatter3d","line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermapbox":[{"type":"scattermapbox","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterternary":[{"type":"scatterternary","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattercarpet":[{"type":"scattercarpet","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"type":"carpet"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}],"barpolar":[{"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"pie":[{"automargin":true,"type":"pie"}]},"layout":{"autotypenumbers":"strict","colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"hovermode":"closest","hoverlabel":{"align":"left"},"paper_bgcolor":"white","plot_bgcolor":"#E5ECF6","polar":{"bgcolor":"#E5ECF6","angularaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"radialaxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"ternary":{"bgcolor":"#E5ECF6","aaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"baxis":{"gridcolor":"white","linecolor":"white","ticks":""},"caxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]]},"xaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"yaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"scene":{"xaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"yaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"zaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"geo":{"bgcolor":"white","landcolor":"#E5ECF6","subunitcolor":"white","showland":true,"showlakes":true,"lakecolor":"white"},"title":{"x":0.05},"mapbox":{"style":"light"}}},"barmode":"group","title":{"text":"Model Performance Comparison"},"yaxis":{"title":{"text":"Accuracy"}},"xaxis":{"title":{"text":"Model"}}},                        {"responsive": true}                    ).then(function(){
-                            
-var gd = document.getElementById('9840958b-7bfb-4d86-ba95-ddd32379beea');
-var x = new MutationObserver(function (mutations, observer) {{
-        var display = window.getComputedStyle(gd).display;
-        if (!display || display === 'none') {{
-            console.log([gd, 'removed!']);
-            Plotly.purge(gd);
-            observer.disconnect();
-        }}
-}});
-
-// Listen for the removal of the full notebook cells
-var notebookContainer = gd.closest('#notebook-container');
-if (notebookContainer) {{
-    x.observe(notebookContainer, {childList: true});
-}}
-
-// Listen for the clearing of the current output cell
-var outputEl = gd.closest('.output');
-if (outputEl) {{
-    x.observe(outputEl, {childList: true});
-}}
-
-                        })                };                });            </script>        </div></div></div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>782/782 [==============================] - 49s 63ms/step
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;Accuracy&#39;)
+</pre></div>
+</div>
+<img alt="_images/ce2f8e622a884b96318bc6fe678475df5f661af990783844e33c6931837f8cad.png" src="_images/ce2f8e622a884b96318bc6fe678475df5f661af990783844e33c6931837f8cad.png" />
+</div>
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -4625,7 +4635,7 @@ if (outputEl) {{
 </div>
 </details>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>782/782 [==============================] - 104s 132ms/step
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>782/782 [==============================] - 105s 134ms/step
 </pre></div>
 </div>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;Accuracy&#39;)
