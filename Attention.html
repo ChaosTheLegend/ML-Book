@@ -63,6 +63,8 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'Attention';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -1386,7 +1388,10 @@ if (typeof version == 'undefined') {
 <p>The vanishing gradient problem occurs because of the way gradients are computed in RNNs:</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p><img alt="Gradient Computation" src="https://raw.githubusercontent.com/ChaosTheLegend/ML-Book/main/Images/Math/gradient.png" /></p>
+<div class="math notranslate nohighlight">
+\[
+\frac{\partial L}{\partial W} = \frac{\partial L}{\partial y} \frac{\partial y}{\partial h} \frac{\partial h}{\partial W}
+\]</div>
 </div>
 <p>The gradient is computed by multiplying the gradients of the loss function with respect to the output, the output with respect to the hidden state, and the hidden state with respect to the weights.</p>
 <div class="admonition important">
@@ -2414,7 +2419,12 @@ if (typeof version == 'undefined') {
 <h2>Math Behind Attention Mechanism<a class="headerlink" href="#math-behind-attention-mechanism" title="Permalink to this heading">#</a></h2>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>![Context Vector](<a class="reference external" href="https://raw.githubusercontent.com/ChaosTheLegend/ML-Book/main/Images/Math/context_vector.png">https://raw.githubusercontent.com/ChaosTheLegend/ML-Book/main/Images/Math/context_vector.png</a></p>
+<p>The context vector is computed as follows:</p>
+<div class="math notranslate nohighlight">
+\[
+c_i = \sum_{j=1}^{T_x} \alpha_{ij} h_j
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(c_i\)</span> is the context vector at position <span class="math notranslate nohighlight">\(i\)</span>, <span class="math notranslate nohighlight">\(T_x\)</span> is the length of the input sequence, <span class="math notranslate nohighlight">\(\alpha_{ij}\)</span> is the alignment score between the output at position <span class="math notranslate nohighlight">\(i\)</span> and the input at position <span class="math notranslate nohighlight">\(j\)</span>, and <span class="math notranslate nohighlight">\(h_j\)</span> is the hidden state at position <span class="math notranslate nohighlight">\(j\)</span>.</p>
 </div>
 <p><img alt="Attention Mechanism" src="https://raw.githubusercontent.com/ChaosTheLegend/ML-Book/main/Images/AttentionLive.png" /></p>
 <table class="table">
@@ -3455,22 +3465,41 @@ if (typeof version == 'undefined') {
 <p>There are many different score functions that can be used, but the most common one is the dot product:</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p><img alt="Score" src="https://raw.githubusercontent.com/ChaosTheLegend/ML-Book/main/Images/Math/score.png" /></p>
+<div class="math notranslate nohighlight">
+\[
+score(h_i, h_j) = h_i^T h_j
+\]</div>
 </div>
+<p>where <span class="math notranslate nohighlight">\(h_i\)</span> is the hidden state at position <span class="math notranslate nohighlight">\(i\)</span> and <span class="math notranslate nohighlight">\(h_j\)</span> is the hidden state at position <span class="math notranslate nohighlight">\(j\)</span>.</p>
 <p>The alignment scores are then computed as follows:</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p><img alt="Score" src="https://raw.githubusercontent.com/ChaosTheLegend/ML-Book/main/Images/Math/score2.png" /></p>
+<div class="math notranslate nohighlight">
+\[
+\alpha_{ij} = \frac{exp(score(h_i, h_j))}{\sum_{k=1}^{T_x} exp(score(h_i, h_k))}
+\]</div>
 </div>
+<p>where <span class="math notranslate nohighlight">\(T_x\)</span> is the length of the input sequence.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>The resulting matrix of alignment scores will look like this:</p>
-<p><img alt="Matrix" src="https://raw.githubusercontent.com/ChaosTheLegend/ML-Book/main/Images/matrix.png" /></p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{bmatrix}
+\alpha_{11} &amp; \alpha_{12} &amp; \alpha_{13} &amp; \dots &amp; \alpha_{1T_x} \\
+\alpha_{21} &amp; \alpha_{22} &amp; \alpha_{23} &amp; \dots &amp; \alpha_{2T_x} \\
+\vdots &amp; \vdots &amp; \vdots &amp; \ddots &amp; \vdots \\
+\alpha_{T_y1} &amp; \alpha_{T_y2} &amp; \alpha_{T_y3} &amp; \dots &amp; \alpha_{T_yT_x} \\
+\end{bmatrix}
+\end{split}\]</div>
 </div>
 <p>In the beginning, the alignment scores are random, but as the model learns using backpropagation, the alignment scores are updated to reflect how well the inputs around a given position and the output at that position match.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p><img alt="New Score" src="https://raw.githubusercontent.com/ChaosTheLegend/ML-Book/main/Images/Math/new_scores.png" /></p>
+<div class="math notranslate nohighlight">
+\[
+new\_alignment\_scores = old\_alignment\_scores + \frac{\partial L}{\partial \alpha_{ij}}
+\]</div>
 </div>
 <p>The following graph shows the sum of alignment scores after training the model for 5 epochs:</p>
 <div class="cell tag_hide-input docutils container">
@@ -3525,10 +3554,17 @@ if (typeof version == 'undefined') {
 <p>Green bars show positive weights, indicating that the word is positive</p>
 <p>Red bars show negative weights, indicating that the word is negative</p>
 </div>
-<p>The computed vector is then multiplied by the hidden state at position i to produce the output at position i, this is being done in the context layer. In the case of Binary Classification, we use dense layer with sigmoid activation function to produce the output.</p>
+<p>The computed vector is then multiplied by the hidden state at position <span class="math notranslate nohighlight">\(i\)</span> to produce the output at position <span class="math notranslate nohighlight">\(i\)</span>, this is being done in the context layer. In the case of Binary Classification, we use dense layer with sigmoid activation function to produce the output.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>![Sum](<a class="reference external" href="https://raw.githubusercontent.com/ChaosTheLegend/ML-Book/main/Images/Math/sum_output.png">https://raw.githubusercontent.com/ChaosTheLegend/ML-Book/main/Images/Math/sum_output.png</a></p>
+<div class="math notranslate nohighlight">
+\[
+sum =  \sum_{i=1}^{T_x} \alpha_{ij} h_j
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+output = \sigma(sum)
+\]</div>
 </div>
 <p>But attention can also be used for other tasks such as Machine Translation, where another RNN is used to decode the output sequence.
 (See Transformers)</p>
