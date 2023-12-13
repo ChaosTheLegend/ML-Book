@@ -383,12 +383,7 @@ document.write(`
 <section id="rnn-recap">
 <h2>RNN recap<a class="headerlink" href="#rnn-recap" title="Permalink to this heading">#</a></h2>
 <p>In a basic RNN, each recurrent neuron receives inputs from all neurons from the previous time step, as well as the inputs from the current time step, hence the term ‘recurrent’.</p>
-<div class="cell tag_hide-cell docutils container">
-<details class="hide above-input">
-<summary aria-label="Toggle hidden content">
-<span class="collapsed">Show code cell content</span>
-<span class="expanded">Hide code cell content</span>
-</summary>
+<div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">### This cell should be hidden in the final version</span>
 
@@ -428,65 +423,174 @@ document.write(`
 <span class="c1"># Model is loaded from the file to save time</span>
 
 <span class="n">simpleRNN</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">load_model</span><span class="p">(</span><span class="s1">&#39;simpleRNN.keras&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2023-12-13 02:54:13.909827: I external/local_tsl/tsl/cuda/cudart_stub.cc:31] Could not find cuda drivers on your machine, GPU will not be used.
-2023-12-13 02:54:13.941085: E external/local_xla/xla/stream_executor/cuda/cuda_dnn.cc:9261] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
-2023-12-13 02:54:13.941107: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:607] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
-2023-12-13 02:54:13.942298: E external/local_xla/xla/stream_executor/cuda/cuda_blas.cc:1515] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
-2023-12-13 02:54:13.948031: I external/local_tsl/tsl/cuda/cudart_stub.cc:31] Could not find cuda drivers on your machine, GPU will not be used.
-2023-12-13 02:54:13.948526: I tensorflow/core/platform/cpu_feature_guard.cc:182] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
-To enable the following instructions: AVX2 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2023-12-13 02:54:14.719186: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT
-</pre></div>
-</div>
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">line</span> <span class="mi">5</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="kn">import</span> <span class="nn">tensorflow</span> <span class="k">as</span> <span class="nn">tf</span>
-<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="ne">----&gt; </span><span class="mi">5</span> <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="g g-Whitespace">      </span><span class="mi">6</span> <span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
-<span class="g g-Whitespace">      </span><span class="mi">7</span> <span class="kn">from</span> <span class="nn">keras.src.utils</span> <span class="kn">import</span> <span class="n">pad_sequences</span>
 
-<span class="ne">ModuleNotFoundError</span>: No module named &#39;pandas&#39;
-</pre></div>
-</div>
-</div>
-</details>
-</div>
-<div class="cell tag_hide-cell docutils container">
-<details class="hide above-input">
-<summary aria-label="Toggle hidden content">
-<span class="collapsed">Show code cell content</span>
-<span class="expanded">Hide code cell content</span>
-</summary>
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># make predictions and calculate accuracy</span>
+<span class="c1"># make predictions and calculate accuracy</span>
 
 <span class="n">y_pred</span> <span class="o">=</span> <span class="n">simpleRNN</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">x_test</span><span class="p">)</span>
 <span class="n">y_pred</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">y_pred</span><span class="p">)</span>
 
 <span class="n">simple_accuracy</span> <span class="o">=</span> <span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
+
+<span class="n">accuracy_epochs</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;simplernn_accuracy.csv&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>782/782 [==============================] - 16s 20ms/step
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2023-12-13 03:32:32.574954: I external/local_tsl/tsl/cuda/cudart_stub.cc:31] Could not find cuda drivers on your machine, GPU will not be used.
+2023-12-13 03:32:32.606189: E external/local_xla/xla/stream_executor/cuda/cuda_dnn.cc:9261] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
+2023-12-13 03:32:32.606223: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:607] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
+2023-12-13 03:32:32.607452: E external/local_xla/xla/stream_executor/cuda/cuda_blas.cc:1515] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
+2023-12-13 03:32:32.613272: I external/local_tsl/tsl/cuda/cudart_stub.cc:31] Could not find cuda drivers on your machine, GPU will not be used.
+2023-12-13 03:32:32.614087: I tensorflow/core/platform/cpu_feature_guard.cc:182] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2023-12-13 03:32:33.444543: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloading data from https://storage.googleapis.com/tensorflow/tf-keras-datasets/imdb.npz
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>    8192/17464789 [..............................] - ETA: 0s
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+  524288/17464789 [..............................] - ETA: 1s
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+ 4202496/17464789 [======&gt;.......................] - ETA: 0s
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+12337152/17464789 [====================&gt;.........] - ETA: 0s
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+17464789/17464789 [==============================] - 0s 0us/step
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ValueError</span><span class="g g-Whitespace">                                </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">line</span> <span class="mi">38</span>
+<span class="g g-Whitespace">     </span><span class="mi">25</span> <span class="n">dropout_rate</span> <span class="o">=</span> <span class="mf">0.5</span>
+<span class="g g-Whitespace">     </span><span class="mi">28</span> <span class="c1"># model = tf.keras.Sequential([</span>
+<span class="g g-Whitespace">     </span><span class="mi">29</span> <span class="c1">#    tf.keras.layers.Embedding(input_dim=num_words, output_dim=embedding_dim, input_length=max_len),</span>
+<span class="g g-Whitespace">     </span><span class="mi">30</span> <span class="c1">#    tf.keras.layers.SimpleRNN(hidden_dim),</span>
+   <span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">35</span> 
+<span class="g g-Whitespace">     </span><span class="mi">36</span> <span class="c1"># Model is loaded from the file to save time</span>
+<span class="ne">---&gt; </span><span class="mi">38</span> <span class="n">simpleRNN</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">load_model</span><span class="p">(</span><span class="s1">&#39;simpleRNN.keras&#39;</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">40</span> <span class="c1"># make predictions and calculate accuracy</span>
+<span class="g g-Whitespace">     </span><span class="mi">42</span> <span class="n">y_pred</span> <span class="o">=</span> <span class="n">simpleRNN</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">x_test</span><span class="p">)</span>
+
+<span class="nn">File /opt/hostedtoolcache/Python/3.11.5/x64/lib/python3.11/site-packages/keras/src/saving/saving_api.py:254,</span> in <span class="ni">load_model</span><span class="nt">(filepath, custom_objects, compile, safe_mode, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">249</span>     <span class="k">if</span> <span class="n">kwargs</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">250</span>         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">251</span>             <span class="s2">&quot;The following argument(s) are not supported &quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">252</span>             <span class="sa">f</span><span class="s2">&quot;with the native Keras format: </span><span class="si">{</span><span class="nb">list</span><span class="p">(</span><span class="n">kwargs</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">253</span>         <span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">254</span>     <span class="k">return</span> <span class="n">saving_lib</span><span class="o">.</span><span class="n">load_model</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">255</span>         <span class="n">filepath</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">256</span>         <span class="n">custom_objects</span><span class="o">=</span><span class="n">custom_objects</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">257</span>         <span class="nb">compile</span><span class="o">=</span><span class="nb">compile</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">258</span>         <span class="n">safe_mode</span><span class="o">=</span><span class="n">safe_mode</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">259</span>     <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">261</span> <span class="c1"># Legacy case.</span>
+<span class="g g-Whitespace">    </span><span class="mi">262</span> <span class="k">return</span> <span class="n">legacy_sm_saving_lib</span><span class="o">.</span><span class="n">load_model</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">263</span>     <span class="n">filepath</span><span class="p">,</span> <span class="n">custom_objects</span><span class="o">=</span><span class="n">custom_objects</span><span class="p">,</span> <span class="nb">compile</span><span class="o">=</span><span class="nb">compile</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
+<span class="g g-Whitespace">    </span><span class="mi">264</span> <span class="p">)</span>
+
+<span class="nn">File /opt/hostedtoolcache/Python/3.11.5/x64/lib/python3.11/site-packages/keras/src/saving/saving_lib.py:281,</span> in <span class="ni">load_model</span><span class="nt">(filepath, custom_objects, compile, safe_mode)</span>
+<span class="g g-Whitespace">    </span><span class="mi">278</span>             <span class="n">asset_store</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">280</span> <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">281</span>     <span class="k">raise</span> <span class="n">e</span>
+<span class="g g-Whitespace">    </span><span class="mi">282</span> <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">283</span>     <span class="k">return</span> <span class="n">model</span>
+
+<span class="nn">File /opt/hostedtoolcache/Python/3.11.5/x64/lib/python3.11/site-packages/keras/src/saving/saving_lib.py:269,</span> in <span class="ni">load_model</span><span class="nt">(filepath, custom_objects, compile, safe_mode)</span>
+<span class="g g-Whitespace">    </span><span class="mi">266</span> <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">267</span>     <span class="n">asset_store</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="ne">--&gt; </span><span class="mi">269</span> <span class="n">_load_state</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">270</span>     <span class="n">model</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">271</span>     <span class="n">weights_store</span><span class="o">=</span><span class="n">weights_store</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">272</span>     <span class="n">assets_store</span><span class="o">=</span><span class="n">asset_store</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">273</span>     <span class="n">inner_path</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">274</span>     <span class="n">visited_trackables</span><span class="o">=</span><span class="nb">set</span><span class="p">(),</span>
+<span class="g g-Whitespace">    </span><span class="mi">275</span> <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">276</span> <span class="n">weights_store</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">277</span> <span class="k">if</span> <span class="n">asset_store</span><span class="p">:</span>
+
+<span class="nn">File /opt/hostedtoolcache/Python/3.11.5/x64/lib/python3.11/site-packages/keras/src/saving/saving_lib.py:466,</span> in <span class="ni">_load_state</span><span class="nt">(trackable, weights_store, assets_store, inner_path, skip_mismatch, visited_trackables)</span>
+<span class="g g-Whitespace">    </span><span class="mi">457</span>     <span class="n">_load_state</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">458</span>         <span class="n">child_obj</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">459</span>         <span class="n">weights_store</span><span class="p">,</span>
+   <span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">463</span>         <span class="n">visited_trackables</span><span class="o">=</span><span class="n">visited_trackables</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">464</span>     <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">465</span> <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">child_obj</span><span class="p">,</span> <span class="p">(</span><span class="nb">list</span><span class="p">,</span> <span class="nb">dict</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">,</span> <span class="nb">set</span><span class="p">)):</span>
+<span class="ne">--&gt; </span><span class="mi">466</span>     <span class="n">_load_container_state</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">467</span>         <span class="n">child_obj</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">468</span>         <span class="n">weights_store</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">469</span>         <span class="n">assets_store</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">470</span>         <span class="n">inner_path</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">gfile</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">inner_path</span><span class="p">,</span> <span class="n">child_attr</span><span class="p">),</span>
+<span class="g g-Whitespace">    </span><span class="mi">471</span>         <span class="n">skip_mismatch</span><span class="o">=</span><span class="n">skip_mismatch</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">472</span>         <span class="n">visited_trackables</span><span class="o">=</span><span class="n">visited_trackables</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">473</span>     <span class="p">)</span>
+
+<span class="nn">File /opt/hostedtoolcache/Python/3.11.5/x64/lib/python3.11/site-packages/keras/src/saving/saving_lib.py:534,</span> in <span class="ni">_load_container_state</span><span class="nt">(container, weights_store, assets_store, inner_path, skip_mismatch, visited_trackables)</span>
+<span class="g g-Whitespace">    </span><span class="mi">532</span> <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">533</span>     <span class="n">used_names</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="ne">--&gt; </span><span class="mi">534</span> <span class="n">_load_state</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">535</span>     <span class="n">trackable</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">536</span>     <span class="n">weights_store</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">537</span>     <span class="n">assets_store</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">538</span>     <span class="n">inner_path</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">gfile</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">inner_path</span><span class="p">,</span> <span class="n">name</span><span class="p">),</span>
+<span class="g g-Whitespace">    </span><span class="mi">539</span>     <span class="n">skip_mismatch</span><span class="o">=</span><span class="n">skip_mismatch</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">540</span>     <span class="n">visited_trackables</span><span class="o">=</span><span class="n">visited_trackables</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">541</span> <span class="p">)</span>
+
+<span class="nn">File /opt/hostedtoolcache/Python/3.11.5/x64/lib/python3.11/site-packages/keras/src/saving/saving_lib.py:435,</span> in <span class="ni">_load_state</span><span class="nt">(trackable, weights_store, assets_store, inner_path, skip_mismatch, visited_trackables)</span>
+<span class="g g-Whitespace">    </span><span class="mi">428</span>             <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">429</span>                 <span class="sa">f</span><span class="s2">&quot;Could not load weights in object </span><span class="si">{</span><span class="n">trackable</span><span class="si">}</span><span class="s2">. &quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">430</span>                 <span class="s2">&quot;Skipping object. &quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">431</span>                 <span class="sa">f</span><span class="s2">&quot;Exception encountered: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">432</span>                 <span class="n">stacklevel</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">433</span>             <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">434</span>     <span class="k">else</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">435</span>         <span class="n">trackable</span><span class="o">.</span><span class="n">load_own_variables</span><span class="p">(</span><span class="n">weights_store</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">inner_path</span><span class="p">))</span>
+<span class="g g-Whitespace">    </span><span class="mi">437</span> <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">trackable</span><span class="p">,</span> <span class="s2">&quot;load_assets&quot;</span><span class="p">)</span> <span class="ow">and</span> <span class="n">assets_store</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">438</span>     <span class="k">if</span> <span class="n">skip_mismatch</span><span class="p">:</span>
+
+<span class="nn">File /opt/hostedtoolcache/Python/3.11.5/x64/lib/python3.11/site-packages/keras/src/engine/base_layer.py:3531,</span> in <span class="ni">Layer.load_own_variables</span><span class="nt">(self, store)</span>
+<span class="g g-Whitespace">   </span><span class="mi">3529</span> <span class="n">all_vars</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_trainable_weights</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">_non_trainable_weights</span>
+<span class="g g-Whitespace">   </span><span class="mi">3530</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">store</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="n">all_vars</span><span class="p">):</span>
+<span class="ne">-&gt; </span><span class="mi">3531</span>     <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">3532</span>         <span class="sa">f</span><span class="s2">&quot;Layer &#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&#39; expected </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">all_vars</span><span class="p">)</span><span class="si">}</span><span class="s2"> variables, &quot;</span>
+<span class="g g-Whitespace">   </span><span class="mi">3533</span>         <span class="s2">&quot;but received &quot;</span>
+<span class="g g-Whitespace">   </span><span class="mi">3534</span>         <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">store</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span><span class="si">}</span><span class="s2"> variables during loading. &quot;</span>
+<span class="g g-Whitespace">   </span><span class="mi">3535</span>         <span class="sa">f</span><span class="s2">&quot;Expected: </span><span class="si">{</span><span class="p">[</span><span class="n">v</span><span class="o">.</span><span class="n">name</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">all_vars</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="g g-Whitespace">   </span><span class="mi">3536</span>     <span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">3537</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">all_vars</span><span class="p">):</span>
+<span class="g g-Whitespace">   </span><span class="mi">3538</span>     <span class="c1"># TODO(rchao): check shapes and raise errors.</span>
+<span class="g g-Whitespace">   </span><span class="mi">3539</span>     <span class="n">v</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">store</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">])</span>
+
+<span class="ne">ValueError</span>: Layer &#39;embedding_18&#39; expected 1 variables, but received 0 variables during loading. Expected: [&#39;embedding_18/embeddings:0&#39;]
 </pre></div>
 </div>
 </div>
-</details>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">accuracy_epochs</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;simplernn_accuracy.csv&#39;</span><span class="p">)</span>
-
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">accuracy_epochs</span><span class="p">[</span><span class="s1">&#39;epoch&#39;</span><span class="p">],</span> <span class="n">accuracy_epochs</span><span class="p">[</span><span class="s1">&#39;accuracy&#39;</span><span class="p">])</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">display_quiz</span><span class="p">(</span><span class="n">git_path</span> <span class="o">+</span> <span class="s1">&#39;quiz_rnn.json&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>When applying RNNs to IMDB reviews, we get the following accuracy graph over 50 epochs:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">accuracy_epochs</span><span class="p">[</span><span class="s1">&#39;epoch&#39;</span><span class="p">],</span> <span class="n">accuracy_epochs</span><span class="p">[</span><span class="s1">&#39;accuracy&#39;</span><span class="p">])</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Accuracy of Simple RNN&#39;</span><span class="p">)</span>
 
@@ -500,13 +604,8 @@ To enable the following instructions: AVX2 FMA, in other operations, rebuild Ten
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(17, 0.52, &#39;Final Accuracy: 0.69&#39;)
-</pre></div>
 </div>
-<img alt="_images/b96a6a6c172d1bc041c01b8d83f45fcd6b2325d81db5f604660e1de767b4361c.png" src="_images/b96a6a6c172d1bc041c01b8d83f45fcd6b2325d81db5f604660e1de767b4361c.png" />
-</div>
-</div>
+<p>However, we can see that the accuracy of the model does not improve much after the first few epochs. This forces us to use a large number of epochs to get a good accuracy, which is not ideal, and even then, the accuracy may not improve by much</p>
 </section>
 <section id="the-need-for-attention-mechanism">
 <h2>The Need for Attention Mechanism<a class="headerlink" href="#the-need-for-attention-mechanism" title="Permalink to this heading">#</a></h2>
@@ -529,6 +628,13 @@ To enable the following instructions: AVX2 FMA, in other operations, rebuild Ten
 <p>The gradient is computed by multiplying the gradients of the loss function with respect to the output, the output with respect to the hidden state, and the hidden state with respect to the weights.</p>
 <p>Since gradients are multiplied together, if the gradients at each time step are less than 1 (e.g., due to using activation functions like sigmoid or tanh), this multiplication leads to a compounding effect. As you go further back in time, the gradients become increasingly smaller.</p>
 <p><img alt="Simple RNN" src="https://raw.githubusercontent.com/ChaosTheLegend/ML-Book/main/Images/SimpleRNNProblem.png" /></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">display_quiz</span><span class="p">(</span><span class="n">git_path</span> <span class="o">+</span> <span class="s1">&#39;quiz_vanish.json&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
 </section>
 </section>
 <section id="attention-mechanism">
@@ -552,24 +658,13 @@ To enable the following instructions: AVX2 FMA, in other operations, rebuild Ten
 <span class="n">model</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">Model</span><span class="p">(</span><span class="n">inputs</span><span class="p">,</span> <span class="n">outputs</span><span class="p">)</span>
 
 <span class="n">model</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">optimizer</span><span class="o">=</span><span class="s1">&#39;adam&#39;</span><span class="p">,</span> <span class="n">loss</span><span class="o">=</span><span class="s1">&#39;binary_crossentropy&#39;</span><span class="p">,</span> <span class="n">metrics</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;accuracy&#39;</span><span class="p">])</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell tag_hide-cell docutils container">
-<details class="hide above-input">
-<summary aria-label="Toggle hidden content">
-<span class="collapsed">Show code cell content</span>
-<span class="expanded">Hide code cell content</span>
-</summary>
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># load the model</span>
+
+<span class="c1"># load the model</span>
 
 <span class="n">model</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">load_model</span><span class="p">(</span><span class="s1">&#39;simpleRNN_attention.keras&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
-</details>
 </div>
 </section>
 <section id="math-behind-attention-mechanism">
@@ -581,6 +676,65 @@ c_i = \sum_{j=1}^{T_x} \alpha_{ij} h_j
 \]</div>
 <p>where <span class="math notranslate nohighlight">\(c_i\)</span> is the context vector at position <span class="math notranslate nohighlight">\(i\)</span>, <span class="math notranslate nohighlight">\(T_x\)</span> is the length of the input sequence, <span class="math notranslate nohighlight">\(\alpha_{ij}\)</span> is the alignment score between the output at position <span class="math notranslate nohighlight">\(i\)</span> and the input at position <span class="math notranslate nohighlight">\(j\)</span>, and <span class="math notranslate nohighlight">\(h_j\)</span> is the hidden state at position <span class="math notranslate nohighlight">\(j\)</span>.</p>
 <p><img alt="Attention Mechanism" src="https://raw.githubusercontent.com/ChaosTheLegend/ML-Book/main/Images/AttentionLive.png" /></p>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>a_1</p></th>
+<th class="head"><p>a_2</p></th>
+<th class="head"><p>a_3</p></th>
+<th class="head"><p>a_4</p></th>
+<th class="head"><p>sum</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0.1</p></td>
+<td><p>0.2</p></td>
+<td><p>0.3</p></td>
+<td><p>0.4</p></td>
+<td><p>1.0</p></td>
+</tr>
+<tr class="row-odd"><td><p>0.5,</p></td>
+<td><p>0.6</p></td>
+<td><p>0.7</p></td>
+<td><p>0.8</p></td>
+<td><p>2.6</p></td>
+</tr>
+<tr class="row-even"><td><p>0.9</p></td>
+<td><p>0.1</p></td>
+<td><p>0.2</p></td>
+<td><p>0.3</p></td>
+<td><p>1.5</p></td>
+</tr>
+<tr class="row-odd"><td><p>0.4</p></td>
+<td><p>0.3</p></td>
+<td><p>0.6</p></td>
+<td><p>0.7</p></td>
+<td><p>2.0</p></td>
+</tr>
+</tbody>
+</table>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>h_1</p></th>
+<th class="head"><p>h_2</p></th>
+<th class="head"><p>h_3</p></th>
+<th class="head"><p>h_4</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0.9</p></td>
+<td><p>0.5</p></td>
+<td><p>0.2</p></td>
+<td><p>0.1</p></td>
+</tr>
+</tbody>
+</table>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">display_quiz</span><span class="p">(</span><span class="n">git_path</span> <span class="o">+</span> <span class="s1">&#39;quiz_scores.json&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
 </section>
 <section id="alignment-scores">
 <h2>Alignment Scores<a class="headerlink" href="#alignment-scores" title="Permalink to this heading">#</a></h2>
@@ -665,16 +819,18 @@ output = \sigma(sum)
 \]</div>
 <p>But attention can also be used for other tasks such as Machine Translation, where another RNN is used to decode the output sequence.
 (See Transformers)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">display_quiz</span><span class="p">(</span><span class="n">git_path</span> <span class="o">+</span> <span class="s1">&#39;quiz_att.json&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
 </section>
 <section id="using-attention-mechanism">
 <h2>Using Attention Mechanism<a class="headerlink" href="#using-attention-mechanism" title="Permalink to this heading">#</a></h2>
 <p>By adding an attention mechanism, our model performs way better even when using the low number of epochs.</p>
-<div class="cell tag_hide-input docutils container">
-<details class="hide above-input">
-<summary aria-label="Toggle hidden content">
-<span class="collapsed">Show code cell source</span>
-<span class="expanded">Hide code cell source</span>
-</summary>
+<div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># draw a bar chart to compare the accuracy of the two models</span>
 
@@ -699,9 +855,8 @@ output = \sigma(sum)
 </pre></div>
 </div>
 </div>
-</details>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>782/782 [==============================] - 27s 34ms/step
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>782/782 [==============================] - 25s 32ms/step
 </pre></div>
 </div>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;Accuracy&#39;)
@@ -725,36 +880,16 @@ output = \sigma(sum)
 <span class="n">model</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">Model</span><span class="p">(</span><span class="n">inputs</span><span class="o">=</span><span class="n">inputs</span><span class="p">,</span> <span class="n">outputs</span><span class="o">=</span><span class="n">output</span><span class="p">)</span>
 
 <span class="n">model</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">optimizer</span><span class="o">=</span><span class="s1">&#39;adam&#39;</span><span class="p">,</span> <span class="n">loss</span><span class="o">=</span><span class="s1">&#39;binary_crossentropy&#39;</span><span class="p">,</span> <span class="n">metrics</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;accuracy&#39;</span><span class="p">])</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">LSTM</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">load_model</span><span class="p">(</span><span class="s1">&#39;LSTM.keras&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">y_pred</span> <span class="o">=</span> <span class="n">LSTM</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">x_test</span><span class="p">)</span>
+
+<span class="n">LSTM</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">load_model</span><span class="p">(</span><span class="s1">&#39;LSTM.keras&#39;</span><span class="p">)</span>
+
+<span class="n">y_pred</span> <span class="o">=</span> <span class="n">LSTM</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">x_test</span><span class="p">)</span>
 
 <span class="n">y_pred</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">y_pred</span><span class="p">)</span>
 
 <span class="n">lstm_accuracy</span> <span class="o">=</span> <span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>782/782 [==============================] - 108s 138ms/step
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">accuracy</span> <span class="o">=</span> <span class="p">[</span><span class="n">attention_accuracy</span><span class="p">,</span> <span class="n">lstm_accuracy</span><span class="p">,</span> <span class="n">simple_accuracy</span><span class="p">]</span>
+
+<span class="n">accuracy</span> <span class="o">=</span> <span class="p">[</span><span class="n">attention_accuracy</span><span class="p">,</span> <span class="n">lstm_accuracy</span><span class="p">,</span> <span class="n">simple_accuracy</span><span class="p">]</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">([</span><span class="s1">&#39;Attention (5 epochs)&#39;</span><span class="p">,</span> <span class="s1">&#39;LSTM (5 epochs)&#39;</span><span class="p">,</span> <span class="s1">&#39;Simple RNN (50 epochs)&#39;</span><span class="p">],</span> <span class="n">accuracy</span><span class="p">)</span>
 
@@ -765,6 +900,9 @@ output = \sigma(sum)
 </div>
 </div>
 <div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>782/782 [==============================] - 117s 148ms/step
+</pre></div>
+</div>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;Accuracy&#39;)
 </pre></div>
 </div>
