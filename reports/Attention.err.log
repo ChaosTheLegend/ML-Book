@@ -67,23 +67,25 @@ simple_accuracy = accuracy_score(y_test, y_pred)
 ------------------
 
 ----- stderr -----
-2023-12-13 04:55:21.607144: I external/local_tsl/tsl/cuda/cudart_stub.cc:31] Could not find cuda drivers on your machine, GPU will not be used.
-2023-12-13 04:55:21.638397: E external/local_xla/xla/stream_executor/cuda/cuda_dnn.cc:9261] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
-2023-12-13 04:55:21.638428: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:607] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
-2023-12-13 04:55:21.639665: E external/local_xla/xla/stream_executor/cuda/cuda_blas.cc:1515] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
-2023-12-13 04:55:21.645523: I external/local_tsl/tsl/cuda/cudart_stub.cc:31] Could not find cuda drivers on your machine, GPU will not be used.
-2023-12-13 04:55:21.646338: I tensorflow/core/platform/cpu_feature_guard.cc:182] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+2023-12-13 05:00:08.175207: I external/local_tsl/tsl/cuda/cudart_stub.cc:31] Could not find cuda drivers on your machine, GPU will not be used.
+2023-12-13 05:00:08.205960: E external/local_xla/xla/stream_executor/cuda/cuda_dnn.cc:9261] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
+2023-12-13 05:00:08.205983: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:607] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
+2023-12-13 05:00:08.207170: E external/local_xla/xla/stream_executor/cuda/cuda_blas.cc:1515] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
+2023-12-13 05:00:08.212836: I external/local_tsl/tsl/cuda/cudart_stub.cc:31] Could not find cuda drivers on your machine, GPU will not be used.
+2023-12-13 05:00:08.213429: I tensorflow/core/platform/cpu_feature_guard.cc:182] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
 To enable the following instructions: AVX2 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
 ----- stderr -----
-2023-12-13 04:55:22.475071: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT
+2023-12-13 05:00:09.001920: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT
 ----- stdout -----
 Downloading data from https://storage.googleapis.com/tensorflow/tf-keras-datasets/imdb.npz
 ----- stdout -----
     8192/17464789 [..............................] - ETA: 0s
 ----- stdout -----
- 4472832/17464789 [======>.......................] - ETA: 0s
+  532480/17464789 [..............................] - ETA: 1s
 ----- stdout -----
-13336576/17464789 [=====================>........] - ETA: 0s
+ 4202496/17464789 [======>.......................] - ETA: 0s
+----- stdout -----
+12304384/17464789 [====================>.........] - ETA: 0s
 ----- stdout -----
 17464789/17464789 [==============================] - 0s 0us/step
 ------------------
