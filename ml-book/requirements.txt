@@ -7,3 +7,4 @@ scikit-learn
 jupyterquiz
 ipywidgets
 pandas
+plotly
