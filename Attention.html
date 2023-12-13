@@ -1374,9 +1374,12 @@ if (typeof version == 'undefined') {
 </section>
 <section id="the-need-for-attention-mechanism">
 <h2>The Need for Attention Mechanism<a class="headerlink" href="#the-need-for-attention-mechanism" title="Permalink to this heading">#</a></h2>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
 <p>The problem with basic RNNs is that they are not very good at handling long sequences.</p>
 <p>Even when using more epochs, the accuracy of the model does not improve much. This is because the model is not able to learn the long-term dependencies in the data.</p>
 <p>This is known as the vanishing gradient problem.</p>
+</div>
 <section id="vanishing-gradient-problem">
 <h3>Vanishing Gradient Problem<a class="headerlink" href="#vanishing-gradient-problem" title="Permalink to this heading">#</a></h3>
 <p>The vanishing gradient problem occurs when the gradients of the loss function become increasingly smaller as the model learns to associate inputs and outputs that are further apart in time.</p>
@@ -1391,7 +1394,10 @@ if (typeof version == 'undefined') {
 \frac{\partial L}{\partial W} = \frac{\partial L}{\partial y} \frac{\partial y}{\partial h} \frac{\partial h}{\partial W}
 \]</div>
 <p>The gradient is computed by multiplying the gradients of the loss function with respect to the output, the output with respect to the hidden state, and the hidden state with respect to the weights.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
 <p>Since gradients are multiplied together, if the gradients at each time step are less than 1 (e.g., due to using activation functions like sigmoid or tanh), this multiplication leads to a compounding effect. As you go further back in time, the gradients become increasingly smaller.</p>
+</div>
 <p><img alt="Simple RNN" src="https://raw.githubusercontent.com/ChaosTheLegend/ML-Book/main/Images/SimpleRNNProblem.png" /></p>
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
@@ -2375,7 +2381,10 @@ if (typeof version == 'undefined') {
 <section id="attention-mechanism">
 <h2>Attention Mechanism<a class="headerlink" href="#attention-mechanism" title="Permalink to this heading">#</a></h2>
 <p>To combat the vanishing gradient problem, we can use an attention mechanism.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
 <p>An attention mechanism is a way to help RNNs learn long-term dependencies by allowing the model to focus on the most relevant parts of the input sequence when producing a given output.</p>
+</div>
 <p>We do this by adding a context vector to the model, which is a weighted sum of the encoder’s hidden states. The weights are computed using an alignment score function, which measures how well the inputs around a given position and the output at that position match.</p>
 <p><img alt="Attention Mechanism" src="https://raw.githubusercontent.com/ChaosTheLegend/ML-Book/main/Images/Attention.png" /></p>
 <div class="cell docutils container">
@@ -2404,12 +2413,15 @@ if (typeof version == 'undefined') {
 </section>
 <section id="math-behind-attention-mechanism">
 <h2>Math Behind Attention Mechanism<a class="headerlink" href="#math-behind-attention-mechanism" title="Permalink to this heading">#</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
 <p>The context vector is computed as follows:</p>
 <div class="math notranslate nohighlight">
 \[
 c_i = \sum_{j=1}^{T_x} \alpha_{ij} h_j
 \]</div>
 <p>where <span class="math notranslate nohighlight">\(c_i\)</span> is the context vector at position <span class="math notranslate nohighlight">\(i\)</span>, <span class="math notranslate nohighlight">\(T_x\)</span> is the length of the input sequence, <span class="math notranslate nohighlight">\(\alpha_{ij}\)</span> is the alignment score between the output at position <span class="math notranslate nohighlight">\(i\)</span> and the input at position <span class="math notranslate nohighlight">\(j\)</span>, and <span class="math notranslate nohighlight">\(h_j\)</span> is the hidden state at position <span class="math notranslate nohighlight">\(j\)</span>.</p>
+</div>
 <p><img alt="Attention Mechanism" src="https://raw.githubusercontent.com/ChaosTheLegend/ML-Book/main/Images/AttentionLive.png" /></p>
 <table class="table">
 <thead>
@@ -3442,19 +3454,31 @@ if (typeof version == 'undefined') {
 </section>
 <section id="alignment-scores">
 <h2>Alignment Scores<a class="headerlink" href="#alignment-scores" title="Permalink to this heading">#</a></h2>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
 <p>The alignment scores are computed using a score function, which measures how well the inputs around a given position and the output at that position match.</p>
+</div>
 <p>There are many different score functions that can be used, but the most common one is the dot product:</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
 <div class="math notranslate nohighlight">
 \[
 score(h_i, h_j) = h_i^T h_j
 \]</div>
+</div>
 <p>where <span class="math notranslate nohighlight">\(h_i\)</span> is the hidden state at position <span class="math notranslate nohighlight">\(i\)</span> and <span class="math notranslate nohighlight">\(h_j\)</span> is the hidden state at position <span class="math notranslate nohighlight">\(j\)</span>.</p>
 <p>The alignment scores are then computed as follows:</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
 <div class="math notranslate nohighlight">
 \[
 \alpha_{ij} = \frac{exp(score(h_i, h_j))}{\sum_{k=1}^{T_x} exp(score(h_i, h_k))}
 \]</div>
+</div>
 <p>where <span class="math notranslate nohighlight">\(T_x\)</span> is the length of the input sequence.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The resulting matrix of alignment scores will look like this:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{bmatrix}
@@ -3464,6 +3488,7 @@ score(h_i, h_j) = h_i^T h_j
 \alpha_{T_y1} &amp; \alpha_{T_y2} &amp; \alpha_{T_y3} &amp; \dots &amp; \alpha_{T_yT_x} \\
 \end{bmatrix}
 \end{split}\]</div>
+</div>
 <p>In the beginning, the alignment scores are random, but as the model learns using backpropagation, the alignment scores are updated to reflect how well the inputs around a given position and the output at that position match.</p>
 <div class="math notranslate nohighlight">
 \[
@@ -3516,10 +3541,15 @@ new\_alignment\_scores = old\_alignment\_scores + \frac{\partial L}{\partial \al
 <img alt="_images/089a3237c55769bae1afecdaeaf4cdd61721794a8080d1fc7fdace16320b8f10.png" src="_images/089a3237c55769bae1afecdaeaf4cdd61721794a8080d1fc7fdace16320b8f10.png" />
 </div>
 </div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
 <p>The Lower the absolute value of the weight, the less relevant the word is to the output</p>
 <p>Green bars show positive weights, indicating that the word is positive</p>
 <p>Red bars show negative weights, indicating that the word is negative</p>
+</div>
 <p>The computed vector is then multiplied by the hidden state at position <span class="math notranslate nohighlight">\(i\)</span> to produce the output at position <span class="math notranslate nohighlight">\(i\)</span>, this is being done in the context layer. In the case of Binary Classification, we use dense layer with sigmoid activation function to produce the output.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
 <div class="math notranslate nohighlight">
 \[
 sum =  \sum_{i=1}^{T_x} \alpha_{ij} h_j
@@ -3528,6 +3558,7 @@ sum =  \sum_{i=1}^{T_x} \alpha_{ij} h_j
 \[
 output = \sigma(sum)
 \]</div>
+</div>
 <p>But attention can also be used for other tasks such as Machine Translation, where another RNN is used to decode the output sequence.
 (See Transformers)</p>
 <div class="cell tag_remove-input docutils container">
@@ -4606,8 +4637,14 @@ if (typeof version == 'undefined') {
 </section>
 <section id="summary">
 <h2>Summary<a class="headerlink" href="#summary" title="Permalink to this heading">#</a></h2>
-<p>In general, Attention Mechanism is a way to help RNNs learn long-term dependencies by allowing the model to focus on the most relevant parts of the input sequence when producing a given output.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Attention Mechanism is a way to help RNNs learn long-term dependencies by allowing the model to focus on the most relevant parts of the input sequence when producing a given output.</p>
+</div>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
 <p>It does this by adding a context vector to the model, which is a weighted sum of the encoder’s hidden states. The weights are computed using an alignment score function, which measures how well the inputs around a given position and the output at that position match.</p>
+</div>
 </section>
 </section>
 
